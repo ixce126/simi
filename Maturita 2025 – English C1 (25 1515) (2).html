@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Maturita 2025 – English C1 (25 1515)</title>
+<style>
+:root{--bg:#0e1116;--card:#171b22;--card2:#1e242d;--line:#2a313c;--tx:#e6e9ee;--mut:#9aa4b2;--ac:#6ea8fe;--ac2:#1d3557;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 92px);background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--tx);font:17px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;top:0;left:0;right:0;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:30}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding:8px 14px 8px}
+.hin{max-width:780px;margin:auto}
+.top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:14px;color:var(--mut)}
+.top b{color:var(--tx);font-size:15px}
+.bar{height:5px;background:var(--card2);border-radius:3px;margin:6px 0 8px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--ac);transition:width .25s}
+nav{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav button{flex:none;background:var(--card);color:var(--tx);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font:inherit;font-size:14px;cursor:pointer}
+main{max-width:780px;margin:auto;padding:6px 14px 70px}
+h1{font-size:22px;line-height:1.25;margin:18px 0 4px}
+h2{font-size:19px;margin:34px 0 4px;color:var(--ac);line-height:1.3}
+h3{font-size:18px;margin:6px 0 6px;line-height:1.3}
+.sub{color:var(--mut);margin:0 0 10px;font-size:15px}
+section{border-top:1px solid var(--line);margin-top:28px;padding-top:14px}
+.ins{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 14px;margin:8px 0 12px;font-size:15.5px}
+.ins p,.txt p,.qb p{margin:0 0 10px}
+.txt{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:10px 0}
+.txt p:last-child{margin:0}
+.cap{color:var(--mut);font-size:14px;font-style:italic;margin-top:-4px}
+.fn{color:var(--mut);font-size:14px}
+.q{display:flex;gap:12px;padding:14px 0;border-top:1px solid var(--line)}
+.qn{flex:none;min-width:2.1em;font-weight:700;color:var(--ac);font-variant-numeric:tabular-nums}
+.qb{flex:1;min-width:0}
+.qb>p:last-child{margin-bottom:0}
+input[type=radio]{position:absolute;opacity:0;width:1px;height:1px;margin:0}
+label,button{touch-action:manipulation;-webkit-tap-highlight-color:transparent;cursor:pointer}
+label.opt{display:block;margin:7px 0}
+label.opt span{display:block;padding:11px 14px;min-height:46px;border:1px solid var(--line);background:var(--card);border-radius:12px;cursor:pointer}
+label.opt b{color:var(--ac);margin-right:8px}
+.seg{display:flex;flex-wrap:wrap;gap:7px}
+.seg label span{display:flex;align-items:center;justify-content:center;min-width:46px;height:46px;border:1px solid var(--line);background:var(--card);border-radius:12px;font-weight:600;cursor:pointer}
+input[type=radio]:checked+span{background:var(--ac2);border-color:var(--ac);color:#fff}
+input[type=radio]:focus-visible+span,input[type=text]:focus,.chip:focus-visible{outline:2px solid var(--ac);outline-offset:1px}
+input[type=text]{background:var(--card2);color:var(--tx);border:1px solid var(--line);border-bottom:2px solid var(--ac);border-radius:8px;padding:5px 10px;font:inherit;font-size:16px;width:10.5em;max-width:100%;margin:2px 2px}
+.exw{border-bottom:2px solid var(--line);padding:0 8px;color:var(--mut)}
+.chip{display:inline-block;background:var(--card2);color:var(--ac);border:1px dashed var(--ac);border-radius:9px;padding:1px 10px;min-height:34px;font:inherit;cursor:pointer;vertical-align:baseline;margin:1px 1px;line-height:1.5}
+.chip small{font-size:12px;opacity:.8;margin-right:3px;font-weight:700}
+.chip.done{border-style:solid;color:var(--tx);background:var(--ac2)}
+.chip.ex{cursor:default;border-color:var(--line);color:var(--mut);background:var(--card)}
+.ref{display:flex;gap:10px;padding:8px 0;border-top:1px solid var(--line);font-size:15.5px}
+.ref:first-child{border-top:0}
+.ref b{color:var(--ac);flex:none;width:1.6em}
+.ref div{white-space:pre-line}
+.gap{align-items:center}
+.sh{position:fixed;top:0;left:0;right:0;bottom:0;display:none;z-index:50;background:rgba(0,0,0,.6);cursor:pointer}
+.sh.on{display:flex}
+.shi{background:var(--card);width:100%;max-width:780px;margin:auto auto 0;border-radius:18px 18px 0 0;padding:14px 14px calc(14px + env(safe-area-inset-bottom,0px));border:1px solid var(--line)}
+.shi h4{margin:0 0 8px;color:var(--mut);font-size:14px;font-weight:600}
+.shi button{display:block;width:100%;text-align:left;background:var(--card2);color:var(--tx);border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:7px 0;font:inherit;min-height:48px;cursor:pointer}
+.shi button.on{background:var(--ac2);border-color:var(--ac)}
+.shi button b{color:var(--ac);margin-right:10px}
+.clr{margin-top:30px;background:transparent;color:var(--mut);border:1px solid var(--line);border-radius:10px;padding:10px 16px;font:inherit;font-size:15px;cursor:pointer}
+label.opt span.ok,.seg label span.ok,.chip.ok{background:#12301f!important;border-color:#4ade80!important;color:#d7f7e2!important}
+label.opt span.bad,.seg label span.bad,.chip.bad{background:#3a1717!important;border-color:#f87171!important;color:#fcd9d9!important}
+input[type=radio]:disabled+span{cursor:default}
+input[type=text].tok{border-color:#4ade80;background:#12301f}
+input[type=text].tbad{border-color:#f87171;background:#3a1717}
+.fb{margin-top:8px;font-size:15px}.fb.ok{color:#4ade80}.fb.bad{color:#fca5a5}
+.chip b{color:#4ade80}
+@media (max-width:480px){body{font-size:16.5px}.q{gap:9px}}
+</style>
+</head>
+<body>
+<header><div class="hin">
+<div class="top"><span><b>Maturita 2025 · English C1</b> · 25 1515</span><span><b id="cnt">0</b> / 90 · <b id="okc">0</b> ✓</span></div>
+<div class="bar"><i id="bar"></i></div>
+<nav id="nav"></nav>
+</div></header>
+<main id="app"><p style="color:#9aa4b2;padding:20px 0">Loading…</p></main>
+<script>window.onerror=function(m,s,l,c){var d=document.createElement("div");d.style.cssText="position:fixed;bottom:0;left:0;right:0;background:#7f1d1d;color:#fff;padding:10px 14px;z-index:99;font:14px/1.4 monospace";d.textContent="Error: "+m+" (line "+l+", col "+c+")";document.body.appendChild(d)}</script>
+<div class="sh" id="sh"><div class="shi" id="shi"></div></div>
+<script>
+const K="matura2025-c1-1515",L="ABCDEFGH";
+let ans={};try{ans=JSON.parse(localStorage.getItem(K)||"{}")}catch(e){}
+const pad=n=>String(n).padStart(2,"0");
+const P=t=>t.split("\n\n").map(p=>"<p>"+p+"</p>").join("");
+const keys=n=>(n==29||n==30)?[n+"a",n+"b"]:[""+n];
+const gp=(t,m)=>t.replace(/\{(\d+)([ab]?)\}/g,(x,n,s)=>m=="c"
+ ?`<button type="button" class="chip" data-g="${n}"><small>${pad(+n)}</small>&nbsp;…</button>`
+ :`<input type="text" data-k="${n+s}" placeholder="${pad(+n)}${s}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Answer ${n}${s}">`);
+const mc=(n,q,o)=>`<div class="q" id="q${n}"><div class="qn">${pad(n)}</div><div class="qb"><p>${q}</p>${o.map((t,i)=>`<label class="opt"><input type="radio" name="q${n}" value="${L[i]}" data-k="${n}"><span><b>${L[i]}</b>${t}</span></label>`).join("")}</div></div>`;
+const pk=(n,t,ls)=>`<div class="q${t?"":" gap"}" id="q${n}"><div class="qn">${pad(n)}</div><div class="qb">${t?`<p>${t}</p>`:""}<div class="seg">${ls.split("").map(l=>`<label><input type="radio" name="q${n}" value="${l}" data-k="${n}"><span>${l}</span></label>`).join("")}</div></div></div>`;
+const tq=(n,t)=>`<div class="q" id="q${n}"><div class="qn">${pad(n)}</div><div class="qb"><p>${gp(t)}</p></div></div>`;
+const ref=a=>`<div class="txt">${a.map((t,i)=>`<div class="ref"><b>${L[i]}</b><div>${t}</div></div>`).join("")}</div>`;
+const mcs=(arr)=>arr.map(a=>mc(a[0],a[1],a[2])).join("");
+
+const OPT={31:"be|being|have been|–",32:"go|pass|do|move",33:"was not able|was not allowed|did not have|was not possible",34:"is|was|has been|would be",35:"set up|set off|set out|set in",36:"Upon|By|Through|Over",37:"rears|rises|arises|raises",38:"alley|path|line|lane",39:"closely|exactly|nearly|almost",40:"revises|reminds|recalls|recognises",41:"will create|were creating|created|have created",42:"over she had left|over had she left|had she left over|she had left over",43:"neither|either|nor|not",44:"take over|take up|take after|take in",45:"had sold|sell|would sell|had been selling",46:"behind|beyond|off|beneath",47:"processed|enabled|elaborated|progressed",48:"has since gone out of|since has gone out of|has gone out of since|has gone since out of",49:"comes|goes|leaves|arrives",50:"issued|piled|launched|outlaid"};
+for(const k in OPT)OPT[k]=OPT[k].split("|");
+
+const KEY={1:"C",2:"B",3:"D",4:"B",5:"A",6:"D",7:"B",8:"C",9:"D",10:"A",11:"D",12:"G",13:"A",14:"H",15:"F",16:"E",17:"C",18:"G",19:"A",20:"D",31:"B",32:"A",33:"B",34:"C",35:"A",36:"C",37:"D",38:"B",39:"D",40:"C",41:"C",42:"D",43:"B",44:"A",45:"C",46:"A",47:"D",48:"A",49:"B",50:"C",61:"C",62:"A",63:"A",64:"D",65:"D",66:"A",67:"D",68:"D",69:"C",70:"D",71:"F",72:"C",73:"G",74:"E",75:"B",82:"C",83:"A",84:"D",85:"B",86:"A",87:"B",88:"D",89:"C",90:"A"};
+const ACC={21:["diversity"],22:["exercise their rights"],23:["sense of injustice"],24:["qualifications"],25:["made redundant"],26:["four attempts","4 attempts","four tries","4 tries"],27:["talents","gifts","talent","gift","abilities","ability"],28:["society"],51:["portuguese"],52:["headline","heading"],53:["headquarters"],54:["officials","officers"],55:["secretive"],56:["collective"],57:["useless"],58:["famously"],59:["succeed"],60:["pride"],76:["seeds"],77:["carbon makeup"],78:["food chain"],79:["tropical regions","tropical habitats"],80:["pitfall traps"],81:["czech institution"]};
+const SHOWM={26:"four attempts / 4 attempts",27:"talents / gifts",29:"Asian, ethnic minority / minority ethnic",30:"breakdown, estate",52:"headline / heading",54:"officials / officers",77:"Carbon makeup / Carbon make-up",79:"tropical regions / tropical habitats"};
+const REV={};
+const norm=s=>s.toLowerCase().replace(/[^a-z0-9 ]/g,"").replace(/\s+/g," ").trim();
+function ed1(a,b){if(a==b)return true;if(Math.abs(a.length-b.length)>1)return false;let i=0;while(i<a.length&&i<b.length&&a[i]==b[i])i++;if(a.length==b.length)return a.slice(i+1)==b.slice(i+1);return a.length>b.length?a.slice(i+1)==b.slice(i):b.slice(i+1)==a.slice(i)}
+function isOk(n){
+ if(KEY[n])return ans[n]==KEY[n];
+ if(n==29){const a=norm(ans["29a"]||""),b=norm(ans["29b"]||"");return ed1(a,"asian")&&(ed1(b,"ethnic minority")||ed1(b,"minority ethnic"))}
+ if(n==30)return ed1(norm(ans["30a"]||""),"breakdown")&&ed1(norm(ans["30b"]||""),"estate");
+ const v=norm(ans[n]||"");return ACC[n].some(x=>n<=30?ed1(v,x):v==x)}
+function tally(){let c=0;for(let n=1;n<=90;n++){if(!(KEY[n]||REV[n]))continue;if(!keys(n).every(k=>(ans[k]||"").trim()))continue;if(isOk(n))c++}
+ const e=document.getElementById("okc");if(e)e.textContent=c}
+function reveal(n){
+ const q=document.getElementById("q"+n);if(!q)return;
+ if(KEY[n]){const v=ans[n];if(!v)return;
+  q.querySelectorAll("input[type=radio]").forEach(r=>{r.disabled=true;const sp=r.nextElementSibling;if(r.value==KEY[n])sp.classList.add("ok");else if(r.value==v)sp.classList.add("bad")});
+ }else{
+  if(!keys(n).every(k=>(ans[k]||"").trim()))return;
+  const ok=isOk(n);REV[n]=1;
+  q.querySelectorAll("input[type=text]").forEach(i=>{i.readOnly=true;i.classList.add(ok?"tok":"tbad")});
+  if(!q.querySelector(".fb"))q.querySelector(".qb").insertAdjacentHTML("beforeend",`<div class="fb ${ok?"ok":"bad"}">${ok?"✓ Correct":"✗ Correct answer: <b>"+(SHOWM[n]||ACC[n][0])+"</b>"}</div>`);
+ }
+ tally()}
+const S=[];
+/* ---------- LISTENING 1 ---------- */
+S.push(["s1","Listening 1",`<h1>Maturita 2025 – External Part<br>English · Level C1 · Test 25 1515</h1>
+<h2>SECTION I – LISTENING (30 points)</h2>
+<div class="ins"><p>This section of the test has three parts. You will hear four recordings which you will listen to twice. While listening, answer the questions in the appropriate part of the test.</p></div>
+<h3>Part 1: Two Interviews (10 points)</h3>
+<div class="ins"><p>In this part, you will hear two different extracts. In the first extract, you will hear an interview with Sophie Kinsella, a popular British writer. In the second extract, you will hear an interview with Dr Richard Bartel, a neurosurgeon. For the following statements 01–10, choose the correct answer (A), (B), (C) or (D). There is always only one correct answer.</p><p>Now you have 2 minutes to read the tasks.</p></div>
+<h3>Extract 1: An Interview with Sophie Kinsella (5 points)</h3>`+mcs([
+[1,"The screenwriter of Can you Keep a Secret? focused on …",["presenting its characters in a funnier way than the novelist","selecting the most entertaining scenes from the novel","preserving the plot of the book as much as possible","cooperating with the producers and the actors"]],
+[2,"In the process of writing her comedic novels, Sophie is driven by …",["the funny dialogues of her characters","an unexpected turn of events","romantic moments in the plot","the strange relations among characters"]],
+[3,"When Sophie reads contemporary novels, she tends to …",["compare the quality of different authors","predict solutions of some conflicts","provoke her own ideas","apply her viewpoint as a novelist"]],
+[4,"Sophie considered her trip to Utah a memorable experience because of its …",["unforgettable history","unique scenery","special inhabitants","varied sights"]],
+[5,"Sophie admires one of her book covers because it …",["contains an unexpected element","includes the quote of her character","uses a mix of different signs and symbols","presents a picture of the main character"]]])+
+`<h3 style="margin-top:22px">Extract 2: An Interview with Dr Richard Bartel (5 points)</h3>`+mcs([
+[6,"According to Dr Bartel, applying computers in brain micro-surgery …",["has made things easier for everyone","has been technologically improved","is still rare in some countries","has become common practice"]],
+[7,"Dr Bartel states that medical students …",["choose their medical specialty quite early","observe experienced specialists as a rule","analyse lots of surgical operations","build up professional ties in hospitals"]],
+[8,"Dr Bartel thinks that brain surgeons need to …",["be highly intelligent","perform lots of operations","develop professionally","attend conferences abroad"]],
+[9,"In the future, Dr Bartel would like to …",["continue practicing neurosurgery","give lectures in foreign countries","discontinue his teaching","conduct medical research"]],
+[10,"Dr Bartel believes that the number of neurosurgeons has decreased due to …",["insufficient professional development programmes","the decreased interest of medical students in this field","older surgeons keeping out younger ones","inadequate benefits offered to doctors – specialists"]]])]);
+
+/* ---------- LISTENING 2 ---------- */
+S.push(["s2","Listening 2",`<h3>Part 2: How to Make a Good Presentation (10 points)</h3>
+<div class="ins"><p>In this part, you will hear a radio programme in which an expert explains how to make a good presentation. The expert will mention five ideas and five practical ways how to do it. There are two blocks of five matching questions. You will have to match all ten questions while you are listening to this recording. Read the questions carefully before you listen.</p><p>For questions 11–15, choose from the first list marked (A) – (H) the main idea which is being described. For questions 16 – 20, choose from the second list marked (A) – (H) the practical way how to do it. Be careful, there are three extra possibilities which you do not need to use. There is always only one correct answer.</p><p>Now you have 2 minutes to read the tasks.</p></div>
+<h3>1st LIST – Questions 11–15 – Options (A)–(H): IDEAS</h3>`+
+ref(["Have a strong opening.","Emphasize key ideas.","Focus on design standards.","Create an easy-to-follow structure.","Add video to your presentation.","Have a strategy for a smooth delivery.","Polish your ideas several times.","Be your real self."])+
+[1,2,3,4,5].map(i=>pk(10+i,"Idea No "+i+":","ABCDEFGH")).join("")+
+`<h3 style="margin-top:24px">2nd LIST – Questions 16–20 – Options (A) – (H): PRACTICAL TIPS</h3>`+
+ref(["Remain genuine and unworried about mistakes.","Make a pause for key ideas.","Repeat reviewing and reducing the text.","Use suitable technology to deliver the presentation easily.","Be aware of the purpose of each part.","Use colours most relevant to your message.","Include something different to grab attention.","Summarize your presentation at the end."])+
+[1,2,3,4,5].map(i=>pk(15+i,"Practical tip No "+i+":","ABCDEFGH")).join("")]);
+
+/* ---------- LISTENING 3 ---------- */
+S.push(["s3","Listening 3",`<h3>Part 3: Stephanie Boyce – President of the Law Society (10 points)</h3>
+<div class="ins"><p>You will hear a radio programme in which Stephanie Boyce, a lawyer – solicitor and President of the Law Society, expresses her determination to change the legal profession. Complete the sentences 21–30, which summarize the information from the text. Use from one word to three words in your answers (the number of words is indicated in brackets).</p><p>Now you have 2 minutes to read the sentences.</p></div>`+
+[[21,"Stephanie was raised in a small market town with minimal {21}. <i>(1 word)</i>"],
+[22,"Observing people trying to {22} was a trigger for Stephanie’s future profession. <i>(3 words)</i>"],
+[23,"After moving to the States, the {23} became more evident to Stephanie. <i>(3 words)</i>"],
+[24,"When Stephanie came back to the U.K., her American {24} were not acceptable. <i>(1 word)</i>"],
+[25,"After completing her studies and getting her first job, Stephanie was {25} twice. <i>(2 words)</i>"],
+[26,"Stephanie was appointed president of The Law Society after {26}. <i>(2 words)</i>"],
+[27,"Stephanie believes that every individual should use their {27} to the best advantage. <i>(1 word)</i>"],
+[28,"According to Stephanie, the legal profession ought to mirror basically the {28} for which it provides its services. <i>(1 word)</i>"],
+[29,"Only 20 % of Black, {29a} and {29b} solicitors were given higher positions in their jobs. <i>(3 words)</i>"],
+[30,"A family {30a} or {30b} planning are vital circumstances for consulting a solicitor. <i>(2 words)</i>"]].map(a=>tq(a[0],a[1])).join("")]);
+
+/* ---------- LANGUAGE IN USE 1 ---------- */
+S.push(["s4","Language 1",`<h2>SECTION II – LANGUAGE IN USE (30 points)</h2>
+<div class="ins"><p>This section of the test has two parts. To complete this section of the test, you will need approximately 40 minutes.</p></div>
+<h3>Part 1: ‘My Mantra Is… Just Try It!’ (20 points)</h3>
+<div class="ins"><p>Read the following text and decide which word or phrase (A), (B), (C) or (D) best fits into each space numbered 31–50. There is always only one correct answer. There is an example at the beginning (00).</p><p>Example: (00) – (C)</p><p class="fn" style="margin:0">Tap a numbered gap to choose an option.</p></div>
+<div class="txt">`+P(gp(`Annoushka Ducas knows how important it is to be given support. She tells Jackie Brown how she is <span class="chip ex"><small>00</small>&nbsp;dedicated to</span> passing this on with The Prince’s Trust.
+
+Key to {31} a successful entrepreneur is having the confidence to give something a {32}, a lesson that jeweller Annoushka Ducas learned from an early age. ‘I was brought up by my mother, who had a real can-do attitude. “No” was a word I {33} to use. Her mentality was “Just try it!” and that {34} a real mantra for me ever since. My mum gave me the confidence to try things and that has been fundamental throughout my life.’
+
+It’s an approach that led Annoushka to {35} Links of London in the 1990s, which had 50 stores when she and her husband sold it. She then went on to create the luxurious Annoushka brand, much loved by numerous celebrities, including Gwyneth Paltrow.
+
+So now she is spreading her own style of positive thinking to young women in need of support. {36} her friend Chrissie Rucker she has become involved with Women Supporting Women that {37} money for young women looking to take business courses or training to help on a new {38}.
+
+Annoushka never trained as a jeweller and she explains how her career and Links came about {39} by chance. ‘My mother supplied 60 top restaurants in London with fish. She had 60 chefs to give a present to and asked me what she could give,’ she {40}. ‘At the time I was working in Hong Kong and used to travel a lot. I found a silver workshop on a trip to the Philippines and suggested we {41} cufflinks* with a fish on one side and fish bones on the other.’
+
+It was cheaper to make 120 pairs and when Annoushka moved back to London, she decided to sell the ones {42}. ‘At the time, there were {43} plain cufflinks or very expensive ones, while mine were in between. One buyer said if I could design a collection I should go back to meet her. So that’s what I did; I went back with six designs and the store took all of them.’
+
+‘Sadly, in the middle of this my mother died very suddenly. She was only 53 and overnight I had to {44} her fish business. I was 23 and getting up very early every morning to go to Sussex to buy fish off the boats. I did that in the morning and in the afternoon, I {45} cufflinks.’
+
+Ultimately, she left the fish business {46} as she got more involved with developing Links with her husband, John Ayton. Their first store opened in 1991 in the City and {47} to include jewellery and gifts.
+
+In 2006, the couple sold Links and Annoushka remains sad that it {48} business. The main reason was that it had got too corporate and the creativity kind of {49} when it gets big. She found she missed working and started developing the Annoushka brand, which was {50} in 2009.
+
+<span class="fn">* decorative objects used to fasten shirt cuffs</span>`,"c"))+`</div>`]);
+
+/* ---------- LANGUAGE IN USE 2 ---------- */
+S.push(["s5","Language 2",`<h3>Part 2: Mandarins (10 points)</h3>
+<div class="ins"><p>In the following text, there are some missing words numbered 51–60. Use the word given in brackets to form a new word that fits into the space in the same line. There is an example at the beginning (00).</p><p>Example: 00 – Chinese</p></div>
+<div class="txt">`+P(gp(`Many European languages refer to the bureaucrats of ancient China as ‘mandarins’. However, the word ‘mandarin’ has not come to us from the <span class="exw">00 · Chinese</span> (China) language of Mandarin. English and German take it from the {51} (Portugal) mandarim, which, in turn, was borrowed from Malay, which came from a Sanskrit word for ‘counsellor’.
+
+The word ‘mandarin’ is often used in the media, probably because it’s a short word that sits well in a {52} (head) – better than ‘senior government advisor’. ‘Whitehall’ refers to the {53} (quarter) of the UK civil service in London, so mandarins are also called ‘Whitehall {54} (office)’.
+
+Mandarins are powerful bureaucrats who play an important role in the administration of the country. They work at the highest levels of government, but they’re not ministers or even elected politicians. Their power is {55} (secret) and hidden. Mandarins usually work behind the scenes, using their influence in private conversations in the corridors of power, rather than on the public stage.
+
+As regards the European Union, the mandarins are the {56} (collect) memory of the Commission. They know everything; they know how things work, the way to get things done. The mandarins are the real power in the Commission. There have been a few {57} (use) commissioners who got sucked under by bureaucracy and spat out again without anyone knowing who they were or what they did. However, there are some {58} (famous) strong commissioners – they eventually {59} (success) and win over their own mandarins. A strong commissioner can generate {60} (proud) in their mandarins.`))+`</div>`]);
+
+/* ---------- READING 1 ---------- */
+S.push(["s6","Reading 1",`<h2>SECTION III – READING (30 points)</h2>
+<div class="ins"><p>This section of the test has four parts. To complete this section of the test, you will need approximately 70 minutes.</p></div>
+<h3>Part 1: What Happened on March 19 (9 points)</h3>
+<div class="ins"><p>In this part, there are three themed texts. For the statements 61–69, choose the answer (A) – (D) according to the texts. There is always only one correct answer.</p></div>
+<h3>Passage 1: Massachusetts Bay Colony (3 points)</h3>
+<div class="txt">`+P(`Massachusetts Bay Colony, one of the original English settlements in present-day Massachusetts, was settled in 1630 by a group of about 1,000 Puritan refugees from England under Gov. John Winthrop and Deputy Gov. Thomas Dudley. In 1629 the Massachusetts Bay Company obtained a charter from King Charles I empowering the company to trade and colonize New England between the Charles and Merrimack rivers. The grant was similar to that of the Virginia Company in 1609, the patentees being joint proprietors with rights of ownership and government.
+
+The intention of the crown was evidently merely to create a commercial company with what today would be called stockholders, officers, and directors. However, by a wise and legally questionable move, the patentees decided to transfer the management and the charter to Massachusetts. By this move, they not only paved the way for local management but also established the assumption that the charter for a commercial company was a political constitution for a new government with only indefinable dependence upon the imperial one in England.
+
+The Puritans established a religiously-based government with voting limited to church members. Winthrop, Dudley, the Rev. John Cotton, and other leaders sought to prevent any independence of religious views. Many with differing religious beliefs – including Roger Williams of Salem and Anne Hutchinson of Boston – were sent away.`)+`</div>`+mcs([
+[61,"King Charles I …",["initiated the creation of Massachusetts Bay Colony","transferred the management of the colony to Massachusetts","gave rights to a company to colonize New England","excluded Roger Williams and Ann Hutchinson from the management"]],
+[62,"From the passage, we learn that …",["John Winthorp wanted to ban all signs of religious independence","Puritan refugees took advantage of the charter given to the Virginia Company","Puritans were sent to New England to create a settlement there","Thomas Dudley was superior to John Winthorp"]],
+[63,"From the passage, we infer that the members of the Massachusetts Bay Company …",["could take part in leading the company","had to sign a charter quite different to that of the Virginia Company","voted for Winthorp and Dudley so that they were their leaders","agreed with the King Charles I on transferring the management to Massachusetts"]]])+
+`<h3 style="margin-top:26px">Passage 2: Conquering Manila (3 points)</h3>
+<div class="txt">`+P(`Miguel López de Legazpi’s (1502–1572) conquest of Manila in 1571 saw the start of a 327-year epoch of Castilian rule in the Philippine Islands. Still, his actions also created unintended historical by-products that made the undertaking dissimilar to any other colony in the Spanish empire. Most notable were that the archipelago was located in Asia, it consisted of many islands inhabited by a variety of Malay and Austronesian peoples, and Chinese cultural and economic influences.
+
+Manila became a battlefield and mixing pot for Asian, Malay, and Mexican peoples, religious beliefs, political institutions, technologies, cultivated crops and domesticated animals, to name but a few of the exchanges that occurred over the three centuries of Spanish dominion. Before the word “globalization” became a common catchphrase in the late 20th century, the Manila Galleon, Malay, and Portuguese trade routes joined in Manila, uniting Europe, the Americas, Asia, and Africa through sea-going commerce across the Atlantic, Pacific, and Indian Oceans in the late 16th century.
+
+From that time, traditional scholarship on the Philippines tended to be Iberian-centered narratives flowing only one way from Madrid to Mexico City to Manila and presenting nationally biased and commodity-centred analyses penned by academics in Spain and Mexico. Beginning in the early 20th century, scholars from the United States in various disciplines began writing their own interpretations of the colonial period that came before the half-century of American occupation. Filipino social scientists have been involved since the 1920s, but exponentially more so following independence in 1946, contributing an essential indigenous perspective that had been absent from previous erudition.`)+`</div>`+mcs([
+[64,"The distinguishing feature of the Castillian rule in the Philippines was that …",["there were different cultivated crops","it was close to China","there were mainly Malay people","the land conquered was situated in Asia"]],
+[65,"We can infer that …",["Chinese political institutions prevailed","Manila was controlled by the Spanish for three decades","Spaniards united a few countries in Asia","various trade paths met in Manila"]],
+[66,"From the passage, we learn that …",["Spaniards and Mexicans interpreted historical facts one-sidedly","Filipino scientists usually repeated what had been written by Americans","Philippines was occupied by Americans and Spaniards simultaneously","Filipino writers started writing about their history after gaining independence in 1946"]]])+
+`<h3 style="margin-top:26px">Passage 3: Sydney Harbour Bridge Opens (3 points)</h3>
+<div class="txt">`+P(`On 19 March 1932, the Sydney Harbour Bridge opened to the public. The event marked the end of almost a century of speculation and planning around a bridge or tunnel that would cross the harbour.
+
+In 1912 John Job Crew Bradfield was appointed chief engineer of Sydney Harbour Bridge and City Transit. Bradfield became the project’s greatest advocate and is remembered as the ‘father’ of the Sydney Harbour Bridge. However, the First World War stopped all plans for a bridge. Finally, in November 1922, the New South Wales Parliament passed the Sydney Harbour Bridge Act.
+
+Bradfield could now begin planning for the bridge seriously. In January 1923, he invited tenders for the construction of a bridge across Sydney Harbour. The international competition closed on 16 January 1924. Six firms from around the world had submitted 20 proposals. Bradfield and his team put together their Report on Tenders and recommended design A3 – a steel arch with towers designed by Dorman, Long & Co of Middlesbrough, England. Bradfield was impressed by the company’s track record, the ‘dignity’ of the design and the fact that Dorman Long was the only tenderer to specify that all fabrication would take place in Australia. Dorman Long’s consulting engineer, Ralph Freeman of Sir Douglas Fox and Partners, oversaw the detail of the bridge design. The aesthetics of the span, especially the striking granite-faced tower pylons, were handled by consulting architects Sir John Burnet and Partners.`)+`</div>`+mcs([
+[67,"For a long time, Australians could not …",["agree on the head of the bridge project","find funds or sponsors for the bridge project","choose the most suitable company for building the bridge project","decide whether to build a tunnel or a bridge"]],
+[68,"From the passage, we learn that …",["the project was not approved by the Parliament at the beginning","only Australian firms competed in the tender","the concept of the bridge was proposed by Sir John Burnet","the design for the bridge originated in England"]],
+[69,"We can infer that …",["John Bradfield was chosen as a chief engineer after WWI","Bradfield took into consideration six proposals from Australia","the winner of the tender convinced everyone that all manufacturing would be done in Australia","granite for the pylons was taken from the south of New South Wales"]]])]);
+
+/* ---------- READING 2 ---------- */
+S.push(["s7","Reading 2",`<h3>Part 2: The History of the Hôtel de Glace Ice Hotel (6 points)</h3>
+<div class="ins"><p>Read the following extract. Six paragraphs have been removed from the text. Complete the missing paragraphs (A) – (G) into the gaps 70 – 75. There is one extra paragraph which you do not need to use.</p></div>
+<div class="txt"><p>Jacque Desbois is a French-Canadian man who has always loved snow. He started his first company – La Piste Desbois – in 1996. The company was an ecotourism company, and they designed and built interactive igloo villages for people to come and visit, stay in and explore.</p></div>`+pk(70,"","ABCDEFG")+
+`<div class="txt"><p>In 1996 Jacque read an article about the Icehotel in Jukkasjaarvi, Sweden. He was inspired by the idea of building an entire hotel of snow and wanted to do the same thing in Quebec. The province is known for its cold winter months and abundance of snow. Since he was already building igloos, a hotel seemed like his perfect next challenge.</p></div>`+pk(71,"","ABCDEFG")+
+`<div class="txt"><p>The first Hotel De Glace was built at Montmorency Falls before being moved. It was made at the Station Touristique Duchesnay for nine years and then moved to the old Quebec Zoo location in 2011. The location changes concerned space, materials and availability for growing this project.</p></div>`+pk(72,"","ABCDEFG")+
+`<div class="txt"><p>The walls are made of a unique mechanically produced snow. More than 30,000 tons of snow are created specifically for this hotel’s construction. Normal, natural snow is too dry and airy to be used. The special snow made it more humid and dense.</p></div>`+pk(73,"","ABCDEFG")+
+`<div class="txt"><p>Five hundred tons of ice are used in the hotel. The ice blocks are explicitly created to be transparent for light transfer and aesthetics. The water used to make the ice is specially distilled to achieve this. Once this ice is prepared, construction can start.</p></div>`+pk(74,"","ABCDEFG")+
+`<div class="txt"><p>The hotel has a theme for most years to inspire the sculptors to create artwork. Many of the rooms and suites also have themes to them. The snow art and ice sculptures match these themes. The artists outside of the Ice Hotel team also participate in the season. The Ice Hotel is equal parts hotel and artwork, but based on sound building techniques.</p></div>`+pk(75,"","ABCDEFG")+
+`<div class="txt"><p>After these snow moulds are finished, ice blocks are placed. The walls cap off rooms, create corridors and allow light to flow from one hotel section to another.</p></div>
+<h3 style="margin-top:24px">Paragraphs (A) – (G)</h3>`+
+ref(["At the end of the season, a demolition crew is hired. Apart from hammers, a wrecking ball has to be used. The crew can knock the hotel down in 5 hours.",
+"The “deck” or floor of the hotel is built first. The floor is 5 feet thick and very strong to support the hotel throughout the season. The moulds are then placed with snow packed into them. The moulds or frames are fitted with ski bottoms to remove them easily.",
+"The main building materials of the hotel are ice and compacted snow. Walls, fixtures and fittings are held together with a substance known as “snice” – a combination of rock-solid frozen snow and ice.",
+"This Canadian-based winter company was involved in many cities and festivals, including the Quebec Winter Carnival and La Fete des Neiges de Montréal (The Snow Party). Jacque was nicknamed Mr Igloo for his love of this structure and his ability to build with snow.",
+"This actual building of the Ice Hotel takes about 55 hours and can begin once the area has temperatures below zero for an entire week – usually mid to end of December. One team will work on the production of the materials, and the second will specialize in sculpting the buildings and their art.",
+"Jacque travelled to Sweden to meet with their ice hotel’s designers and builders before returning to Canada. He then found partners for his new company and got to work. It took four years of planning, research, and problem-solving for it to come to life. In 2001, Quebec City opened up North America’s very first Ice Hotel.",
+"To create the blocks and walls, the snow is packed onto metal frames and left to settle and harden for a few days. Super-packed snow is necessary for stability, and the hotel’s walls are more robust than cement by the time they’re finished."])]);
+
+/* ---------- READING 3 ---------- */
+S.push(["s8","Reading 3",`<h3>Part 3: Earth’s Ants Outweigh All Wild Birds and Mammals (6 points)</h3>
+<div class="ins"><p>Read the following text and complete the statements 76–81, with one or two words, based on the information given in the text. The statements do not follow in the same order as the information appears in the text.</p></div>
+<div class="txt">`+P(`Ants are a crucial part of nature. Among other roles, ants ventilate the soil, spread seeds, break down organic material, create habitat for other animals and form an essential part of the food chain. Estimating ant numbers and mass provides an important baseline for monitoring ant populations amid worrying environmental changes. There are more than 15,700 named species and subspecies of ants, and many others are not yet named by science. Ants’ high degree of social organization has enabled them to colonize nearly all ecosystems and regions around the globe.
+
+The significant presence of ants has prompted many naturalists to think about their exact number on Earth. But these were educated guesses. Systematic, evidence-based estimates have been lacking. The research done by a Czech institution involved an analysis of 489 studies of ant populations conducted by fellow ant scientists from around the world. This included non-English literature in Spanish, French, German, Russian, Mandarin and Portuguese. Research spanned all continents and significant habitats, including forests, deserts, grasslands and cities. They used standardized methods for collecting and counting ants such as pitfall traps. As you can imagine, this is often boring work.
+
+From all this, they now estimate there are approximately 20 quadrillion ants on Earth. This figure, though conservative, is between two and 20 times higher than previous estimates. The previous figures employed a “top-down” approach by assuming ants comprise about 1 % of the world’s estimated insect population. In contrast, their “bottom-up” estimate is more reliable because it uses data on ants observed directly in the field and makes fewer assumptions.
+
+The next step was to work out how much all these ants weighed. The mass of organisms is typically measured in terms of their carbon makeup. We estimated that 20 quadrillion average-sized ants correspond to a dry weight or “biomass” of approximately 11 million metric tons of carbon. This is more than the combined biomass of wild birds and mammals – about 20 % of total human biomass. Carbon makes up about half the dry weight of an ant. If the weight of other bodily elements was included, the world’s ants’ total mass would still be higher.
+
+It was also found ants are distributed unevenly on Earth’s surface. They vary sixfold between habitats and generally peak in the tropics. This underlines the importance of tropical regions in maintaining healthy ant populations. Ants were particularly abundant in forests and, surprisingly, in dry regions, but they become less common in human-made habitats.
+
+Ants provide vital “ecosystem services” for humans. For instance, a study published August 17, 2022, in the journal Proceedings of the Royal Society B found ants can be more effective than pesticides at helping farmers produce food. They have also developed tight interactions with other organisms — and some species cannot survive without them. For example, some birds rely on ants to flush out their prey. Thousands of plant species feed or house ants in exchange for protection or the spread of their seeds. Many ants are predators, helping to keep populations of other insects in check.
+
+Alarmingly, global insect numbers are declining due to threats such as habitat destruction and fragmentation, chemical use, invasive species and climate change. Data on insect biodiversity is alarmingly scarce. The team hopes their study provides a baseline for further research to help fill this gap. It’s in humanity’s interest to monitor ant populations. Counting ants is not difficult, and citizen scientists worldwide could help investigate how these important animals are faring at a time of great environmental change.`)+`</div>`+
+[[76,"Some plants use ants to distribute their {76}. <i>(1 word)</i>"],
+[77,"{77} is the main composition through which ants’ weight is quantified. <i>(2 words)</i>"],
+[78,"In the global ecosystem, ants are a vital part of the {78}. <i>(2 words)</i>"],
+[79,"When considering thriving ant populations, {79} are particularly significant. <i>(2 words)</i>"],
+[80,"Using methods such as {80} to enumerate ants is sometimes tedious. <i>(2 words)</i>"],
+[81,"The article describes facts from research conducted by a/an {81}. <i>(2 words)</i>"]].map(a=>tq(a[0],a[1])).join("")]);
+
+/* ---------- READING 4 ---------- */
+S.push(["s9","Reading 4",`<h3>Part 4: From the Life before Presidency (9 points)</h3>
+<div class="ins"><p>Read the following extracts and choose the paragraph (A) – (D) in which you found the information from the statements 82–90. You can use the paragraphs more than once.</p></div>
+<div class="txt"><p><b style="color:var(--ac)">(A)</b></p>`+P(`Jimmy Carter, born in rural Georgia to a peanut farmer and businessman father and a mother who was a registered nurse, the future president and humanitarian, grew up in a religious family. Carter attended school in Plains, followed by university study at two Georgia colleges before receiving a Bachelor of Science degree from the United States Naval Academy in 1946. The same year, he married Rosalynn Smith, whom he had known since she was born.
+
+Upon his father’s death in 1953, Carter returned to Georgia to run the family farm and its supply company. He became active in local political life, earning a seat in the Georgia Senate by 1962. He then announced his candidacy for president in 1974.
+
+As governor of Georgia, Carter called for an end to segregation in his inaugural address and increased the number of African Americans on the state government staff. He worked to improve the state’s “wasteful government bureaucracy,” he was pro-environment and wanted more school funding.`)+`<p class="cap">James Earl Carter Jr.</p></div>
+<div class="txt"><p><b style="color:var(--ac)">(B)</b></p>`+P(`Richard Nixon was the second of five children born to Frank Nixon, a service station owner and grocer, and Hannah Milhous Nixon. Nixon graduated from Whittier College in California in 1934 and Duke University Law School in Durham, North Carolina, in 1937. Returning to Whittier to practice law, he met Thelma Catherine Ryan, a teacher and amateur actress, after the two were cast in the same play at a local community theatre. The couple married in 1940.
+
+In 1946, he was elected to the U.S. House of Representatives, defeating five-term liberal Democratic Congressman Jerry Voorhis in a campaign that relied heavily on suggestions about Voorhis’s alleged communist sympathies. Running for re-election in 1948, Nixon entered and won both the Democratic and Republican primaries, thus eliminating the need to participate in the general election. As a member of the House Un-American Activities Committee in 1948–50, he took a leading role in investigating Alger Hiss, a former State Department official accused of spying for the Soviet Union. During the committee hearings, Nixon’s hostile questioning of Hiss did much to make his national reputation as an enthusiastic anti-communist.`)+`<p class="cap">Richard Milhous Nixon</p></div>
+<div class="txt"><p><b style="color:var(--ac)">(C)</b></p>`+P(`Bill Clinton’s father was a travelling salesman who died in an automobile accident three months before his son was born. His widow, Virginia Dell Blythe, married Roger Clinton, and, despite their unstable union (they divorced and then remarried) and her husband’s alcoholism, her son eventually took his stepfather’s name.
+
+Clinton enrolled at Georgetown University in Washington, D.C., in 1964 and graduated in 1968 with a degree in international affairs. During his freshman and sophomore years, he was elected student president. During his junior and senior years, he worked as an intern for Sen. J. William Fulbright, the Arkansas Democrat who chaired the U.S. Senate Committee on Foreign Relations. Fulbright was a vocal critic of the Vietnam War, and Clinton, like many young men of his generation, also opposed the war.
+
+After graduating from Yale University Law School in 1973, Clinton joined the University of Arkansas School of Law faculty, where he taught until 1976. In 1974 he ran unsuccessfully for a seat in the U.S. House of Representatives. In 1975, he married a fellow Yale Law graduate, attorney Hillary Rodham (Hillary Clinton), who thereafter took an active role in his political career.`)+`<p class="cap">William Jefferson Clinton</p></div>
+<div class="txt"><p><b style="color:var(--ac)">(D)</b></p>`+P(`Lyndon Johnson, the first of five children, was born in south-central Texas to Sam Ealy Johnson, Jr. and Rebekah Baines Johnson, a daughter of state legislator Joseph Baines. Sam Johnson had lost money in cotton speculation, and the family often struggled to make a living. After graduating from high school in 1924, Johnson spent three years in odd jobs before enrolling at Southwest Texas State Teachers College in San Marcos. While pursuing his studies there in 1928–29, he took a teaching job at a predominantly Mexican American school in Cotulla, Texas, where the extreme poverty of his students made a profound impression on him.
+
+After graduating from college in 1930, Johnson won praise as a teacher of debate and public speaking at Sam Houston High School in Houston. That same year he participated in the congressional campaign of Democrat Richard Kleberg, and upon Kleberg’s election, he accompanied the new congressman to Washington, D.C., in 1931 as his legislative assistant. While in Washington, Johnson worked tirelessly on behalf of Kleberg’s constituents and quickly developed a thorough grasp of congressional politics.`)+`<p class="cap">Lyndon Baines Johnson</p></div>
+<h3 style="margin-top:24px">Which… Which paragraph?</h3>`+
+[[82,"future president’s spouse graduated at the same university?"],
+[83,"future president had his wedding ceremony in the year he had finished his education?"],
+[84,"future president taught during his university studies?"],
+[85,"future president’s wife was also interested in the arts?"],
+[86,"future president was fond of sciences?"],
+[87,"future president became known for his challenging cross-examination?"],
+[88,"future president’s father caused financial problems to his family?"],
+[89,"future president was a representative of students at the university where he was studying?"],
+[90,"future president fought against the activities of officials in administration?"]].map(a=>pk(a[0],"Which… "+a[1],"ABCD")).join("")+
+`<p style="text-align:center;color:var(--mut);margin-top:26px">THE END</p>
+<button class="clr" id="clr" type="button">Clear all answers</button>`]);
+
+/* ---------- render ---------- */
+const app=document.getElementById("app");
+app.innerHTML=S.map(s=>`<section id="${s[0]}">${s[2]}</section>`).join("");
+document.getElementById("nav").innerHTML=S.map(s=>`<button type="button" data-s="${s[0]}">${s[1]}</button>`).join("");
+document.getElementById("nav").addEventListener("click",e=>{const b=e.target.closest("button");if(b)document.getElementById(b.dataset.s).scrollIntoView({behavior:"smooth",block:"start"})});
+
+function prog(){let c=0;for(let n=1;n<=90;n++)if(keys(n).every(k=>(ans[k]||"").trim()))c++;
+ document.getElementById("cnt").textContent=c;document.getElementById("bar").style.width=(c/90*100)+"%";tally()}
+function save(){try{localStorage.setItem(K,JSON.stringify(ans))}catch(e){}prog()}
+function setChip(b){const n=b.dataset.g,v=ans[n];if(v){b.innerHTML=`<small>${pad(+n)}</small> ${OPT[n][L.indexOf(v)]}`;b.classList.add("done",v==KEY[n]?"ok":"bad");if(v==KEY[n])b.innerHTML+=" ✓";else b.innerHTML+=" ✗ → <b>"+OPT[n][L.indexOf(KEY[n])]+"</b>";tally()}}
+document.querySelectorAll("[data-k]").forEach(el=>{const v=ans[el.dataset.k];if(v==null)return;if(el.type=="radio")el.checked=(el.value==v);else el.value=v});
+document.querySelectorAll(".chip[data-g]").forEach(setChip);prog();
+
+app.addEventListener("input",e=>{const t=e.target,k=t.dataset&&t.dataset.k;if(!k)return;ans[k]=t.value;save()});
+
+/* chip bottom sheet */
+const sh=document.getElementById("sh"),shi=document.getElementById("shi");let cur=null;
+app.addEventListener("click",e=>{const b=e.target.closest(".chip[data-g]");if(!b||b.classList.contains("done"))return;cur=b;const n=b.dataset.g;
+ shi.innerHTML=`<h4>Gap ${pad(+n)}</h4>`+OPT[n].map((t,i)=>`<button type="button" data-v="${L[i]}" class="${ans[n]==L[i]?"on":""}"><b>${L[i]}</b>${t}</button>`).join("");
+ sh.classList.add("on")});
+shi.addEventListener("click",e=>{const b=e.target.closest("button");if(!b||!cur)return;ans[cur.dataset.g]=b.dataset.v;setChip(cur);save();sh.classList.remove("on");cur=null});
+sh.addEventListener("click",e=>{if(e.target===sh){sh.classList.remove("on");cur=null}});
+
+/* reveal */
+app.addEventListener("click",e=>{const l=e.target.closest("label");if(!l||e.target.tagName=="INPUT")return;const r=l.querySelector("input[type=radio]");if(!r)return;e.preventDefault();if(r.disabled)return;r.checked=true;ans[r.dataset.k]=r.value;save();reveal(parseInt(r.dataset.k))});
+app.addEventListener("change",e=>{const t=e.target,k=t.dataset&&t.dataset.k;if(!k)return;ans[k]=t.value;save();reveal(parseInt(k))});
+app.addEventListener("keydown",e=>{if(e.key=="Enter"&&e.target.type=="text")e.target.blur()});
+for(let n=1;n<=90;n++)reveal(n);
+/* clear */
+let armed=false;const clr=document.getElementById("clr");
+clr.addEventListener("click",()=>{if(!armed){armed=true;clr.textContent="Tap again to clear all answers";setTimeout(()=>{armed=false;clr.textContent="Clear all answers"},4000);return}
+ try{localStorage.removeItem(K)}catch(e){}location.reload()});
+</script>
+</body>
+</html>
