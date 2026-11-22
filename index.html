@@ -71,6 +71,20 @@ input[type=text].tok{border-color:#4ade80;background:#12301f}
 input[type=text].tbad{border-color:#f87171;background:#3a1717}
 .fb{margin-top:8px;font-size:15px}.fb.ok{color:#4ade80}.fb.bad{color:#fca5a5}
 .chip b{color:#4ade80}
+.w{cursor:pointer;border-radius:3px;-webkit-tap-highlight-color:rgba(110,168,254,.25)}
+.w.seen{color:#c3b1ff;text-decoration:underline dotted rgba(195,177,255,.55);text-underline-offset:3px}
+.w.cur{background:rgba(110,168,254,.3)}
+.hint{color:var(--mut);font-size:14px;margin:12px 0 0}
+#dict{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;padding:0 10px calc(10px + env(safe-area-inset-bottom,0px))}
+#dict.on{display:block}
+#dict .di{max-width:780px;margin:auto;background:var(--card2);border:1px solid var(--ac);border-radius:16px;padding:12px 16px 14px;max-height:48vh;overflow:auto;box-shadow:0 -6px 24px rgba(0,0,0,.5)}
+#dict h4{margin:0;font-size:20px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+#dict h4 button{background:transparent;color:var(--mut);border:1px solid var(--line);border-radius:50%;width:38px;height:38px;font-size:20px;line-height:1;flex:none;padding:0}
+#dict .sk{font-size:19px;color:#c3b1ff;font-weight:600;margin:4px 0 6px}
+#dict .l{color:var(--mut);font-size:12.5px;text-transform:uppercase;letter-spacing:.05em;margin-top:8px}
+#dict .t{margin:0}
+#dict .msg{color:var(--mut);margin:6px 0 0}
+body.dopen main{padding-bottom:320px}
 @media (max-width:480px){body{font-size:16.5px}.q{gap:9px}}
 </style>
 </head>
@@ -81,8 +95,1262 @@ input[type=text].tbad{border-color:#f87171;background:#3a1717}
 <nav id="nav"></nav>
 </div></header>
 <main id="app"><p style="color:#9aa4b2;padding:20px 0">Loading…</p></main>
+<script type="text/plain" id="dtxt">ability|schopnosť|power to do something|schopnosť niečo robiť
+about|o; asi|concerning; approximately|týkajúci sa; približne
+absent|neprítomný|not present|ktorý tu nie je
+abundance|hojnosť|very large amount|veľké množstvo
+abundant|hojný|existing in large amounts|vyskytujúci sa vo veľkom množstve
+academics|akademici|university teachers or researchers|vysokoškolskí učitelia a vedci
+academy|akadémia|school for special training|škola s odborným výcvikom
+acceptable|prijateľný|good enough; allowed|dosť dobrý; dovolený
+accident|nehoda|unplanned event causing harm|neplánovaná udalosť so škodou
+accompanied|sprevádzal|went somewhere with someone|išiel niekam s niekým
+according|podľa|as stated by|ako uvádza
+accused|obvinený|charged with wrongdoing|obvinený z previnenia
+achieve|dosiahnuť|succeed in reaching a goal|úspešne dosiahnuť cieľ
+across|cez; naprieč|from one side to the other|z jednej strany na druhú
+act|konať; čin|do something; a deed|urobiť niečo; skutok
+actions|činy|things that are done|veci, ktoré sa robia
+active|aktívny|busy and energetic|činný a čulý
+activities|aktivity|things people do|veci, ktoré ľudia robia
+actress|herečka|woman who acts in films|žena, ktorá hrá vo filmoch
+actual|skutočný|real, existing|reálny, existujúci
+add|pridať|put with something else|pripojiť k niečomu
+address|adresa; osloviť|location; speak to|miesto bydliska; prehovoriť
+administration|správa; vláda|managing; government|riadenie; vláda
+admires|obdivuje|respects and likes greatly|veľmi si váži
+advantage|výhoda|helpful condition|priaznivá okolnosť
+advisor|poradca|person who gives advice|osoba, ktorá radí
+advocate|zástanca|supporter of an idea|podporovateľ myšlienky
+aesthetics|estetika|study or look of beauty|náuka o kráse; vzhľad
+affairs|záležitosti|matters; business|veci; záležitosti
+africa|Afrika|continent|svetadiel
+african|africký|from Africa|pochádzajúci z Afriky
+after|po; potom|later than|neskôr ako
+afternoon|popoludnie|time after midday|čas po poludní
+again|znova|one more time|ešte raz
+against|proti|opposing|v protiklade s niečím
+age|vek|how old someone is|koľko má niekto rokov
+airy|vzdušný; riedky|light, with much air|ľahký, s množstvom vzduchu
+alarmingly|znepokojivo|in a worrying way|spôsobom, ktorý znepokojuje
+alcoholism|alkoholizmus|addiction to alcohol|závislosť od alkoholu
+alleged|údajný|claimed but not proved|tvrdený, ale nedokázaný
+allow|dovoliť|let something happen|dať súhlas
+almost|takmer|nearly|skoro
+already|už|before now|skôr než teraz
+also|tiež|in addition|navyše
+always|vždy|at all times|stále
+amateur|amatér|not a professional|nie profesionál
+america|Amerika|the Americas or the USA|Amerika alebo USA
+americas|Ameriky|North and South America|Severná a Južná Amerika
+american|americký|from America|z Ameriky
+americans|Američania|people from America|ľudia z Ameriky
+amid|uprostred|in the middle of|v strede niečoho
+among|medzi|in a group of|v skupine
+an|jeden|indefinite article|neurčitý člen
+analyses|analýzy|detailed studies|podrobné rozbory
+analysis|analýza|detailed study|podrobný rozbor
+ancient|staroveký|very old|veľmi starý
+and|a|joining word|spojka
+animals|zvieratá|living creatures|živé tvory
+announced|oznámil|said publicly|povedal verejne
+another|ďalší; iný|one more; a different one|ešte jeden; iný
+answer|odpoveď|reply|reakcia na otázku
+ant|mravec|small social insect|malý spoločenský hmyz
+ants|mravce|small social insects|malý spoločenský hmyz
+anti-communist|antikomunistický|against communism|proti komunizmu
+any|nejaký; akýkoľvek|one or some|jeden alebo niektorý
+anyone|ktokoľvek|any person|akákoľvek osoba
+apart|oddelene|separated; except|oddelený; okrem
+appears|zdá sa; objaví sa|seems; comes into view|vyzerá; ukáže sa
+applying|uplatňovanie|using something|používanie niečoho
+appointed|vymenovaný|chosen for a job|vybraný na pozíciu
+approach|prístup|way of dealing with something|spôsob riešenia
+appropriate|vhodný|suitable|primeraný
+approximately|približne|roughly|zhruba
+arch|oblúk|curved structure|zakrivená stavba
+archipelago|súostrovie|group of many islands|skupina mnohých ostrovov
+architects|architekti|designers of buildings|projektanti budov
+are|sú|form of be|tvar slovesa byť
+area|oblasť|region|územie
+around|okolo|surrounding; about|v okolí; približne
+art|umenie|creative work|tvorivá práca
+article|článok|piece of writing|písaný text
+artists|umelci|people who create art|ľudia, ktorí tvoria umenie
+artwork|umelecké dielo|piece of art|dielo umenia
+as|ako; keďže|like; because|podobne ako; pretože
+asia|Ázia|continent|svetadiel
+asian|ázijský|from Asia|z Ázie
+asked|spýtal sa|put a question|položil otázku
+assistant|asistent|helper|pomocník
+assuming|predpokladajúc|accepting as true|berúc ako pravdu
+assumption|predpoklad|belief without proof|presvedčenie bez dôkazu
+at|pri; v|position or time|miesto alebo čas
+atlantic|Atlantik|the ocean|oceán
+attended|zúčastnil sa|went to an event or school|navštevoval
+attention|pozornosť|focus of mind|sústredenie mysle
+attitude|postoj|way of thinking|spôsob myslenia
+attorney|právnik|lawyer|advokát
+august|august|eighth month|ôsmy mesiac
+australia|Austrália|country|krajina
+australians|Austrálčania|people from Australia|ľudia z Austrálie
+austronesian|austronézsky|of a language/people group|jazyková a etnická skupina
+automobile|automobil|car|auto
+availability|dostupnosť|being able to get it|možnosť získať
+average-sized|priemernej veľkosti|of normal size|normálne veľký
+aware|vedomý|knowing about|ktorý o niečom vie
+away|preč|to another place|na iné miesto
+bachelor|bakalár|first university degree|prvý vysokoškolský titul
+back|späť; chrbát|return; rear body part|návrat; časť tela
+ball|lopta|round object|okrúhly predmet
+based|založený|having as a basis|majúci základ
+baseline|východisková hodnota|starting measurement|východiskové meranie
+basically|v podstate|mainly|hlavne
+battlefield|bojisko|place of fighting|miesto boja
+bay|záliv|part of sea in the land|časť mora v pevnine
+be|byť|to exist|existovať
+became|stal sa|began to be|začal byť
+because|pretože|for the reason that|z dôvodu, že
+become|stať sa|begin to be|začať byť
+been|bol|past participle of be|príčastie slovesa byť
+before|pred; predtým|earlier than|skôr ako
+began|začal|started|spustil
+begin|začať|start|spustiť
+behalf|v mene|(on behalf of) for someone|(v mene) niekoho
+behind|za|at the back of|vzadu za
+being|bytie; bytosť|existing; a living thing|existovanie; živá bytosť
+beliefs|presvedčenia|things believed true|veci považované za pravdu
+believes|verí|thinks something is true|myslí si, že je to pravda
+below|pod|lower than|nižšie ako
+best|najlepší|of highest quality|najkvalitnejší
+better|lepší|of higher quality|kvalitnejší
+between|medzi|in the space of two|v priestore dvoch
+biased|zaujatý|unfairly favouring a side|nespravodlivo naklonený
+big|veľký|large|rozsiahly
+bilingual|dvojjazyčný|using two languages|používajúci dva jazyky
+biodiversity|biodiverzita|variety of life|rozmanitosť života
+biomass|biomasa|total weight of living things|celková hmotnosť živých vecí
+birds|vtáky|animals with feathers|zvieratá s perím
+black|čierny|darkest colour|najtmavšia farba
+blocks|bloky|solid pieces|pevné kusy
+boats|lode|small vessels on water|plavidlá na vode
+bodily|telesný|of the body|týkajúci sa tela
+bones|kosti|hard parts of the body|tvrdé časti tela
+book|kniha|printed work|tlačené dielo
+boring|nudný|not interesting|nezaujímavý
+born|narodený|brought into life|prišiel na svet
+borrowed|požičaný; prevzatý|taken from another|prebraté od iného
+both|obaja; obe|the two|tí dvaja
+bottom-up|zdola nahor|starting from the base|od základu
+bottoms|spodky; spodné časti|lowest parts|najnižšie časti
+brackets|zátvorky|signs ( ) around words|znaky ( ) okolo slov
+brain|mozog|organ for thinking|orgán myslenia
+brand|značka|product name or make|názov výrobku
+break|prestávka; zlomiť|rest; make pieces|oddych; rozbiť
+bridge|most|structure across a river|stavba cez rieku
+british|britský|from Britain|z Británie
+brought|priniesol|carried to a place|doniesol
+build|stavať|make a structure|vytvárať stavbu
+builders|stavitelia|people who build|ľudia, ktorí stavajú
+built|postavil|made a structure|vytvoril stavbu
+bureaucracy|byrokracia|system of official rules|systém úradných pravidiel
+bureaucrats|byrokrati|government officials|úradníci vo vláde
+business|podnikanie; firma|commercial activity|obchodná činnosť
+businessman|podnikateľ|man in business|muž v obchode
+but|ale|however|avšak
+buy|kúpiť|get by paying|získať za peniaze
+by|pri; od|near; done by|blízko; vykonané niekým
+by-products|vedľajšie produkty|extra results|vedľajšie výsledky
+called|nazval; volal|named; shouted|pomenoval; zavolal
+came|prišiel|moved towards|pohol sa sem
+campaign|kampaň|organised effort|organizované úsilie
+can|môcť; vedieť|be able to|byť schopný
+can-do|aktívny postoj|positive, confident|pozitívny a sebavedomý
+canada|Kanada|country|krajina
+canadian-based|so sídlom v Kanade|located in Canada|sídliaci v Kanade
+candidacy|kandidatúra|standing for election|ucházanie sa o funkciu
+cannot|nemôcť|is unable to|nie je schopný
+cap|čiapka; strop|hat; upper limit|pokrývka hlavy; horná hranica
+carbon|uhlík|chemical element|chemický prvok
+career|kariéra|working life|pracovný život
+careful|opatrný|taking care|dávajúci pozor
+carnival|karneval|festival|festival
+cast|obsadil|chose actors|vybral hercov
+castilian|kastílsky|from Castile in Spain|z Kastílie
+castillian|kastílsky|from Castile in Spain|z Kastílie
+catchphrase|slogan|popular saying|obľúbené heslo
+caused|spôsobil|made something happen|zapríčinil
+celebrities|celebrity|famous people|slávni ľudia
+cement|cement|building material|stavebný materiál
+century|storočie|100 years|sto rokov
+ceremony|obrad|formal event|slávnostná udalosť
+chain|reťaz|linked rings; series|spojené články; rad
+chaired|viedol schôdzu|led a meeting|riadil zasadnutie
+challenge|výzva|difficult task|ťažká úloha
+chance|šanca|possibility|možnosť
+change|zmena|become different|stať sa odlišným
+charter|listina|official document of rights|úradný dokument práv
+cheaper|lacnejší|lower in price|s nižšou cenou
+check|skontrolovať|examine|preveriť
+chefs|kuchári|professional cooks|profesionálni kuchári
+chemical|chemický|of chemistry|týkajúci sa chémie
+chief|hlavný; šéf|main; leader|hlavný; vedúci
+children|deti|young people|mladí ľudia
+china|Čína|country|krajina
+chinese|čínsky|from China|z Číny
+choose|vybrať si|select|zvoliť
+church|kostol|building for Christian worship|budova pre bohoslužby
+circumstances|okolnosti|conditions around an event|podmienky okolo udalosti
+citizen|občan|member of a country|člen štátu
+city|mesto|large town|veľké sídlo
+civil|občiansky; štátny|of citizens; official|týkajúci sa občanov
+climate|podnebie|weather pattern of an area|ráz počasia oblasti
+closed|zatvorený|not open|nie otvorený
+cold|studený|low in temperature|s nízkou teplotou
+collect|zbierať|gather|zhromažďovať
+collection|zbierka|group of items|skupina vecí
+college|vysoká škola|place of higher education|miesto vyššieho vzdelávania
+colonial|koloniálny|of colonies|týkajúci sa kolónií
+colonize|kolonizovať|settle and control a land|osídliť a ovládnuť územie
+colony|kolónia|settlement ruled by another country|osada ovládaná inou krajinou
+colours|farby|red, blue, etc.|červená, modrá a pod.
+combination|kombinácia|mixture|zmes
+combined|spojený|joined together|dané dokopy
+come|prísť|move towards|pohnúť sa sem
+comedic|komediálny|funny|vtipný
+commerce|obchod|buying and selling|kupovanie a predávanie
+commercial|obchodný|related to business|týkajúci sa obchodu
+commission|komisia|official group|úradná skupina
+committee|výbor|group chosen to decide|skupina na rozhodovanie
+commodity-centred|zameraný na tovar|focused on goods|sústredený na tovar
+common|bežný|usual|obvyklý
+communist|komunistický|of communism|týkajúci sa komunizmu
+community|spoločenstvo|group living together|skupina žijúca spolu
+compacted|stlačený|pressed tightly|pevne stlačený
+company|spoločnosť; firma|business organisation|obchodná organizácia
+competition|súťaž|contest|zápolenie
+complete|úplný; dokončiť|whole; finish|celý; ukončiť
+composition|zloženie|what something is made of|z čoho niečo pozostáva
+comprise|zahŕňať|consist of|pozostávať z
+computers|počítače|electronic machines|elektronické stroje
+concerned|znepokojený; týkajúci sa|worried; involved|obávajúci sa; zainteresovaný
+conducted|uskutočnil; viedol|carried out; led|vykonal; riadil
+confidence|sebadôvera|belief in oneself|viera v seba
+congressional|kongresový|of Congress|týkajúci sa Kongresu
+congressman|kongresman|member of US Congress|člen amerického Kongresu
+conquering|dobýjanie|taking by force|zaberanie silou
+conquest|dobytie|taking over by force|obsadenie silou
+conservative|konzervatívny|traditional|tradičný
+considered|zvážil; považoval|thought about; regarded|premyslel; pokladal
+considering|zvažujúc|thinking about|premýšľajúc o
+consisted|pozostával|was made up of|skladal sa z
+constituents|voliči; zložky|voters; parts|voliči; časti
+constitution|ústava|basic laws|základné zákony
+construction|výstavba|building|stavanie
+consulting|poradenský|giving expert advice|odborne radiaci
+contemporary|súčasný|modern|moderný
+continents|kontinenty|large land masses|veľké pevniny
+contrast|kontrast|difference|rozdiel
+contributing|prispievajúci|giving help or money|poskytujúci pomoc
+conversations|rozhovory|talks|debaty
+corporate|firemný|of a large company|týkajúci sa veľkej firmy
+correct|správny|right|bez chyby
+correspond|zodpovedať|match|zhodovať sa
+corridors|chodby|passages in buildings|priechody v budovách
+cotton|bavlna|plant fibre|rastlinné vlákno
+could|mohol|was able to|bol schopný
+counsellor|poradca|adviser|radca
+counting|počítanie|finding the total|zisťovanie počtu
+country|krajina|nation|štát
+couple|pár|two people or things|dvaja ľudia alebo veci
+courses|kurzy|series of lessons|rad lekcií
+covers|pokrýva; obaly|lies over; outer parts|leží na; vonkajšie časti
+create|vytvoriť|make something new|spraviť nové
+creativity|tvorivosť|ability to make new things|schopnosť tvoriť nové
+crew|posádka; tím|group working together|skupina pracujúca spolu
+critic|kritik|person who judges|osoba, ktorá hodnotí
+crops|plodiny|plants grown for food|rastliny pestované na jedlo
+cross|kríž; prejsť|X shape; go over|tvar X; prejsť cez
+cross-examination|krížový výsluch|hard questioning in court|prísne vypočúvanie
+crown|koruna|royal headwear|kráľovská pokrývka hlavy
+crucial|kľúčový|extremely important|nesmierne dôležitý
+cufflinks|manžetové gombíky|fasteners for shirt cuffs|spony na manžety košele
+cuffs|manžety|ends of shirt sleeves|konce rukávov košele
+cultivated|pestovaný|grown by farming|vypestovaný poľnohospodárstvom
+cultural|kultúrny|of culture|týkajúci sa kultúry
+czech|český|from the Czech Republic|z Českej republiky
+data|údaje|facts and figures|fakty a čísla
+daughter|dcéra|female child|ženské dieťa
+days|dni|24-hour periods|24-hodinové obdobia
+death|smrť|end of life|koniec života
+debate|debata|formal discussion|formálna diskusia
+december|december|twelfth month|dvanásty mesiac
+decide|rozhodnúť sa|make a choice|urobiť výber
+deck|paluba; podlaha|floor or level|podlaha alebo úroveň
+declining|klesajúci|becoming less|stávajúci sa menším
+decorative|ozdobný|used to make pretty|slúžiaci na ozdobu
+decreased|znížil sa|became less|stal sa menším
+dedicated|oddaný|committed|zasvätený
+defeating|porážajúc|winning against|víťaziac nad
+degree|titul; stupeň|university title; level|vysokoškolský titul; úroveň
+deliver|doručiť; predniesť|bring; give a talk|priniesť; predniesť prejav
+delivery|doručenie; prednes|bringing; way of speaking|donesenie; spôsob prednesu
+democrat|demokrat|member of the Democratic party|člen Demokratickej strany
+democratic|demokratický|of democracy|týkajúci sa demokracie
+demolition|demolácia|knocking a building down|zbúranie budovy
+dense|hustý|tightly packed|pevne stlačený
+department|oddelenie|section of an organisation|časť organizácie
+dependence|závislosť|relying on something|spoliehanie sa na niečo
+deputy|zástupca|second in command|druhý v poradí
+described|opísal|said what something is like|povedal, aký niečo je
+describes|opisuje|says what something is like|hovorí, aký niečo je
+deserts|púšte|dry sandy regions|suché piesočnaté oblasti
+design|návrh|plan of how something looks|plán vzhľadu
+designers|dizajnéri|people who plan how things look|ľudia navrhujúci vzhľad
+despite|napriek|even though|bez ohľadu na
+destruction|ničenie|damaging completely|úplné poškodenie
+detail|detail|small part of information|malá časť informácie
+determination|odhodlanie|firm decision to succeed|pevné rozhodnutie uspieť
+developed|vyvinul|grew or improved|rástol alebo sa zlepšil
+developing|vyvíjajúci sa|growing or improving|rastúci alebo zlepšujúci sa
+did|urobil|past of do|minulý čas slovesa robiť
+died|zomrel|stopped living|prestal žiť
+different|odlišný|not the same|nie rovnaký
+differing|odlišujúci sa|being different|ktorý sa líši
+difficult|ťažký|hard to do|náročný
+dignity|dôstojnosť|quality of being worthy|vlastnosť hodnotného
+directly|priamo|without anything between|bez sprostredkovania
+directors|riaditelia|managers of a company|vedúci firmy
+disciplines|odbory|areas of study|oblasti štúdia
+dissimilar|odlišný|not alike|nepodobný
+distilled|destilovaný|purified by boiling|vyčistený varom
+distinguishing|charakteristický|making different|odlišujúci
+distribute|rozdeliť|give out|rozdávať
+divorced|rozvedený|legally ended marriage|s právne ukončeným manželstvom
+do|robiť|perform|vykonávať
+domesticated|skrotený|tamed for human use|skrotený pre potrebu ľudí
+dominion|nadvláda|rule or territory|vláda alebo územie
+done|hotový|finished|dokončený
+down|dole|to a lower place|na nižšie miesto
+dr|doktor|title for a doctor|titul lekára
+driven|poháňaný|motivated; pushed|motivovaný
+dry|suchý|without water|bez vody
+due|v dôsledku|because of|kvôli
+during|počas|throughout a period|v priebehu
+each|každý|every one|všetci jednotlivo
+early|skorý|near the beginning|na začiatku
+earning|zarábanie|getting money for work|získavanie peňazí za prácu
+earth|Zem|our planet|naša planéta
+easily|ľahko|without difficulty|bez problémov
+easy-to-follow|ľahko sledovateľný|simple to understand|jednoduchý na pochopenie
+economic|ekonomický|of money and trade|týkajúci sa peňazí a obchodu
+ecosystem|ekosystém|community of living things|spoločenstvo živých organizmov
+ecotourism|ekoturizmus|nature-friendly travel|cestovanie šetrné k prírode
+educated|vzdelaný|having had schooling|ktorý mal školenie
+education|vzdelanie|learning at school|učenie v škole
+effective|účinný|working well|dobre fungujúci
+elected|zvolený|chosen by voting|vybraný hlasovaním
+election|voľby|choosing by voting|výber hlasovaním
+elements|prvky|basic parts|základné časti
+eliminating|odstraňujúc|getting rid of|zbavujúc sa
+emphasize|zdôrazniť|give special importance|dať osobitný význam
+empire|ríša|large group of lands under one ruler|veľké územie pod jedným vládcom
+employed|zamestnaný|having a job|majúci prácu
+empowering|posilňujúci|giving power or confidence|dávajúci moc alebo sebadôveru
+enabled|umožnil|made possible|spravil možným
+end|koniec|final part|posledná časť
+engineer|inžinier|person who designs structures|človek navrhujúci stavby
+england|Anglicko|country in the UK|krajina v Spojenom kráľovstve
+english|anglický|from England; the language|z Anglicka; jazyk
+enrolled|zapísal sa|joined a course|prihlásil sa na štúdium
+enrolling|zapisujúci sa|joining a course|prihlasujúci sa na štúdium
+entered|vstúpil|went in|vošiel
+enthusiastic|nadšený|full of excited interest|plný záujmu
+entire|celý|whole|úplný
+entrepreneur|podnikateľ|person who starts businesses|osoba zakladajúca firmy
+enumerate|vymenovať|count one by one|počítať jeden po druhom
+environmental|environmentálny|of the natural world|týkajúci sa prírody
+epoch|epocha|long period of time|dlhé časové obdobie
+equal|rovnaký|the same in amount|rovnaký čo do množstva
+erudition|učenosť|deep knowledge from study|hlboké vedomosti zo štúdia
+especially|obzvlášť|particularly|predovšetkým
+essential|nevyhnutný|absolutely necessary|úplne potrebný
+established|založený|set up; created|vytvorený
+estimate|odhad|rough calculation|hrubý výpočet
+europe|Európa|continent|svetadiel
+european|európsky|from Europe|z Európy
+even|dokonca|surprisingly|prekvapivo
+event|udalosť|something that happens|niečo, čo sa stane
+eventually|nakoniec|in the end|na konci
+ever|kedykoľvek|at any time|v ktoromkoľvek čase
+every|každý|all|všetci
+everything|všetko|all things|všetky veci
+evidence-based|založený na dôkazoch|using facts as proof|využívajúci fakty
+evident|zrejmý|clearly seen|jasne viditeľný
+exact|presný|completely correct|úplne správny
+example|príklad|sample showing a rule|ukážka pravidla
+exchange|výmena|giving and receiving|dávanie a prijímanie
+expensive|drahý|costing much money|stojaci veľa peňazí
+experience|skúsenosť|knowledge from doing|poznanie z praxe
+expert|odborník|person with special knowledge|človek s osobitnými vedomosťami
+explains|vysvetľuje|makes clear|robí zrozumiteľným
+explicitly|výslovne|clearly and directly|jasne a priamo
+explore|preskúmať|travel and discover|cestovať a objavovať
+exponentially|exponenciálne|at a rapidly growing rate|rýchlo rastúcim tempom
+expresses|vyjadruje|shows feelings or ideas|prejavuje city alebo myšlienky
+external|vonkajší|outside|zvonka
+extra|navyše|more than usual|viac než obvykle
+extract|úryvok|short piece from a text|krátka časť textu
+extreme|extrémny|very great|veľmi veľký
+fabrication|výmysel|invented story|vymyslený príbeh
+fact|fakt|something true|niečo pravdivé
+faculty|fakulta|university department|časť univerzity
+falls|padá|drops downward|klesá dole
+family|rodina|parents and children|rodičia a deti
+famous|slávny|known by many|známy mnohým
+faring|vodiť si|(how they are) doing|(ako sa im) darí
+farm|farma|land for growing food|pôda na pestovanie jedla
+fasten|pripevniť|attach firmly|pevne spojiť
+father|otec|male parent|mužský rodič
+feature|črta|notable part|význačná časť
+feed|kŕmiť|give food|dávať jedlo
+feet|nohy; stopy|body parts; units of length|časti tela; jednotky dĺžky
+fellow|kolega|companion|spolupracovník
+festivals|festivaly|special celebrations|slávnosti
+fete|slávnosť|festival|oslava
+few|málo|a small number|malý počet
+field|pole; odbor|open land; subject area|otvorená pôda; oblasť
+figure|číslo; postava|number; shape|číslo; tvar
+filipino|filipínsky|from the Philippines|z Filipín
+fill|naplniť|make full|urobiť plným
+finally|nakoniec|at last|po dlhom čase
+financial|finančný|about money|týkajúci sa peňazí
+finished|dokončil|completed|ukončil
+firms|firmy|businesses|podniky
+first|prvý|before all others|pred ostatnými
+fish|ryba|animal living in water|zviera žijúce vo vode
+fits|pasuje|is the right size|má správnu veľkosť
+fitted|vybavený; namontovaný|equipped; attached|vystrojený; pripevnený
+fittings|vybavenie|attached fixtures|pripevnené doplnky
+five|päť|number 5|číslo 5
+five-term|päťfunkčný|lasting five periods in office|päť volebných období
+fixtures|inštalácie|permanent attached items|trvalo pripevnené veci
+floor|podlaha|bottom surface of a room|spodný povrch miestnosti
+flow|prúdiť|move smoothly|plynulo sa pohybovať
+flush|vyhnať|force out of hiding|vytlačiť zo skrýše
+focus|zamerať sa|concentrate|sústrediť sa
+follow|nasledovať|go after|ísť za
+fond|obľubujúci|liking something|majúci niečo rád
+food|jedlo|what we eat|čo jeme
+for|pre; na|intended to benefit|určený pre
+foreign|zahraničný|from another country|z inej krajiny
+forests|lesy|large areas of trees|veľké oblasti stromov
+form|forma; vytvoriť|shape; create|tvar; vytvoriť
+fought|bojoval|struggled against|bojoval proti
+found|našiel|discovered|objavil
+four|štyri|number 4|číslo 4
+fox|líška|wild animal|divoké zviera
+fragmentation|rozdrobenie|breaking into pieces|rozpad na časti
+frames|rámy|supporting structures|nosné konštrukcie
+french|francúzsky|from France|z Francúzska
+french-canadian|francúzsky Kanaďan|Canadian speaking French|Kanaďan hovoriaci francúzsky
+freshman|prvák|first-year student|študent prvého ročníka
+friend|priateľ|person you like|človek, ktorého máte radi
+from|z; od|starting at|so začiatkom v
+frozen|zamrznutý|turned to ice|zmenený na ľad
+fundamental|základný|very important basic|veľmi dôležitý základ
+funding|financovanie|money for a project|peniaze na projekt
+further|ďalej|more; at greater distance|viac; vo väčšej vzdialenosti
+future|budúcnosť|time to come|čas, ktorý príde
+galleon|galeóna|large old sailing ship|veľká stará plachetnica
+gap|medzera|empty space|prázdny priestor
+gave|dal|handed to someone|podal niekomu
+general|všeobecný|not specific|nie konkrétny
+generate|vytvoriť|produce|vyrobiť
+generation|generácia|people of similar age|ľudia podobného veku
+genuine|pravý|real, not fake|skutočný, nie falošný
+german|nemecký|from Germany|z Nemecka
+get|dostať|receive|získať
+gifts|darčeky|presents|dary
+give|dať|hand to someone|podať niekomu
+given|daný|past participle of give|príčastie slovesa dať
+glace|ľad|(French) ice|(francúzsky) ľad
+global|globálny|worldwide|celosvetový
+globalization|globalizácia|worldwide connection|celosvetové prepojenie
+globe|zemeguľa|the world|svet
+go|ísť|move|pohybovať sa
+good|dobrý|of high quality|kvalitný
+got|dostal|received|získal
+government|vláda|people ruling a country|ľudia riadiaci štát
+governor|guvernér|head of a state|predstaviteľ štátu
+grab|chytiť|take quickly|rýchlo vziať
+graduate|absolvent|finish a degree|ukončiť štúdium
+graduated|ukončil štúdium|finished a degree|dokončil vysokú školu
+graduating|končiaci štúdium|finishing a degree|dokončujúci školu
+granite-faced|žulou obložený|covered with granite|pokrytý žulou
+grant|dotácia; udeliť|money or rights given|dané peniaze alebo práva
+granted|udelený|given officially|oficiálne daný
+grasp|pochopenie|understanding|porozumenie
+grasslands|trávnaté oblasti|areas covered with grass|oblasti porastené trávou
+great|veľký|very good; large|veľmi dobrý
+greatest|najväčší|largest; best|najväčší; najlepší
+grew|rástol|became bigger|stal sa väčším
+grocer|obchodník s potravinami|food shop owner|majiteľ potravín
+group|skupina|number of people|viac ľudí
+growing|rastúci|becoming bigger|stávajúci sa väčším
+guesses|odhady|opinions without proof|domnienky bez dôkazu
+habitat|biotop|natural home of animals|prirodzený domov zvierat
+habitats|biotopy|natural homes of animals|prirodzené domovy zvierat
+had|mal|past of have|minulý čas slovesa mať
+half|polovica|one of two equal parts|jedna z dvoch rovnakých častí
+half-century|pol storočia|fifty years|päťdesiat rokov
+hammers|kladivá|tools for hitting|nástroje na údery
+handled|zvládol; riešil|dealt with|vyrovnal sa s
+happened|stalo sa|took place|odohralo sa
+harbour|prístav|port for ships|prístav pre lode
+harden|stvrdnúť|become hard|stať sa tvrdým
+has|má|form of have|tvar slovesa mať
+have|mať|possess|vlastniť
+he|on|male person|mužská osoba
+head|hlava; vedúci|top of body; leader|horná časť tela; vodca
+healthy|zdravý|in good physical state|v dobrom stave
+hear|počuť|notice sounds|vnímať zvuky
+hearings|vypočúvania|official meetings to listen|úradné stretnutia
+heavily|silno|to a great degree|vo veľkej miere
+held|držal|kept in hand|mal v ruke
+help|pomoc|assist|pomáhať
+her|jej|belonging to a woman|patriaci žene
+hidden|skrytý|not seen|nevidieť
+high|vysoký|tall; at upper level|veľký; na vyššej úrovni
+him|jeho|that male person|tá mužská osoba
+hired|najal|gave a job to|dal prácu
+his|jeho|belonging to him|patriaci jemu
+historical|historický|of the past|týkajúci sa minulosti
+history|história|study of the past|štúdium minulosti
+hong|Hong|part of Hong Kong|časť Hongkongu
+hopes|nádeje|wishes for something|priania niečoho
+hostile|nepriateľský|unfriendly, aggressive|neprívetivý
+hotel|hotel|building with rooms for guests|budova s izbami pre hostí
+hours|hodiny|60-minute periods|60-minútové obdobia
+house|dom|building to live in|budova na bývanie
+how|ako|in what way|akým spôsobom
+however|však|but|ale
+human|ľudský|of people|týkajúci sa ľudí
+human-made|vytvorený ľuďmi|made by people|vyrobený ľuďmi
+humanitarian|humanitárny|helping people in need|pomáhajúci ľuďom v núdzi
+humanity's|ľudstva|of all human beings|všetkých ľudí
+humid|vlhký|damp|mokrý vzduch
+hundred|sto|number 100|číslo 100
+husband|manžel|married man|ženatý muž
+iberian-centered|zameraný na Pyrenejský polostrov|focused on Spain and Portugal|sústredený na Španielsko a Portugalsko
+idea|nápad|thought or plan|myšlienka alebo plán
+if|ak; či|on condition that|za podmienky, že
+igloo|iglu|snow house|dom zo snehu
+imagine|predstaviť si|picture in the mind|vytvoriť si obraz v mysli
+imperial|cisársky|of an empire|týkajúci sa ríše
+importance|dôležitosť|value or significance|hodnota alebo význam
+important|dôležitý|having great value|s veľkým významom
+impressed|zapôsobený|admired|obdivujúci
+impression|dojem|feeling about something|pocit z niečoho
+improve|zlepšiť|make better|spraviť lepším
+in|v|inside|vnútri
+inaugural|inauguračný|first; opening|prvý; úvodný
+include|zahŕňať|contain as part|obsahovať ako časť
+increased|zvýšil|made greater|zväčšil
+indefinable|nedefinovateľný|hard to describe exactly|ťažko presne opísať
+independence|nezávislosť|freedom from control|sloboda od kontroly
+indian|indický|from India|z Indie
+indicated|naznačil|showed|ukázal
+indigenous|pôvodný|native to a place|domáci v danom mieste
+individual|jednotlivec|single person|jedna osoba
+infer|usudzovať|conclude from facts|dospieť k záveru z faktov
+influence|vplyv|power to change things|moc meniť veci
+information|informácie|facts and details|fakty a podrobnosti
+inhabited|obývaný|lived in|v ktorom sa býva
+insect|hmyz|small animal with six legs|malé zviera so šiestimi nohami
+inspire|inšpirovať|give ideas or energy|dať nápady alebo energiu
+instance|prípad|example|príklad
+institution|inštitúcia|large organisation|veľká organizácia
+intention|úmysel|plan or purpose|plán alebo zámer
+interactions|interakcie|ways of acting together|spôsoby vzájomného pôsobenia
+interactive|interaktívny|involving people's actions|zahŕňajúci činnosť ľudí
+interest|záujem|wish to know more|túžba vedieť viac
+intern|stážista|trainee worker|pracovník na praxi
+international|medzinárodný|between countries|medzi krajinami
+interpretations|výklady|explanations of meaning|vysvetlenia významu
+interview|rozhovor|formal conversation|formálny rozhovor
+into|do|to the inside|dovnútra
+invasive|inváznový|spreading harmfully|škodlivo sa šíriaci
+investigate|vyšetrovať|study carefully|dôkladne skúmať
+invited|pozval|asked to come|požiadal, aby prišiel
+involved|zapojený|taking part|zúčastňujúci sa
+is|je|form of be|tvar slovesa byť
+islands|ostrovy|land surrounded by water|pevnina obklopená vodou
+it|to|thing already mentioned|vec, o ktorej sa hovorilo
+it's|to je|it is|to je
+its|jeho; jej|belonging to it|patriaci tomu
+jeweller|zlatník|person who makes jewellery|človek vyrábajúci šperky
+jewellery|šperky|ornaments like rings|ozdoby ako prstene
+job|práca|paid work|platené zamestnanie
+joined|pripojil sa|became a member|stal sa členom
+joint|spoločný|shared|zdieľaný
+journal|časopis; denník|magazine; diary|odborný časopis; denník
+junior|mladší; tretiak|younger; third-year student|mladší; tretiak
+just|práve; len|only; exactly|iba; presne
+keep|držať; udržať|continue to have|naďalej mať
+key|kľúč|essential; opens a lock|zásadný; otvára zámok
+kind|druh; milý|type; friendly|typ; priateľský
+king|kráľ|male ruler|mužský vládca
+knock|klopať; zrútiť|hit; make fall down|udrieť; zhodiť
+know|vedieť; poznať|have knowledge of|mať vedomosť
+known|známy|recognised|rozpoznaný
+kong|Kong|part of Hong Kong|časť Hongkongu
+lacking|chýbajúci|not having enough|nemajúci dosť
+language|jazyk|system of words|systém slov
+late|neskorý|after the usual time|po obvyklom čase
+law|zákon|rule made by government|pravidlo od vlády
+lawyer|právnik|legal professional|odborník na právo
+leaders|vodcovia|people in charge|ľudia na čele
+leading|vedúci|going first; main|idúci prvý; hlavný
+learn|učiť sa|gain knowledge|získavať vedomosti
+led|viedol|guided|usmerňoval
+left|ľavý; odišiel|opposite of right; went away|opak pravého; odišiel
+legal|právny|allowed by law|dovolený zákonom
+legislative|zákonodarný|making laws|vytvárajúci zákony
+legislator|zákonodarca|person who makes laws|osoba tvoriaca zákony
+less|menej|smaller amount|menší počet
+lesson|lekcia|something learned|niečo naučené
+level|úroveň|height or standard|výška alebo štandard
+liberal|liberálny|open to new ideas|otvorený novým myšlienkam
+life|život|being alive|byť nažive
+light|svetlo; ľahký|brightness; not heavy|jas; nie ťažký
+like|ako; mať rád|similar to; enjoy|podobný; mať v obľube
+limited|obmedzený|restricted|s hranicou
+line|riadok; línia|row; long thin mark|rad; dlhá čiara
+links|prepojenia|connections|spojenia
+list|zoznam|series of items|rad vecí
+listen|počúvať|pay attention to sound|venovať pozornosť zvuku
+literature|literatúra|written works|písané diela
+living|žijúci; živobytie|alive; way of earning|nažive; spôsob zárobku
+local|miestny|of a particular area|týkajúci sa oblasti
+located|nachádzajúci sa|situated|umiestnený
+location|miesto|place|poloha
+long|dlhý|great in length|veľký na dĺžku
+looking|hľadiac|using the eyes|používajúc oči
+lost|stratený|not found|nenájdený
+lot|veľa|a large amount|veľké množstvo
+love|láska|strong liking|silný cit
+luxurious|luxusný|very comfortable and expensive|veľmi pohodlný a drahý
+made|vyrobil|created|vytvoril
+main|hlavný|most important|najdôležitejší
+maintaining|udržiavajúc|keeping in good state|držiac v dobrom stave
+make|robiť; vyrobiť|create|vytvárať
+makeup|zloženie; make-up|composition; cosmetics|zloženie; kozmetika
+malay|malajský|from Malaysia area|z oblasti Malajzie
+mammals|cicavce|animals feeding young with milk|zvieratá kŕmiace mladé mliekom
+man|muž|adult male|dospelý chlap
+management|vedenie|controlling a business|riadenie podniku
+mandarin|mandarín|official in old China|úradník v starej Číne
+many|mnoho|a large number|veľký počet
+march|marec|third month|tretí mesiac
+market|trh|place for buying and selling|miesto nákupu a predaja
+married|ženatý; vydatá|joined in marriage|zosobášený
+mass|hmotnosť|amount of matter|množstvo látky
+match|zhoda; priradiť|link; fit together|spojiť
+material|materiál|substance used for making|látka na výrobu
+measured|meraný|checked in size|zistený rozmer
+mechanically|mechanicky|by machine|strojom
+media|médiá|news and communication|správy a komunikácia
+medical|lekársky|of medicine|týkajúci sa medicíny
+meet|stretnúť|come together|stretnúť sa
+member|člen|person in a group|osoba v skupine
+memorable|nezabudnuteľný|easy to remember|ľahko zapamätateľný
+memory|pamäť|ability to remember|schopnosť pamätať si
+men|muži|adult males|dospelí muži
+mentality|mentalita|way of thinking|spôsob myslenia
+mention|zmieniť sa|say briefly|krátko povedať
+merely|iba|only|len
+message|správa|piece of information|informácia
+met|stretol|came together|stretli sa
+metal|kov|hard shiny material|tvrdý lesklý materiál
+methods|metódy|ways of doing|spôsoby robenia
+metric|metrický|of the metre system|týkajúci sa metrov
+mexican|mexický|from Mexico|z Mexika
+mexico|Mexiko|country|krajina
+micro-surgery|mikrochirurgia|very small operations|veľmi jemné operácie
+mid|stredný|middle|v strede
+middle|stred|centre|centrum
+million|milión|1,000,000|1 000 000
+mine|môj; baňa|belonging to me; digging site|patriaci mne; miesto ťažby
+minimal|minimálny|the smallest amount|najmenšie množstvo
+ministers|ministri|government leaders|vládni predstavitelia
+minutes|minúty|60-second periods|60-sekundové obdobia
+mirror|zrkadlo; odrážať|reflecting glass; reflect|odrážajúce sklo
+missed|zmeškal; chýbal mu|failed to catch; felt absence|nestihol; cítil chýbať
+missing|chýbajúci|not present|neprítomný
+mistakes|chyby|errors|omyly
+mixing|miešanie|combining|spájanie
+money|peniaze|coins and notes|mince a bankovky
+monitor|sledovať|watch and check|pozorovať a kontrolovať
+months|mesiace|periods of about 30 days|obdobia asi 30 dní
+more|viac|greater amount|väčšie množstvo
+morning|ráno|early part of the day|skorá časť dňa
+most|väčšina; najviac|the largest part|najväčšia časť
+mother|matka|female parent|ženský rodič
+moulds|formy|containers shaping material|nádoby tvarujúce materiál
+move|presunúť sa|change position|zmeniť polohu
+much|veľa|a large amount|veľké množstvo
+mum|mama|mother (informal)|matka (hovorovo)
+my|môj|belonging to me|patriaci mne
+name|meno|what someone is called|ako sa niekto volá
+narratives|rozprávania|stories or accounts|príbehy alebo opisy
+national|národný|of a nation|týkajúci sa štátu
+natural|prírodný|found in nature|nachádzajúci sa v prírode
+naturalists|prírodovedci|nature experts|odborníci na prírodu
+nature|príroda|the natural world|prirodzený svet
+naval|námorný|of the navy|týkajúci sa námorníctva
+nearly|takmer|almost|skoro
+necessary|potrebný|needed|treba mať
+need|potrebovať|require|vyžadovať
+never|nikdy|at no time|v žiadnom čase
+new|nový|recently made|nedávno vytvorený
+next|ďalší|following|nasledujúci
+nicknamed|prezývaný|given an informal name|dostal neformálne meno
+nine|deväť|number 9|číslo 9
+no|nie|not any|žiadny
+non-english|nie anglický|in another language|v inom jazyku
+normal|normálny|usual|obvyklý
+north|sever|direction|svetová strana
+not|nie|negative word|záporné slovo
+notable|pozoruhodný|worth noticing|hodný pozornosti
+novels|romány|long fictional books|dlhé vymyslené knihy
+november|november|eleventh month|jedenásty mesiac
+now|teraz|at this time|v tejto chvíli
+number|číslo|amount or figure|počet
+numerous|početný|many|mnoho
+nurse|zdravotná sestra|person who cares for patients|osoba starajúca sa o pacientov
+objects|predmety|things|veci
+observed|pozoroval|watched carefully|pozorne sledoval
+observing|pozorovanie|watching|sledovanie
+obtained|získal|got|dostal
+occupation|povolanie; okupácia|job; taking control of land|zamestnanie; obsadenie územia
+occurred|stalo sa|happened|odohralo sa
+oceans|oceány|very large seas|veľmi veľké moria
+odd|zvláštny|strange|čudný
+of|z; od|belonging to|patriaci
+off|z; vypnutý|away from|preč od
+office|kancelária|place of work|miesto práce
+officers|dôstojníci; úradníci|people with official positions|osoby s úradným postavením
+official|úradný|formal|formálny
+often|často|many times|mnohokrát
+old|starý|having lived long|dlho existujúci
+on|na|on top of|navrchu
+once|raz|one time|jedenkrát
+one|jeden|number 1|číslo 1
+onto|na|to a position on|na povrch
+opened|otvoril|made accessible|sprístupnil
+opening|otvorenie|beginning|začiatok
+opens|otvára|makes accessible|sprístupňuje
+opposed|proti|against|v protiklade
+option|možnosť|choice|výber
+or|alebo|alternative|alternatíva
+order|poriadok; objednávka|arrangement; request|usporiadanie; požiadavka
+organic|organický|natural|prírodný
+organisms|organizmy|living things|živé bytosti
+organization|organizácia|group with a purpose|skupina s cieľom
+original|pôvodný|first|prvý
+other|iný|different|odlišný
+ought|mal by|should|malo by sa
+out|von|outside|mimo
+outside|vonku|not inside|nie vnútri
+outweigh|prevážiť|be heavier or more important|byť ťažším či dôležitejším
+over|nad; cez|above; across|nad; naprieč
+overnight|cez noc|during the night|počas noci
+oversaw|dohliadal|supervised|kontroloval
+own|vlastný|belonging to oneself|patriaci sebe
+ownership|vlastníctvo|state of owning|stav vlastnenia
+pacific|Tichý oceán|the ocean|oceán
+packed|nabalený; stlačený|filled tightly|plne naplnený
+pairs|páry|sets of two|dvojice
+paragraph|odsek|section of a text|časť textu
+parliament|parlament|law-making body|zákonodarný orgán
+part|časť|piece of a whole|kus celku
+participate|zúčastniť sa|take part|byť súčasťou
+particularly|najmä|especially|obzvlášť
+partners|partneri|people working together|ľudia spolupracujúci
+party|strana; oslava|political group; celebration|politická skupina; oslava
+passage|úryvok; prechod|short text; way through|krátky text; priechod
+passed|schválil; prešiel|approved; went by|schválil; prešiel okolo
+passing|odovzdávanie|handing on|odovzdávanie ďalej
+patentees|držitelia patentu|owners of a patent|majitelia patentu
+pause|prestávka|short stop|krátke zastavenie
+paved|vydláždil|covered with a hard surface|pokrytý tvrdým povrchom
+peak|vrchol|highest point|najvyšší bod
+peanut|arašid|nut-like seed|orechu podobné semeno
+penned|napísal|wrote|napísal
+people|ľudia|human beings|ľudské bytosti
+perfect|dokonalý|without any fault|bez chyby
+period|obdobie|length of time|časový úsek
+perspective|pohľad|point of view|uhol pohľadu
+pesticides|pesticídy|chemicals killing pests|chemikálie ničiace škodcov
+philippine|filipínsky|of the Philippines|týkajúci sa Filipín
+phrase|fráza|group of words|skupina slov
+pitfall|jama; nástraha|hole used as a trap|jama ako pasca
+place|miesto|position or location|poloha
+plain|jednoduchý|simple|nezdobený
+planning|plánovanie|preparing|príprava
+plans|plány|intended actions|zamýšľané kroky
+plant|rastlina|living thing that grows|živý organizmus rastúci v zemi
+play|hra; hrať|drama; take part|divadelná hra; hrať
+points|body|marks; ideas|značky; myšlienky
+polish|vylepšiť|improve by working|zlepšiť prácou
+political|politický|of politics|týkajúci sa politiky
+politicians|politici|people in politics|ľudia v politike
+politics|politika|government affairs|záležitosti vlády
+popular|obľúbený|liked by many|obľúbený u mnohých
+population|populácia|number of living things|počet obyvateľov
+portugal|Portugalsko|country|krajina
+portuguese|portugalský|from Portugal|z Portugalska
+positions|pozície|jobs or places|funkcie alebo miesta
+positive|pozitívny|good, optimistic|dobrý, optimistický
+possibilities|možnosti|things that could happen|veci, ktoré sa môžu stať
+pot|hrniec|container for cooking|nádoba na varenie
+poverty|chudoba|being very poor|veľká núdza
+power|moc|ability to control|schopnosť ovládať
+powerful|mocný|having great power|s veľkou mocou
+practical|praktický|useful in real life|užitočný v živote
+practice|prax; cvičenie|doing something often|robenie často
+praise|chvála|express admiration|vyjadriť obdiv
+predators|predátori|animals that hunt|zvieratá, ktoré lovia
+predominantly|prevažne|mainly|hlavne
+prepared|pripravený|made ready|pripravený
+presence|prítomnosť|being in a place|byť na mieste
+present|súčasný; darček|existing now; a gift|existujúci teraz; dar
+present-day|dnešný|of today|týkajúci sa dneška
+presentation|prezentácia|talk showing ideas|prednáška
+presidency|prezidentstvo|office of president|úrad prezidenta
+president|prezident|head of a country|hlava štátu
+prevent|zabrániť|stop from happening|zastaviť
+previous|predchádzajúci|earlier|skorší
+prey|korisť|animal hunted for food|zviera loviace sa na potravu
+primaries|primárky|party elections before the main one|stranícke voľby pred hlavnými
+prince's|princov|of a prince|patriaci princovi
+private|súkromný|not public|nie verejný
+pro-environment|ekologický|supporting nature|podporujúci prírodu
+probably|pravdepodobne|most likely|veľmi možno
+problem-solving|riešenie problémov|finding answers|hľadanie riešení
+problems|problémy|difficulties|ťažkosti
+proceedings|konanie|events or legal case|udalosti alebo súdne konanie
+process|proces|series of steps|postupnosť krokov
+produce|vyrobiť|make|vytvoriť
+production|výroba|making goods|vytváranie tovaru
+profession|povolanie|skilled job|odborná práca
+profound|hlboký|deep, strong|silný a hlboký
+programme|program|plan of activities|plán aktivít
+project|projekt|planned work|plánovaná práca
+prompted|podnietil|caused to act|prinútil konať
+proposals|návrhy|suggested plans|navrhnuté plány
+proprietors|majitelia|owners|vlastníci
+protection|ochrana|keeping safe|udržiavanie v bezpečí
+proud|hrdý|pleased with achievement|spokojný s výsledkom
+provide|poskytnúť|supply|dodať
+province|provincia|region of a country|oblasť štátu
+public|verejný|open to everyone|prístupný všetkým
+published|publikovaný|made available in print|vydaný
+puritan|puritán|strict Protestant|prísny protestant
+purpose|účel|reason for doing|dôvod robiť
+pursuing|sledujúc|following a goal|snažiac sa dosiahnuť
+put|dať|place|umiestniť
+pylons|pylóny|tall towers|vysoké veže
+quadrillion|kvadrilión|10 to the power of 15|číslo 10 na 15
+quantified|vyčíslil|measured as a number|vyjadril číslom
+quarter|štvrť|a fourth part|štvrtina
+quebec|Québec|Canadian province|kanadská provincia
+questionable|pochybný|doubtful|spochybniteľný
+questioning|vypočúvanie|asking questions|kladenie otázok
+questions|otázky|things asked|veci, na ktoré sa pýtame
+quickly|rýchlo|at high speed|vysokou rýchlosťou
+radio|rádio|device for broadcasts|prijímač vysielania
+raised|vychovaný; zdvihnutý|brought up; lifted|vychovaný; zdvihnutý
+ran|bežal|moved fast on foot|rýchlo sa pohyboval
+rather|skôr|instead; fairly|namiesto; dosť
+re-election|opätovné zvolenie|being chosen again|opätovný výber
+read|čítať|look at words|pozerať na text
+real|skutočný|true, not imagined|pravý
+reason|dôvod|cause|príčina
+receiving|prijímajúc|getting|dostávajúc
+recommended|odporučil|advised as good|poradil ako dobré
+record|záznam|stored information|uložená informácia
+reducing|znižujúc|making smaller|zmenšujúc
+refer|odkázať|mention or send to|spomenúť alebo poslať
+refugees|utečenci|people fleeing danger|ľudia unikajúci pred nebezpečenstvom
+regards|považuje; pozdravy|considers; greetings|pokladá; pozdravy
+regions|regióny|areas|oblasti
+registered|registrovaný|officially recorded|úradne zapísaný
+relations|vzťahy|connections|spojenia
+relevant|relevantný|connected to the matter|súvisiaci s vecou
+reliable|spoľahlivý|can be trusted|možno sa naň spoľahnúť
+religious|náboženský|of religion|týkajúci sa viery
+religiously-based|založený na náboženstve|built on religion|postavený na viere
+rely|spoliehať sa|depend on|byť závislý od
+remain|zostať|stay|zotrvať
+remarried|znovu sa oženil|married again|oženil sa znova
+remembered|spomenul si|kept in mind|držal v pamäti
+remove|odstrániť|take away|vziať preč
+repeat|opakovať|do again|robiť znova
+report|správa|account of events|opis udalostí
+representative|zástupca|person acting for others|osoba konajúca za iných
+republican|republikán|member of the Republican party|člen Republikánskej strany
+reputation|povesť|general opinion about someone|všeobecný názor o niekom
+research|výskum|study to find facts|štúdium na zistenie faktov
+restaurants|reštaurácie|places serving meals|miesta s jedlom
+returned|vrátil sa|went back|išiel späť
+returning|vracajúci sa|going back|idúci späť
+reviewing|prezeranie|checking again|opätovné kontrolovanie
+rights|práva|things you are allowed|veci, ktoré smiete
+rivers|rieky|natural flowing water|prirodzene tečúca voda
+robust|pevný|strong|silný
+rock-solid|pevný ako skala|very firm|veľmi pevný
+role|úloha|function or part|funkcia alebo časť
+rooms|izby|spaces in buildings|priestory v budovách
+routes|trasy|ways between places|cesty medzi miestami
+royal|kráľovský|of a king or queen|týkajúci sa kráľa
+rule|pravidlo; vláda|regulation; control|nariadenie; ovládanie
+run|bežať|move fast|rýchlo sa pohybovať
+rural|vidiecky|of the countryside|týkajúci sa vidieka
+russian|ruský|from Russia|z Ruska
+sad|smutný|unhappy|nešťastný
+said|povedal|spoke|prehovoril
+salesman|predavač|person who sells|osoba, ktorá predáva
+same|rovnaký|identical|totožný
+sanskrit|sanskrit|ancient Indian language|starý indický jazyk
+saw|videl|looked at|pozeral
+scarce|vzácny|rare|zriedkavý
+scenes|scény|parts of a story|časti príbehu
+scholars|vedci|academic experts|akademickí odborníci
+scholarship|štipendium|money for study|peniaze na štúdium
+school|škola|place of learning|miesto učenia
+science|veda|study of nature|štúdium prírody
+scientists|vedci|people doing science|ľudia robiaci vedu
+screenwriter|scenárista|film script writer|autor filmového scenára
+sculpting|sochárstvo|carving or shaping|vyrezávanie
+sculptors|sochári|artists making 3D art|umelci tvoriaci sochy
+sculptures|sochy|3D art|trojrozmerné diela
+sea-going|námorný|travelling on seas|plaviaci sa po moriach
+season|sezóna|period of the year|obdobie roka
+seat|miesto; kreslo|chair; place in parliament|stolička; poslanecké miesto
+second|druhý; sekunda|after the first; short time|po prvom; krátky čas
+secret|tajný|hidden from others|skrytý pred inými
+section|časť|part|úsek
+seeds|semená|plant parts to grow new plants|časti rastlín na rozmnoženie
+seemed|zdalo sa|appeared|vyzeralo
+segregation|segregácia|separating groups|oddeľovanie skupín
+self|ja|a person's own being|vlastná osoba
+sell|predávať|exchange for money|vymeniť za peniaze
+senate|senát|upper house of parliament|horná komora parlamentu
+senior|starší; vyšší|older; higher rank|starší; vyšší stupeň
+sent|poslal|made go somewhere|poslal niekam
+sentences|vety|groups of words|skupiny slov
+seriously|vážne|in a grave way|dôrazne
+service|služba|help or work for others|pomoc iným
+settle|usadiť sa|make a home|založiť si domov
+settlements|osady|new communities|nové komunity
+several|niekoľko|more than two|viac než dva
+she|ona|female person|ženská osoba
+shirt|košeľa|clothing for the upper body|oblečenie na hornú časť
+short|krátky|small in length|malý na dĺžku
+should|mal by|ought to|malo by sa
+side|strana|edge or part|okraj alebo časť
+significant|významný|important|dôležitý
+silver|striebro|shiny metal|lesklý kov
+similar|podobný|alike|rovnaký
+since|odkedy; pretože|from then; because|od vtedy; keďže
+sir|pán; sir|title of respect|titul úcty
+sits|sedí|rests on a seat|odpočíva na sedadle
+six|šesť|number 6|číslo 6
+sixfold|šesťnásobný|six times as much|šesťkrát toľko
+ski|lyža|long board for snow|dlhá doska na sneh
+small|malý|little|nie veľký
+smooth|hladký|even|rovnomerný
+snow|sneh|frozen white flakes|zmrznuté biele vločky
+so|tak|therefore; very|preto; veľmi
+social|spoločenský|of society|týkajúci sa spoločnosti
+society|spoločnosť|people living together|ľudia žijúci spolu
+soil|pôda|earth for plants|zem pre rastliny
+sold|predal|exchanged for money|vymenil za peniaze
+solicitor|právnik|lawyer in the UK|právnik v Británii
+some|niekoľko|a few|málo
+something|niečo|a thing|vec
+sometimes|niekedy|not always|nie vždy
+son|syn|male child|mužské dieťa
+sophomore|druháčik|second-year student|študent druhého ročníka
+sought|hľadal|looked for|pozeral po
+sound|zvuk; spoľahlivý|noise; reliable|hluk; solídny
+south|juh|direction|svetová strana
+south-central|juhostredný|in the middle south|v južnom strede
+southwest|juhozápad|direction|svetová strana
+soviet|sovietsky|of the USSR|týkajúci sa ZSSR
+space|priestor|empty area|prázdna oblasť
+spain|Španielsko|country|krajina
+span|rozpätie|length across|dĺžka naprieč
+spanish|španielsky|from Spain|zo Španielska
+spat|vyplul|(spat out) forced out|vytlačený von
+speaking|hovorenie|talking|rozprávanie
+special|zvláštny|not ordinary|nie obyčajný
+specialize|špecializovať sa|focus on one area|zamerať sa na oblasť
+species|druh|group of similar living things|skupina podobných živočíchov
+specifically|konkrétne|exactly|presne
+specify|určiť|state clearly|jasne uviesť
+speculation|špekulácia|guessing|hádanie
+spent|strávil; minul|passed time; used money|prežil čas; použil peniaze
+spouse|manžel; manželka|husband or wife|ženatý partner
+spread|šíriť|become widely known|stať sa známym
+spying|špehovanie|secret watching|tajné sledovanie
+stability|stabilita|being steady|stálosť
+staff|zamestnanci|workers|pracovníci
+stage|fáza; javisko|step; place for actors|krok; miesto pre hercov
+standardized|štandardizovaný|made uniform|zjednotený
+standards|normy|required levels|požadované úrovne
+start|začiatok|beginning|počiatok
+state|štát; stav|country; condition|krajina; podmienky
+statements|výroky|things said|veci, ktoré sa povedali
+station|stanica|place for trains|miesto pre vlaky
+stay|zostať|remain|zotrvať
+steel|oceľ|strong metal|silný kov
+step|krok|one stage|jeden stupeň
+stepfather's|nevlastného otca|of a mother's new husband|manžela matky
+stockholders|akcionári|owners of company shares|vlastníci akcií
+stopped|zastavil|ended movement|ukončil pohyb
+store|obchod; uložiť|shop; keep|predajňa; uchovať
+strategy|stratégia|plan to achieve a goal|plán na dosiahnutie cieľa
+striking|pôsobivý|attracting attention|púta pozornosť
+strong|silný|having power|s mocou
+structure|štruktúra|arrangement of parts|usporiadanie častí
+struggled|zápasil|tried hard|veľmi sa snažil
+student|študent|person who studies|osoba, ktorá študuje
+study|štúdium|learning|učenie sa
+style|štýl|way of doing or looking|spôsob vykonania
+submitted|podal|handed in|odovzdal
+subspecies|poddruh|group within a species|skupina v rámci druhu
+substance|látka|material|hmota
+success|úspech|achieving a goal|dosiahnutie cieľa
+successful|úspešný|achieving goals|dosahujúci ciele
+such|taký|of that type|toho druhu
+sucked|vtiahol|pulled in|stiahol dnu
+suddenly|náhle|quickly and unexpectedly|rýchlo a nečakane
+suggested|navrhol|proposed|ponúkol
+suggestions|návrhy|proposals|ponuky
+suitable|vhodný|right for a purpose|správny na účel
+suites|apartmány|sets of rooms|súbory izieb
+summarize|zhrnúť|give main points|uviesť hlavné body
+super-packed|extra stlačený|packed extremely hard|extrémne zhutnený
+supply|zásobovať|provide|poskytnúť
+support|podpora|help|pomoc
+surface|povrch|outer layer|vonkajšia vrstva
+surgeons|chirurgovia|doctors performing operations|lekári robiaci operácie
+surprisingly|prekvapivo|unexpectedly|nečakane
+survive|prežiť|stay alive|zostať nažive
+sweden|Švédsko|country|krajina
+systematic|systematický|methodical|metodický
+sympathies|sympatie|feelings of support|city podpory
+take|vziať|get hold of|chytiť do ruky
+tap|ťuknúť|touch lightly|jemne sa dotknúť
+tasks|úlohy|jobs to do|práce na vykonanie
+taught|učil|gave lessons|viedol hodiny
+teacher|učiteľ|person who teaches|osoba, ktorá učí
+teaching|učenie|giving lessons|vyučovanie
+team|tím|group working together|skupina spolupracujúca
+techniques|techniky|methods|postupy
+technology|technológia|machines and methods|stroje a metódy
+tedious|nudný|boring and slow|nudný a zdĺhavý
+tells|hovorí|says to|hovorí niekomu
+temperatures|teploty|how hot or cold|ako horúco alebo zima
+ten|desať|number 10|číslo 10
+tended|mal tendenciu|was likely to|bol náchylný
+tenderer|uchádzač|person making an offer|osoba podávajúca ponuku
+tenders|ponuky|official offers|oficiálne návrhy
+tends|má tendenciu|is likely to|býva náchylný
+terms|podmienky; výrazy|conditions; words|podmienky; slová
+test|test|exam|skúška
+texas|Texas|US state|štát USA
+text|text|written words|písané slová
+than|ako|compared with|v porovnaní s
+that|ten; že|those; conjunction|tamten; spojka
+the|ten|definite article|určitý člen
+theatre|divadlo|place for plays|miesto na hry
+their|ich|belonging to them|patriaci im
+them|ich|those people|tí ľudia
+theme|téma|main subject|hlavná téma
+then|potom|after that|po tom
+there|tam|in that place|na tom mieste
+thereafter|potom|from then on|odvtedy
+these|tieto|those near|tie blízke
+they|oni|those people|tí ľudia
+they're|oni sú|they are|oni sú
+thick|hrubý|wide from side to side|široký
+think|myslieť|use the mind|používať myseľ
+this|toto|the one here|ten tu
+thorough|dôkladný|careful and complete|opatrný a úplný
+though|hoci|although|aj keď
+thousands|tisíce|many 1,000s|mnoho tisícov
+threats|hrozby|dangers|nebezpečenstvá
+three|tri|number 3|číslo 3
+thriving|prosperujúci|growing strongly|silno rastúci
+through|cez|from one side to other|z jednej strany na druhú
+throughout|počas celého|during all of|počas celého
+thus|teda|therefore|preto
+tight|tesný|firmly fastened|pevne uzavretý
+time|čas|hours, days, years|hodiny, dni, roky
+tip|tip|useful advice|užitočná rada
+tirelessly|neúnavne|without getting tired|bez únavy
+to|do; k|towards|smerom ku
+today|dnes|this day|tento deň
+together|spolu|with each other|jeden s druhým
+tons|tony|units of weight|jednotky hmotnosti
+too|príliš; tiež|more than needed; also|viac než treba; aj
+took|vzal|picked up|zobral
+top|vrch|highest point|najvyššia časť
+top-down|zhora nadol|from the top to the base|zhora dole
+total|celkový|complete amount|úplné množstvo
+tower|veža|tall narrow building|vysoká úzka stavba
+town|mesto|small city|menšie sídlo
+track|stopa|follow|sledovať
+trade|obchod|buying and selling|nákup a predaj
+traditional|tradičný|following old customs|podľa starých zvykov
+trained|vyškolený|taught skills|naučený zručnostiam
+training|školenie|learning skills|učenie zručností
+transfer|preniesť|move to another|presunúť inam
+transit|preprava|movement of people|pohyb ľudí
+transparent|priehľadný|clear, see-through|číry
+traps|pasce|devices for catching|zariadenia na chytanie
+travel|cestovať|go to places|ísť na miesta
+trigger|spúšťač|cause something to start|vyvolať vznik
+trip|výlet|journey|cesta
+tropical|tropický|of hot regions|týkajúci sa horúcich oblastí
+tropics|trópy|hot regions near equator|horúce oblasti pri rovníku
+trust|dôvera|belief in reliability|viera v spoľahlivosť
+try|skúsiť|attempt|pokúsiť sa
+tunnel|tunel|underground passage|podzemný priechod
+turn|otočiť|change direction|zmeniť smer
+twice|dvakrát|two times|dva razy
+two|dva|number 2|číslo 2
+typically|typicky|usually|obvykle
+uk|Spojené kráľovstvo|United Kingdom|krajina vo Veľkej Británii
+ultimately|nakoniec|finally|v konečnom dôsledku
+un-american|neamerický|not typical for America|nie typický pre Ameriku
+under|pod|below|nižšie ako
+underlines|zdôrazňuje|shows importance|ukazuje dôležitosť
+undertaking|podnik|big task|veľká úloha
+unevenly|nerovnomerne|not equally|nie rovnako
+unintended|nezamýšľaný|not planned|neplánovaný
+union|únia|group joined together|spojená skupina
+unique|jedinečný|one of a kind|jediný svojho druhu
+united|spojený|joined together|zjednotený
+uniting|zjednocujúci|joining|spájajúci
+university|univerzita|higher education place|miesto vyššieho vzdelania
+unstable|nestabilný|not steady|nestály
+unsuccessfully|neúspešne|without success|bez úspechu
+until|až do|up to a time|po istý čas
+unworried|bez obáv|not anxious|nie znepokojený
+up|hore|to a higher position|na vyššie miesto
+upon|na|on|na
+us|nás|me and others|ja a ďalší
+use|používať|employ for a purpose|využiť na účel
+usually|zvyčajne|normally|obvykle
+variety|rozmanitosť|many different kinds|mnoho rôznych druhov
+various|rôzne|several different|niekoľko odlišných
+vary|líšiť sa|be different|byť odlišný
+ventilate|vetrať|let in air|vpustiť vzduch
+very|veľmi|extremely|nesmierne
+video|video|moving pictures|pohyblivé obrazy
+vietnam|Vietnam|country|krajina
+views|názory; pohľady|opinions; sights|stanoviská; výhľady
+villages|dediny|small rural settlements|malé vidiecke sídla
+visit|navštíviť|go to see|ísť pozrieť
+vital|životne dôležitý|essential for life|nevyhnutný pre život
+vocal|hlasný|speaking openly|otvorene vyjadrujúci
+voting|hlasovanie|choosing in an election|výber vo voľbách
+wales|Wales|country in the UK|krajina v UK
+walls|steny|vertical building parts|zvislé časti budov
+wanted|chcel|desired|túžil
+war|vojna|armed conflict|ozbrojený konflikt
+was|bol|past of be|minulý čas slovesa byť
+wasteful|plytvavý|using too much|používajúci príliš veľa
+water|voda|liquid we drink|tekutina na pitie
+way|spôsob; cesta|method; path|metóda; chodník
+we|my|I and others|ja a ďalší
+wedding|svadba|marriage ceremony|obrad sobáša
+week|týždeň|seven days|sedem dní
+weighed|vážil|measured heaviness|zisťoval hmotnosť
+weight|hmotnosť|how heavy|akú váhu má
+well|dobre|in a good way|dobrým spôsobom
+went|išiel|moved|pohol sa
+were|boli|past of be|minulý čas slovesa byť
+what|čo|which thing|ktorá vec
+when|keď|at what time|v ktorom čase
+where|kde|in which place|na ktorom mieste
+which|ktorý|what one|aký
+while|zatiaľ čo|during; whereas|počas; kým
+who|kto|which person|ktorá osoba
+whom|koho|object form of who|tvar kto
+widow|vdova|woman whose husband died|žena po zomretom manželovi
+wife|manželka|married woman|vydatá žena
+wild|divoký|not tamed|nie skrotený
+will|bude; vôľa|future; determination|budúcnosť; odhodlanie
+win|vyhrať|be first|byť prvý
+winter|zima|coldest season|najchladnejšie obdobie
+wise|múdry|having good judgement|s dobrým úsudkom
+with|s|together|spolu
+without|bez|not having|nemajúc
+women|ženy|adult females|dospelé ženy
+won|vyhral|came first|bol prvý
+word|slovo|unit of language|jednotka jazyka
+work|práca|job or effort|zamestnanie alebo úsilie
+workshop|dielňa|room for making things|miestnosť na výrobu
+world|svet|the Earth; everyone|Zem; všetci
+worldwide|celosvetový|across the globe|po celom svete
+worrying|znepokojujúci|causing anxiety|vyvolávajúci obavy
+would|by|conditional form of will|podmieňovací tvar
+wrecking|búranie|destroying|ničenie
+writer|spisovateľ|person who writes|osoba píšuca
+writing|písanie|putting words on paper|písanie slov
+year|rok|12 months|dvanásť mesiacov
+yet|zatiaľ; ešte|so far; however|doteraz; avšak
+you|ty; vy|the person spoken to|osoba, ktorej sa hovorí
+young|mladý|not old|nie starý
+your|tvoj|belonging to you|patriaci tebe
+zero|nula|number 0|číslo 0
+zoo|zoologická záhrada|place with wild animals|miesto s divými zvieratami
+all|všetok; všetci|every one; the whole|každý; celý
+buyer|kupujúci|person who buys|osoba, ktorá kupuje
+commissioner|komisár|member of a commission|člen komisie
+commissioners|komisári|members of a commission|členovia komisie
+farmer|farmár|person who grows food|osoba pestujúca plodiny
+farmers|farmári|people who grow food|ľudia pestujúci plodiny
+fewer|menej|a smaller number|menší počet
+former|bývalý|earlier|predchádzajúci
+higher|vyšší|greater in height or rank|väčší výškou či postavením
+highest|najvyšší|greatest in height or rank|najväčší výškou či postavením
+ice|ľad|frozen water|zmrznutá voda
+january|január|first month|prvý mesiac
+mantra|mantra|repeated saying or belief|opakované heslo
+marked|označený|showed or noted|vyznačený
+me|mňa; mne|the speaker|hovoriaci
+mr|pán|title for a man|titul muža
+neurosurgeon|neurochirurg|brain surgeon|chirurg operujúci mozog
+neurosurgeons|neurochirurgovia|brain surgeons|chirurgovia operujúci mozog
+only|iba; jediný|just; single|len; jeden
+owner|majiteľ|person who owns|osoba, ktorá vlastní
+still|stále; pokojný|continuing; not moving|naďalej; bez pohybu
+mandarim|mandarín (port.)|Portuguese for mandarin|portugalské slovo pre mandarína
+gov|guvernér|abbreviation of governor|skratka pre guvernéra
+sen|senátor|abbreviation of senator|skratka pre senátora
+jr|junior|(Jr.) the younger|mladší
+london|Londýn|capital of the UK|hlavné mesto Británie
+co|spolu-|prefix meaning together|predpona spoločne</script>
 <script>window.onerror=function(m,s,l,c){var d=document.createElement("div");d.style.cssText="position:fixed;bottom:0;left:0;right:0;background:#7f1d1d;color:#fff;padding:10px 14px;z-index:99;font:14px/1.4 monospace";d.textContent="Error: "+m+" (line "+l+", col "+c+")";document.body.appendChild(d)}</script>
 <div class="sh" id="sh"><div class="shi" id="shi"></div></div>
+<div id="dict"><div class="di" id="di"></div></div>
 <script>
 const K="matura2025-c1-1515",L="ABCDEFGH";
 let ans={};try{ans=JSON.parse(localStorage.getItem(K)||"{}")}catch(e){}
@@ -340,6 +1608,53 @@ app.addEventListener("click",e=>{const l=e.target.closest("label");if(!l||e.targ
 app.addEventListener("change",e=>{const t=e.target,k=t.dataset&&t.dataset.k;if(!k)return;ans[k]=t.value;save();reveal(parseInt(k))});
 app.addEventListener("keydown",e=>{if(e.key=="Enter"&&e.target.type=="text")e.target.blur()});
 for(let n=1;n<=90;n++)reveal(n);
+/* word lookup */
+(function(){
+ const DK=K+"-seen2";let D={};try{D=JSON.parse(localStorage.getItem(DK)||"{}")||{}}catch(e){}
+ 
+ const sv=()=>{try{localStorage.setItem(DK,JSON.stringify(D))}catch(e){}};
+ const dict=document.getElementById("dict"),di=document.getElementById("di");
+ const nk=w=>w.toLowerCase().replace(/\u2019/g,"'");
+ const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+ const E={};document.getElementById("dtxt").textContent.split("\n").forEach(l=>{const p=l.split("|");if(p.length==4)E[p[0]]=p});
+ const hE=k=>Object.prototype.hasOwnProperty.call(E,k);
+ function cands(w){const c=[],n=w.length,e=s=>w.slice(-s.length)==s;
+  if(e("'s"))c.push(w.slice(0,-2));
+  if(e("s'"))c.push(w.slice(0,-1));
+  if(e("ies"))c.push(w.slice(0,-3)+"y");
+  if(e("ied"))c.push(w.slice(0,-3)+"y");
+  if(e("es")){c.push(w.slice(0,-2));c.push(w.slice(0,-1))}
+  if(e("s")&&!e("ss"))c.push(w.slice(0,-1));
+  if(e("ed")){c.push(w.slice(0,-2));c.push(w.slice(0,-1));if(n>4&&w[n-3]==w[n-4])c.push(w.slice(0,-3))}
+  if(e("ing")){c.push(w.slice(0,-3));c.push(w.slice(0,-3)+"e");if(n>5&&w[n-4]==w[n-5])c.push(w.slice(0,-4))}
+  if(e("ly"))c.push(w.slice(0,-2));
+  return c}
+ function res(w,d){d=d||0;if(hE(w))return E[w];if(d>2)return null;const c=cands(w);for(let i=0;i<c.length;i++){if(c[i].length>2){const r=res(c[i],d+1);if(r)return r}}return null}
+ let curEl=null;
+ const wr=document.createTreeWalker(app,NodeFilter.SHOW_TEXT,null);const nodes=[];let nd;
+ while(nd=wr.nextNode()){if(!/[A-Za-z\u00C0-\u024F]{2}/.test(nd.nodeValue))continue;if(nd.parentElement.closest("button,label,input,.fb,.qn,.ref b,script,style"))continue;nodes.push(nd)}
+ nodes.forEach(n=>{const t=n.nodeValue,f=document.createDocumentFragment(),re=/[A-Za-z\u00C0-\u024F]+(?:[\u2019'-][A-Za-z\u00C0-\u024F]+)*/g;let i=0,m;
+  while((m=re.exec(t))){if(m[0].length<2)continue;if(m.index>i)f.appendChild(document.createTextNode(t.slice(i,m.index)));const s=document.createElement("span");s.className="w";s.textContent=m[0];f.appendChild(s);i=m.index+m[0].length}
+  if(i<t.length)f.appendChild(document.createTextNode(t.slice(i)));n.parentNode.replaceChild(f,n)});
+ app.insertAdjacentHTML("afterbegin",'<p class="hint">Tap any word in the texts and questions to see its Slovak translation and meaning.</p>');
+ function mark(){app.querySelectorAll(".w").forEach((s,i)=>{s.dataset.i=i;if(D[i])s.classList.add("seen")})}
+ mark();
+ function open(){dict.classList.add("on");document.body.classList.add("dopen")}
+ function close(){dict.classList.remove("on");document.body.classList.remove("dopen");if(curEl)curEl.classList.remove("cur");curEl=null}
+ function head(w,base){return '<h4><span>'+esc(w)+(base&&nk(base)!=nk(w)?' <small style="color:var(--mut);font-weight:400">('+esc(base)+')</small>':'')+'</span><button type="button" id="dx" aria-label="Close">\u00d7</button></h4>'}
+ function look(s){
+  const w=s.textContent,k=nk(w);
+  if(curEl)curEl.classList.remove("cur");curEl=s;s.classList.add("cur");
+  if(!D[s.dataset.i]){D[s.dataset.i]=1;sv()}
+  s.classList.add("seen");open();
+  const r=res(k);
+  if(r)di.innerHTML=head(w,r[0])+'<div class="sk">'+esc(r[1])+'</div><div class="l">Meaning</div><p class="t">'+esc(r[2])+'</p><div class="l">V\u00fdznam</div><p class="t">'+esc(r[3])+'</p>';
+  else if(w.charAt(0)!==w.charAt(0).toLowerCase())di.innerHTML=head(w)+'<p class="msg">Proper name \u2013 no translation needed.</p><p class="msg">Vlastn\u00e9 meno.</p>';
+  else di.innerHTML=head(w)+'<p class="msg">No entry for this word.</p><p class="msg">Pre toto slovo nie je z\u00e1znam.</p>';
+ }
+ app.addEventListener("click",e=>{const s=e.target.closest(".w");if(s)look(s)});
+ di.addEventListener("click",e=>{if(e.target.closest("#dx"))close()});
+})();
 /* clear */
 let armed=false;const clr=document.getElementById("clr");
 clr.addEventListener("click",()=>{if(!armed){armed=true;clr.textContent="Tap again to clear all answers";setTimeout(()=>{armed=false;clr.textContent="Clear all answers"},4000);return}
