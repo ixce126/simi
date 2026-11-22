@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="dark">
-<title>Maturita 2025 – English C1 (25 1515)</title>
+<title>Maturita – English C1</title>
 <style>
 :root{--bg:#0e1116;--card:#171b22;--card2:#1e242d;--line:#2a313c;--tx:#e6e9ee;--mut:#9aa4b2;--ac:#6ea8fe;--ac2:#1d3557;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 *,*::before,*::after{box-sizing:inherit}
@@ -86,15 +86,32 @@ input[type=text].tbad{border-color:#f87171;background:#3a1717}
 #dict .msg{color:var(--mut);margin:6px 0 0}
 body.dopen main{padding-bottom:320px}
 @media (max-width:480px){body{font-size:16.5px}.q{gap:9px}}
+
+[hidden]{display:none!important}
+#home{padding:calc(24px) 16px 40px}
+.hm{max-width:520px;margin:0 auto}
+.hm h1{font-size:26px;margin:28px 0 22px;text-align:center}
+.tl{display:flex;flex-direction:column;gap:12px}
+.tb{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:74px;padding:14px 20px;background:var(--card);color:var(--tx);border:1px solid var(--line);border-radius:16px;font:inherit;text-align:left;cursor:pointer}
+.tb b{font-size:28px;font-variant-numeric:tabular-nums}
+.tb span{color:var(--mut);font-size:15px}
+.tb:active{background:var(--ac2);border-color:var(--ac)}
+.top{display:flex;align-items:center;gap:10px}
+.top .tt{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.top .cn{flex:none;white-space:nowrap}
+#back{flex:none;background:var(--card);color:var(--ac);border:1px solid var(--line);border-radius:999px;padding:7px 14px;font:inherit;font-size:15px;font-weight:600;min-height:38px;cursor:pointer}
 </style>
 </head>
 <body>
-<header><div class="hin">
-<div class="top"><span><b>Maturita 2025 · English C1</b> · 25 1515</span><span><b id="cnt">0</b> / 90 · <b id="okc">0</b> ✓</span></div>
+<div id="home"><div class="hm"><h1>Maturita · English C1</h1><div class="tl" id="tl"></div></div></div>
+<header id="hdr" hidden><div class="hin">
+<div class="top"><button type="button" id="back">‹ Tests</button><span class="tt"><b id="ttl"></b></span><span class="cn"><b id="cnt">0</b> / 90 · <b id="okc">0</b> ✓</span></div>
 <div class="bar"><i id="bar"></i></div>
 <nav id="nav"></nav>
 </div></header>
-<main id="app"><p style="color:#9aa4b2;padding:20px 0">Loading…</p></main>
+<main id="app" hidden></main>
+<div class="sh" id="sh"><div class="shi" id="shi"></div></div>
+<div id="dict"><div class="di" id="di"></div></div>
 <script type="text/plain" id="dtxt">ability|schopnosť|power to do something|schopnosť niečo robiť
 about|o; asi|concerning; approximately|týkajúci sa; približne
 absent|neprítomný|not present|ktorý tu nie je
@@ -1349,14 +1366,13 @@ jr|junior|(Jr.) the younger|mladší
 london|Londýn|capital of the UK|hlavné mesto Británie
 co|spolu-|prefix meaning together|predpona spoločne</script>
 <script>window.onerror=function(m,s,l,c){var d=document.createElement("div");d.style.cssText="position:fixed;bottom:0;left:0;right:0;background:#7f1d1d;color:#fff;padding:10px 14px;z-index:99;font:14px/1.4 monospace";d.textContent="Error: "+m+" (line "+l+", col "+c+")";document.body.appendChild(d)}</script>
-<div class="sh" id="sh"><div class="shi" id="shi"></div></div>
-<div id="dict"><div class="di" id="di"></div></div>
-<script>
-const K="matura2025-c1-1515",L="ABCDEFGH";
-let ans={};try{ans=JSON.parse(localStorage.getItem(K)||"{}")}catch(e){}
+<script>const L="ABCDEFGH";
+let YR="",K="",ans={},KEY={},ACC={},ACCM={},ACCU={},SHOWM={},MULTI={},OPT={},REV={},D={},curEl=null,cur=null;
+const TESTS={};
+const $=id=>document.getElementById(id);
 const pad=n=>String(n).padStart(2,"0");
 const P=t=>t.split("\n\n").map(p=>"<p>"+p+"</p>").join("");
-const keys=n=>(n==29||n==30)?[n+"a",n+"b"]:[""+n];
+const keys=n=>MULTI[n]||[""+n];
 const gp=(t,m)=>t.replace(/\{(\d+)([ab]?)\}/g,(x,n,s)=>m=="c"
  ?`<button type="button" class="chip" data-g="${n}"><small>${pad(+n)}</small>&nbsp;…</button>`
  :`<input type="text" data-k="${n+s}" placeholder="${pad(+n)}${s}" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" aria-label="Answer ${n}${s}">`);
@@ -1365,35 +1381,7 @@ const pk=(n,t,ls)=>`<div class="q${t?"":" gap"}" id="q${n}"><div class="qn">${pa
 const tq=(n,t)=>`<div class="q" id="q${n}"><div class="qn">${pad(n)}</div><div class="qb"><p>${gp(t)}</p></div></div>`;
 const ref=a=>`<div class="txt">${a.map((t,i)=>`<div class="ref"><b>${L[i]}</b><div>${t}</div></div>`).join("")}</div>`;
 const mcs=(arr)=>arr.map(a=>mc(a[0],a[1],a[2])).join("");
-
-const OPT={31:"be|being|have been|–",32:"go|pass|do|move",33:"was not able|was not allowed|did not have|was not possible",34:"is|was|has been|would be",35:"set up|set off|set out|set in",36:"Upon|By|Through|Over",37:"rears|rises|arises|raises",38:"alley|path|line|lane",39:"closely|exactly|nearly|almost",40:"revises|reminds|recalls|recognises",41:"will create|were creating|created|have created",42:"over she had left|over had she left|had she left over|she had left over",43:"neither|either|nor|not",44:"take over|take up|take after|take in",45:"had sold|sell|would sell|had been selling",46:"behind|beyond|off|beneath",47:"processed|enabled|elaborated|progressed",48:"has since gone out of|since has gone out of|has gone out of since|has gone since out of",49:"comes|goes|leaves|arrives",50:"issued|piled|launched|outlaid"};
-for(const k in OPT)OPT[k]=OPT[k].split("|");
-
-const KEY={1:"C",2:"B",3:"D",4:"B",5:"A",6:"D",7:"B",8:"C",9:"D",10:"A",11:"D",12:"G",13:"A",14:"H",15:"F",16:"E",17:"C",18:"G",19:"A",20:"D",31:"B",32:"A",33:"B",34:"C",35:"A",36:"C",37:"D",38:"B",39:"D",40:"C",41:"C",42:"D",43:"B",44:"A",45:"C",46:"A",47:"D",48:"A",49:"B",50:"C",61:"C",62:"A",63:"A",64:"D",65:"D",66:"A",67:"D",68:"D",69:"C",70:"D",71:"F",72:"C",73:"G",74:"E",75:"B",82:"C",83:"A",84:"D",85:"B",86:"A",87:"B",88:"D",89:"C",90:"A"};
-const ACC={21:["diversity"],22:["exercise their rights"],23:["sense of injustice"],24:["qualifications"],25:["made redundant"],26:["four attempts","4 attempts","four tries","4 tries"],27:["talents","gifts","talent","gift","abilities","ability"],28:["society"],51:["portuguese"],52:["headline","heading"],53:["headquarters"],54:["officials","officers"],55:["secretive"],56:["collective"],57:["useless"],58:["famously"],59:["succeed"],60:["pride"],76:["seeds"],77:["carbon makeup"],78:["food chain"],79:["tropical regions","tropical habitats"],80:["pitfall traps"],81:["czech institution"]};
-const SHOWM={26:"four attempts / 4 attempts",27:"talents / gifts",29:"Asian, ethnic minority / minority ethnic",30:"breakdown, estate",52:"headline / heading",54:"officials / officers",77:"Carbon makeup / Carbon make-up",79:"tropical regions / tropical habitats"};
-const REV={};
-const norm=s=>s.toLowerCase().replace(/[^a-z0-9 ]/g,"").replace(/\s+/g," ").trim();
-function ed1(a,b){if(a==b)return true;if(Math.abs(a.length-b.length)>1)return false;let i=0;while(i<a.length&&i<b.length&&a[i]==b[i])i++;if(a.length==b.length)return a.slice(i+1)==b.slice(i+1);return a.length>b.length?a.slice(i+1)==b.slice(i):b.slice(i+1)==a.slice(i)}
-function isOk(n){
- if(KEY[n])return ans[n]==KEY[n];
- if(n==29){const a=norm(ans["29a"]||""),b=norm(ans["29b"]||"");return ed1(a,"asian")&&(ed1(b,"ethnic minority")||ed1(b,"minority ethnic"))}
- if(n==30)return ed1(norm(ans["30a"]||""),"breakdown")&&ed1(norm(ans["30b"]||""),"estate");
- const v=norm(ans[n]||"");return ACC[n].some(x=>n<=30?ed1(v,x):v==x)}
-function tally(){let c=0;for(let n=1;n<=90;n++){if(!(KEY[n]||REV[n]))continue;if(!keys(n).every(k=>(ans[k]||"").trim()))continue;if(isOk(n))c++}
- const e=document.getElementById("okc");if(e)e.textContent=c}
-function reveal(n){
- const q=document.getElementById("q"+n);if(!q)return;
- if(KEY[n]){const v=ans[n];if(!v)return;
-  q.querySelectorAll("input[type=radio]").forEach(r=>{r.disabled=true;const sp=r.nextElementSibling;if(r.value==KEY[n])sp.classList.add("ok");else if(r.value==v)sp.classList.add("bad")});
- }else{
-  if(!keys(n).every(k=>(ans[k]||"").trim()))return;
-  const ok=isOk(n);REV[n]=1;
-  q.querySelectorAll("input[type=text]").forEach(i=>{i.readOnly=true;i.classList.add(ok?"tok":"tbad")});
-  if(!q.querySelector(".fb"))q.querySelector(".qb").insertAdjacentHTML("beforeend",`<div class="fb ${ok?"ok":"bad"}">${ok?"✓ Correct":"✗ Correct answer: <b>"+(SHOWM[n]||ACC[n][0])+"</b>"}</div>`);
- }
- tally()}
-const S=[];
+TESTS["2025"]={code:"25 1515",OPT:{31:"be|being|have been|–",32:"go|pass|do|move",33:"was not able|was not allowed|did not have|was not possible",34:"is|was|has been|would be",35:"set up|set off|set out|set in",36:"Upon|By|Through|Over",37:"rears|rises|arises|raises",38:"alley|path|line|lane",39:"closely|exactly|nearly|almost",40:"revises|reminds|recalls|recognises",41:"will create|were creating|created|have created",42:"over she had left|over had she left|had she left over|she had left over",43:"neither|either|nor|not",44:"take over|take up|take after|take in",45:"had sold|sell|would sell|had been selling",46:"behind|beyond|off|beneath",47:"processed|enabled|elaborated|progressed",48:"has since gone out of|since has gone out of|has gone out of since|has gone since out of",49:"comes|goes|leaves|arrives",50:"issued|piled|launched|outlaid"},KEY:{1:"C",2:"B",3:"D",4:"B",5:"A",6:"D",7:"B",8:"C",9:"D",10:"A",11:"D",12:"G",13:"A",14:"H",15:"F",16:"E",17:"C",18:"G",19:"A",20:"D",31:"B",32:"A",33:"B",34:"C",35:"A",36:"C",37:"D",38:"B",39:"D",40:"C",41:"C",42:"D",43:"B",44:"A",45:"C",46:"A",47:"D",48:"A",49:"B",50:"C",61:"C",62:"A",63:"A",64:"D",65:"D",66:"A",67:"D",68:"D",69:"C",70:"D",71:"F",72:"C",73:"G",74:"E",75:"B",82:"C",83:"A",84:"D",85:"B",86:"A",87:"B",88:"D",89:"C",90:"A"},ACC:{21:["diversity"],22:["exercise their rights"],23:["sense of injustice"],24:["qualifications"],25:["made redundant"],26:["four attempts","4 attempts","four tries","4 tries"],27:["talents","gifts","talent","gift","abilities","ability"],28:["society"],51:["portuguese"],52:["headline","heading"],53:["headquarters"],54:["officials","officers"],55:["secretive"],56:["collective"],57:["useless"],58:["famously"],59:["succeed"],60:["pride"],76:["seeds"],77:["carbon makeup"],78:["food chain"],79:["tropical regions","tropical habitats"],80:["pitfall traps"],81:["czech institution"]},ACCM:{29:[["asian"],["ethnic minority","minority ethnic"]],30:[["breakdown"],["estate"]]},SHOWM:{26:"four attempts / 4 attempts",27:"talents / gifts",29:"Asian, ethnic minority / minority ethnic",30:"breakdown, estate",52:"headline / heading",54:"officials / officers",77:"Carbon makeup / Carbon make-up",79:"tropical regions / tropical habitats"},MULTI:{29:["29a","29b"],30:["30a","30b"]},build(){const S=[];
 /* ---------- LISTENING 1 ---------- */
 S.push(["s1","Listening 1",`<h1>Maturita 2025 – External Part<br>English · Level C1 · Test 25 1515</h1>
 <h2>SECTION I – LISTENING (30 points)</h2>
@@ -1580,85 +1568,673 @@ After graduating from college in 1930, Johnson won praise as a teacher of debate
 `<p style="text-align:center;color:var(--mut);margin-top:26px">THE END</p>
 <button class="clr" id="clr" type="button">Clear all answers</button>`]);
 
-/* ---------- render ---------- */
-const app=document.getElementById("app");
-app.innerHTML=S.map(s=>`<section id="${s[0]}">${s[2]}</section>`).join("");
-document.getElementById("nav").innerHTML=S.map(s=>`<button type="button" data-s="${s[0]}">${s[1]}</button>`).join("");
-document.getElementById("nav").addEventListener("click",e=>{const b=e.target.closest("button");if(b)document.getElementById(b.dataset.s).scrollIntoView({behavior:"smooth",block:"start"})});
+return S}};
+TESTS["2024"]={code:"24 1515",
+OPT:{31:"have been set|were set|are set|had been set",32:"devoted|holy|godless|faithful",33:"edged|preserved|folded|maintained",34:"graze|feed|grab|flesh",35:"rounds|slices|cutters|chunks",36:"watchers|spectators|viewers|sightseers",37:"raises|rises|arises|uprises",38:"sharp|scarped|straight|steep",39:"what|which|that|when",40:"to have hurried|to be hurried|being hurried|having been hurried",41:"fix|keep|hold|lift",42:"to be|being|being been|to have been",43:"with|below|in|to",44:"difference|discrepancy|distinction|disagreement",45:"as|so|such as|like",46:"come|arrive|enter|step",47:"has lost|had lost|lost|is losing",48:"This|There|His|Thus",49:"speed|pace|velocity|fastness",50:"through|along|over|by"},
+MULTI:{22:["22a","22b"],29:["29a","29b"]},
+build(){const S=[];
+S.push(["s1","Listening 1",`<h1>Maturita 2024 – External Part<br>English · Level C1 · Test 24 1515</h1>
+<h2>SECTION I – LISTENING (30 points)</h2>
+<div class="ins"><p>This section of the test has three parts. You will hear four recordings which you will listen to twice. While listening, answer the questions in the appropriate part of the test.</p></div>
+<h3>Part 1: Two Interviews (10 points)</h3>
+<div class="ins"><p>In this part, you will hear two different extracts. In the first extract, you will hear an interview with Dr Julie Smith, a clinical psychologist. In the second extract, you will hear an interview with David Gray, a singer and ecologist. For the following statements 01–10, choose the correct answer (A), (B), (C) or (D). There is always only one correct answer.</p><p>Now you have 2 minutes to read the tasks.</p></div>
+<h3>Extract 1: An Interview with Dr Julie Smith (5 points)</h3>`+mcs([
+[1,"Julie Smith started her therapies in the garden because …",["her clients preferred such an environment","her clients were less stressed there","she had conducted research about that","she wanted to balance things in her life"]],
+[2,"Julie Smith’s TikTok videos were …",["produced on her clients’ demand","inspired by her husband","successful on YouTube as well","difficult to create at first"]],
+[3,"According to Julie, every video should …",["be funny and entertaining","contain an individual story","bring innovative solutions","convey some meaning"]],
+[4,"The response of other professionals to Julie’s videos has been …",["critical","supportive","hesitative","controversial"]],
+[5,"For Julie, featuring on videos and becoming popular meant …",["getting used to her new status","following her planned professional career","developing her creative skills","fulfilling her professional ambitions"]]])+
+`<h3 style="margin-top:22px">Extract 2: An Interview with David Gray (5 points)</h3>`+mcs([
+[6,"David Gray decided to buy a cottage in Norfolk because …",["it had a studio and some other facilities as part of its interior","it was the best financial deal he had ever negotiated","it represented the kind of environment he identified with","its location was suitable for composing his songs there"]],
+[7,"The reason David Gray cooperates with the Norfolk Wildlife Trust, is that …",["it can take measures to protect his beloved birds","it has initiated different wildlife programmes","its employees are doing research on Norfolk birds","its active volunteers have a similar outlook on life"]],
+[8,"In his album Skellig, …",["each song is named after one island","each song is inspired by a different species","one song includes a real animal sound","one song’s lyrics contain Irish dialect words"]],
+[9,"While touring, David Gray insists on …",["coming up with some practical ecological ideas","reducing carbon footprint by not flying so much","sorting out waste and saving electricity","supporting his ecological approach on the stage"]],
+[10,"David Gray believes that artists should …",["campaign more actively for ecological issues","lead discussions with their fans about nature","spend more money on saving animals and plants","influence people through meaningful messages"]]])]);
 
+S.push(["s2","Listening 2",`<h3>Part 2: Getting Rid of Bad Habits Leads to Self-Improvement (10 points)</h3>
+<div class="ins"><p>In this part, you will hear a radio programme in which a psychologist explains how you can get rid of old habits and change your personal and professional life. The expert will mention five bad habits and five solutions how to change them. There are two blocks of five matching questions. You will have to match all ten questions while you are listening to this recording. Read the questions carefully before you listen.</p><p>For questions 11–15, choose from the first list marked (A) – (H) the bad habit which is being described. For questions 16 – 20, choose from the second list marked (A) – (H) the practical solution to stop this habit. Be careful, there are three extra possibilities which you do not need to use. There is always only one correct answer.</p><p>Now you have 2 minutes to read the tasks.</p></div>
+<h3>1st LIST – Questions 11–15 – Options (A)–(H): Bad habits</h3>`+
+ref(["Shouldering responsibility for everything.","Constantly checking your phone.","Becoming angry because of acts of unfairness.","Comparing yourself with people around you.","Having unrealistic expectations.","Becoming pessimistic after focusing on negative experiences.","Analysing things too much or too long.","Getting upset very quickly."])+
+[1,2,3,4,5].map(i=>pk(10+i,"Bad habit No "+i+":","ABCDEFGH")).join("")+
+`<h3 style="margin-top:24px">2nd LIST – Questions 16–20 – Options (A) – (H): Solutions</h3>`+
+ref(["Respond to emails regularly.","Notice people with a positive approach.","Focus on things you can influence.","Be open in communication.","Assess the circumstances of other’s behaviour.","Think about what makes you special.","Avoid conflict situations.","Divide your responsibilities."])+
+[1,2,3,4,5].map(i=>pk(15+i,"Solution No "+i+":","ABCDEFGH")).join("")]);
+
+S.push(["s3","Listening 3",`<h3>Part 3: Falu Shah and Her New Business Brand (10 points)</h3>
+<div class="ins"><p>You will hear Falu Shah, an entrepreneur, talking about her new business brand Howdah. Complete the sentences 21–30, which summarize the information from the text. Use from one word to three words in your answers (the number of words is indicated in brackets).</p><p>Now you have 2 minutes to read the sentences.</p></div>`+
+[[21,"Falu Shah realized that there was a lack of {21} in the UK supermarkets. <i>(3 words)</i>"],
+[22,"The Howdah brand intends to provide a combination of the vivid {22a} of India with Ayurvedic {22b}. <i>(2 words)</i>"],
+[23,"One of the things Falu Shah didn’t have any previous experience with, was improving the {23}. <i>(2 words)</i>"],
+[24,"Due to Harvey Nichols, Howdah products were brought to the {24}. <i>(1 word)</i>"],
+[25,"Ocado was one of the {25} that cooperated with Howdah. <i>(2 words)</i>"],
+[26,"After achieving rapid sales with customers, Howdah was given a/an {26} by Sainsbury’s. <i>(2 words)</i>"],
+[27,"Howdah and The Akshaya Patra foundation share a common goal of stopping {27}. <i>(2 words)</i>"],
+[28,"The meal provided by Howdah for Indian schools, is very often the only {28} dish in children’s daily consumption. <i>(1 word)</i>"],
+[29,"For Howdah, giving back and sharing equals being answerable {29a} and {29b}. <i>(2 words)</i>"],
+[30,"Howdah’s refreshments use only natural ingredients and are {30}. <i>(1 word)</i>"]].map(a=>tq(a[0],a[1])).join("")]);
+
+S.push(["s4","Language 1",`<h2>SECTION II – LANGUAGE IN USE (30 points)</h2>
+<div class="ins"><p>This section of the test has two parts. To complete this section of the test, you will need approximately 40 minutes.</p></div>
+<h3>Part 1: From Bath to Shaftesbury (20 points)</h3>
+<div class="ins"><p>Read the following text and decide which word or phrase (A), (B), (C) or (D) best fits into each space numbered 31–50. There is always only one correct answer. There is an example at the beginning (00).</p><p>Example: (00) – (C)</p><p class="fn" style="margin:0">Tap a numbered gap to choose an option.</p></div>
+<div class="txt">`+P(gp(`Spa culture, rivers, caves, cliffs, cathedrals, cheese and cider are a <span class="chip ex"><small>00</small>&nbsp;feast</span> for the senses, and all in a day’s drive! That’s what brings tourists to Somerset and Dorset in the south-west of England.
+
+The Roman and Georgian architectural wonders of the UNESCO World Heritage Centre of Bath {31} in the valley of the River Avon. Millions of people come every year to visit the thermal springs that fill the baths which were a {32} place for the Celts long before the Romans arrived.
+
+As tourists leave the city on the A39 towards Wells, the landscape opens into farmland {33} by stone walls. Sheep and cows {34} the green fields, with the purple shadows of the Mendip Hills behind. On the B3135, the land starts to look less cultivated, wilder. Giant pieces of layered limestone look like {35} of fossilized bread. And then there’s a sign: “Welcome to Cheddar Gorge – Please drive carefully”. It’s good advice, for there are already groups of {36} along the side of the road.
+
+One side of the road is in shadow while the opposite side {37} in sunlight. It’s impossible not to feel small next to the {38} cliffs standing on both sides. You can’t come to Cheddar without tasting its world-famous cheese, {39} is still matured in caves in the gorge. Quiet and rather serious, Wells, England’s smallest city is not a place {40}. Its cathedral is a piece of 13th century architecture. At the east end are three unusual ‘scissor’ arches built around 1338 to {41} the weight of a new tower. The engineering skill of medieval craftspeople is impressive.
+
+The sense of a mystical and spiritual past continues as tourists take the A39 towards Glastonbury. To this day, the ruins of Glastonbury Abbey are said {42} the final resting place of King Arthur and Queen Guinevere, while some say that Chalice Hall is home {43} the mythical Holy Grail.
+
+The High Street is lined with alternative bookshops and shop windows filled with crystals and candles. Bare feet, piercings, tattoos, brightly coloured clothing – Glastonbury is a celebration of {44}. A short walk from the abbey ruins, pilgrims climb the hill of Glastonbury Tor {45} a line of dark insects silhouetted against the sky.
+
+The final part of tourists’ journey leads eastwards along the A361, then south on the B3081 as they {46} the county of Dorset. Famous for its Jurassic Coast, Dorset {47} little of its charm since the author Thomas Hardy lived here. He referred to the region in many of his novels as ‘Wessex’. {48} was the name of one of the ancient kingdoms of England.
+
+The town of Shaftesbury has a fascination and {49} all its own. The shops may be closing for the night, but history never sleeps. As the sun is setting {50} the scenic south-west, there’s time for a pint of refreshing local cider at the nearby Mitre pub.`,"c"))+`</div>`]);
+
+S.push(["s5","Language 2",`<h3>Part 2: Embrace the Blue (10 points)</h3>
+<div class="ins"><p>In the following text, there are some missing words numbered 51–60. Use the word given in brackets to form a new word that fits into the space in the same line. There is an example at the beginning (00).</p><p>Example: 00 – seaside</p></div>
+<div class="txt">`+P(gp(`It’s no wonder the ancient Greeks soaked in mineral-rich thermal springs to help them feel better and <span class="exw">00 · seaside</span> (sea) trips were often prescribed by doctors during Victorian times. And it seems they were on to something because now there’s a body of science-led evidence to prove that water can indeed heal.
+
+The positive effects of being in and around water can have a huge impact on our health and {51} (being). The term ‘blue space’ is used to refer to our oceans, seas, rivers, lakes, ponds, streams and {52} (water) – but it can include all kinds of water. The idea is that both {53} (coast) and natural water environments can be used specifically to increase physical activity, reduce stress, and play an important role in helping to build stronger communities. The concept was introduced more than a decade ago in the UK as an {54} (initiate) launched by the Department of Health and Peninsula Medical School in Plymouth.
+
+One study has even found that living close to blue spaces, visiting them, or just enjoying a nice waterscape view, is associated with a reduced risk of depression, {55} (anxious) and other mental health disorders.
+
+There’s a biological reason why respite and reflection become possible in blue spaces. Levels of stress hormones adrenaline and cortisol in the body can drop, breathing regulates and the heart rate slows, so, in {56} (essential), we feel calmer and our mood improves. In this blue-mind state, it’s easier to practise {57} (mindful).
+
+Urbanites can still seek refuge in blue space. In towns and cities, we can walk by a river or canal on the way to work, or find an {58} (door) fountain to sit by as you eat lunch. Noticing the sight and sounds of moving water, we learn to tune out other stimuli.
+
+Research reveals that spending time by water also encourages us to be more active, whether it’s surfing the waves or having a {59} (river) stroll. We then can get all the physical benefits associated with exercise. Swimming in natural water may also help with depression, {60} (digestion) issues, etc.`))+`</div>`]);
+
+S.push(["s6","Reading 1",`<h2>SECTION III – READING (30 points)</h2>
+<div class="ins"><p>This section of the test has four parts. To complete this section of the test, you will need approximately 70 minutes.</p></div>
+<h3>Part 1: European Classical Music Festivals (9 points)</h3>
+<div class="ins"><p>In this part, there are three themed texts. For the statements 61–69, choose the answer (A) – (D) according to the texts. There is always only one correct answer.</p></div>
+<h3>Passage 1: Birmingham (3 points)</h3>
+<div class="txt">`+P(`Over three days in September 1768, the first music festival was to help raise funds to complete the new General Hospital on Summer Lane. It proved very popular and successful, but it took another event in 1778 to achieve the required funds. The hospital opened in September 1779.
+
+From September 1784, the performances became a permanent feature and ran every three years, becoming the Birmingham Triennial Musical Festival to raise funds for the hospital.
+
+Originally hosted in St. Philip’s Church (later to become the Cathedral) or the Theatre Royal on New Street, the available venues became too small for the festival. As a result, Birmingham Town Hall was built and opened in 1834 to house it. The festival for 1832 was delayed for two years during its erection.
+
+In 1837 Felix Mendelssohn conducted a performance of his St. Paul oratorio, played the organ, and played the piano part in the premiere of his second Piano Concerto, specially commissioned by the festival. He also appeared at the following festival, playing his first Piano Concerto.
+
+For the 1846 festival, he composed and conducted the premiere of his oratorio Elijah, another new work commissioned by the festival. He was paid 200 guineas. Elijah was played at every successive festival. Mendelssohn died a year later.
+
+The Birmingham Festival Choral Society, which was founded in 1845 to provide the chorus for the festivals and sang at the premiere of Elijah, is still in operation.`)+`</div>`+mcs([
+[61,"The passage states that …",["the first music festival raised sufficient funds to complete a new hospital","the first music festival was held in the Town Hall","the institution providing the chorus, founded in the 19th century, still exists","the festival was transferred to St. Philip’s Church on occasion"]],
+[62,"Felix Mendelssohn …",["was asked to help other musicians with some festival compositions","composed music for several festivals","played three musical instruments at festivals","played his oratorio four times"]],
+[63,"We can infer that …",["the organizers had to put off one of the festivals","Felix Mendelssohn wrote all the music for the festival for free","the organizer had to renovate St. Phillip’s Church","Elijah was played at three festivals only"]]])+
+`<h3 style="margin-top:26px">Passage 2: Zagreb (3 points)</h3>
+<div class="txt">`+P(`Throughout its history, the Biennale has given equal weight to classical 20th-century repertoire and experimental music, encompassing various musical forms, including symphonic and chamber concerts, opera, ballet, music theatre and multimedia performances. Accompanying lectures, workshops and symposiums have also gained prominence in recent years. The Biennale has collaborated with some of the biggest international names in contemporary music, including Luciano Berio and Igor Stravinsky.
+
+The festival gained international prominence in the 1960s and the 1970s due in large part to the ambivalent position of Yugoslavia in the political and ideological divisions of the Cold War, making it a unique gathering place for artists from both East and West. Just as its founder had hoped, it has boosted Croatian composers and musicians by accelerating their integration into world trends in contemporary music, especially through co-productions and partnerships with their foreign colleagues. It has also proved popular with the concert-going public, as almost ten thousand people see its events. The festival’s popularity is partly due to symbolic ticket prices: in 2011, the entrance fee for most events was 20 HRK (€3), while the festival pass was available for 150 HRK (€20).
+
+Approximately 70% of the festival’s funding is provided today by the Ministry of Culture and the City of Zagreb, while the rest comes through donations and the festival’s income.
+
+In 2005, the Biennale hosted the ISCM World Music Days. It hosted the World Music Days again in 2011, with the occurrence of the Biennale’s 50th anniversary.`)+`</div>`+mcs([
+[64,"We can infer that …",["at times, the Biennale emphasizes the 20th-century music","each festival sees at least one prominent contemporary composer","Biennale’s 50th birthday was celebrated with World Music Days","the festival is fully subsidized by the Croatian Ministry of Culture"]],
+[65,"From the passage, we can learn that …",["festivals’ incomes usually constitute a major part of their budgets","workshops and symposiums have recently become more and more valued","using multimedia in festivals prevails","a Croat was the founder of the festival"]],
+[66,"The passage states that …",["the festival has had a significant impact on Croatian composers and musicians","the festival had its high point during the Cold War","the tickets were expensive at the beginning","the 1960s and 1970s saw the festivals have little East-West contact"]]])+
+`<h3 style="margin-top:26px">Passage 3: Nordic Music Days (3 points)</h3>
+<div class="txt">`+P(`From the mid-19th century, at regular intervals, song festivals were arranged where choirs from all over the North met. The repertoire was decidedly ‘national’ – one could say that when the Nordic countries were gathered, there was a need to express national distinctiveness. But joint activities were arranged too. For example, in 1929, a choir of 1000 sang the Nordic cantata Song of the North, composed jointly by five composers – one from each Nordic country. The song festivals continued well into the first half of the 20th century.
+
+The first of the true “Nordic Music Days” was held in Copenhagen in 1888, primarily emphasising instrumental and orchestral music. This was to be a forum where Nordic composers could have their works performed, and the first Festival presented works from Denmark, Norway and Sweden – among other ways in seven large-scale choral and orchestral concerts.
+
+The following festivals were held in Stockholm in 1897 and in 1919 – again in Copenhagen, where works by Carl Nielsen, Jean Sibelius, Wilhelm Stenhammer and Johan Halvorsen were conducted. The first time the festival was held in Finnish Helsinki was in 1921. The Copenhagen 1938 festival was the last one before the outbreak of WWII.
+
+After the war, the Nordic composers’ societies joined forces to form the Nordic Council of Composers (NCC), which, immediately after its establishment in 1946, assumed the main responsibility for the Nordic Music Days. Since 1948, the festival has been held in Nordic capitals every other year. Until the 1970s, the repertoire profile was purely Nordic, but from 1974 to 1982, composers and works from a ‘guest country’ were invited: Poland in 1974, Canada in 1976, the GDR in 1978, the UK in 1980, and 1982 France. After this, it became a festival exclusively for new Nordic music.`)+`</div>`+mcs([
+[67,"At the very beginning, …",["the first three festivals were held in Copenhagen","only choirs met at festivals","each song was composed by five composers","each country sang one song"]],
+[68,"From the passage, we can infer that …",["orchestral and instrumental music were first heard in Stockholm","in the first true music festival, there was only music of Danish composers","Finland first hosted the festival in the 20th century","song festivals were held only in the 19th century"]],
+[69,"From the passage, we can learn that …",["after WWII, an organization responsible for the following festivals was established","the NCC has an equal number of members from each Nordic country","after WWII, Nordic Music Days have been held every year with one exception","shortly after WWII, other than Nordic repertoire was allowed to be performed"]]])]);
+
+S.push(["s7","Reading 2",`<h3>Part 2: Lyrical Landscapes (6 points)</h3>
+<div class="ins"><p>Read the following extract. Six paragraphs have been removed from the text. Complete the missing paragraphs (A) – (G) into the gaps 70 – 75. There is one extra paragraph which you do not need to use.</p></div>
+<div class="txt"><p>The national park of Exmoor, which carpets 267 square miles of Devon and Somerset, is a microcosm of England’s most iconic landscapes: moors covered with heather plants; rolling green hills dotted with sheep; fast-running rivers in deep wooded valleys; and dramatic cliffs plunging to the shoreline.</p></div>`+pk(70,"","ABCDEFG")+
+`<div class="txt"><p>Many visitors’ first stop is the medieval village of Dunster, pretty as a picture with its stony streets, straw-roofed cottages and fairy-tale castle located high on the hill above. This Saxon castle was the home of the aristocratic Luttrell family from 1376, who transformed it into a luxurious country home in the Victorian era.</p></div>`+pk(71,"","ABCDEFG")+
+`<div class="txt"><p>Exmoor’s wild beauty has drawn many romantic souls here over the years, most famously the poet Samuel Taylor Coleridge (1772–1834). Coleridge was fond of walking from his cottage in Nether Stowey across the moors to the sea.</p></div>`+pk(72,"","ABCDEFG")+
+`<div class="txt"><p>The Coleridge Way allows modern-day romantics to follow in the poet’s footsteps. Signposts marked with a quill pen lead the way to the bustling village of Porlock and, further down, Porlock Weir, an ancient port that’s now a tiny picturesque village, sheltered beneath towering cliffs.</p></div>`+pk(73,"","ABCDEFG")+
+`<div class="txt"><p>In 1797, after walking to Culbone, Coleridge stayed in a nearby farmhouse where he fell into an opium-induced trance that inspired his strange, hallucinatory poem Kubla Khan. The arrival of a visitor from Porlock interrupted his concentration and caused him to leave the poem unfinished, hence the phrase ‘a person from Porlock’ to mean the unwelcome interruption of one’s creative flow.</p></div>`+pk(74,"","ABCDEFG")+
+`<div class="txt"><p>The grand house, demolished in the 1970s, had an Italian-style terraced garden with tunnels built into the cliff so that tradesmen could approach the house without spoiling the view. A woodland walk and steps led down to the beach where a bath-house was built into the cliff to enable Ada to bathe in privacy.</p></div>`+pk(75,"","ABCDEFG")+
+`<div class="txt"><p>Visitors to Lorna Doone Country, as it’s now known, can peek into 15th-century Oare Church, scene of the novel’s climactic wedding-day shooting, and seek out the Lorna Doone Farm in the picture-postcard village of Malmsmead, with its ancient bridge and ford.</p></div>
+<h3 style="margin-top:24px">Paragraphs (A) – (G)</h3>`+
+ref(["He was often accompanied by his friend and fellow poet, William Wordsworth. The Romantic poetry movement, rooted in reverence for the natural world and the notion that nature can set the imagination free, was born on these long countryside strolls.",
+"For a change of pace, it’s a short journey (though something of a rollercoaster ride) to Lynton and Lynmouth on the coast. The dramatic, almost alpine feel of these twin towns was beloved of the Victorians, who nicknamed them ‘Little Switzerland’.",
+"You can walk from here along the coast path to the hamlet of Culbone. The church here, which is the smallest in England, has a ‘leper window’. It was created so those in a 16th-century leper colony could peer in during services.",
+"It’s thrilling to travel between these varied terrains via the winding lanes that criss-cross Exmoor, which reveal stunning views at every turn. And it’s not all about the landscape: enfolded within the hills are historic towns and villages with houses constructed from the local stone, and centuries of traditions and stories to discover.",
+"On the path to Culbone, two tunnels are all that remains of Ashley Combe House, the summer retreat of Ada Lovelace, daughter of another Romantic poet, Lord Byron. Obsessed with mathematics rather than poetry – her father called her his ‘Princess of Parallelograms’ – she is now considered the world’s first computer programmer.",
+"Dotted with family mementos, the castle has a warm, lived-in feel that gives you the lingering sense that the Luttrells have only just left the room. Among many treasures, the jewel of the collection is a set of rare 17th–century leather wall hangings telling the love story of Antony and Cleopatra.",
+"Another writer inspired by Exmoor’s wildly romantic landscapes was R. D. Blackmore (1825–1900). One of the most famous novelists of his generation, Blackmore set Lorna Doone in the mystical Badgeworthy Valley. His tale of nobles turned outlaws was based on stories of the Dounes, a family of outlaws that once roamed these hills."])]);
+
+S.push(["s8","Reading 3",`<h3>Part 3: New Evidence Points to a Catastrophic Die-Off of Life on Earth 2 Billion Years Ago (6 points)</h3>
+<div class="ins"><p>Read the following text and complete the statements 76–81 with one or two words, based on the information given in the text. The statements do not follow in the same order as the information appears in the text.</p></div>
+<div class="txt">`+P(`You’ve probably heard before that Earth has witnessed five mass extinctions. It’s a number taken straight from the fossil record, but that’s not the whole picture, not even close.
+
+Evidence from ancient rocks reveals the oldest die-off in our planet’s history most likely occurred among single-celled organisms more than 2 billion years ago. A recent analysis now suggests that the deadly event was far more significant than any known loss of life that came after, even the dinosaur extinction. “This shows that even when biology on Earth is comprised entirely of microbes, you can still have what could be considered an enormous die-off event that otherwise is not recorded in the fossil record,” says geologist Malcolm Hodgskiss from Stanford University.
+
+Researchers describe this time as a tale of ‘feast and famine’, long before the rise of complex life and far beyond the fossil record. Starting 2.4 billion years ago, oxygen in Earth’s atmosphere was scarce, primarily trapped in minerals or locked up in the water. Then, cyanobacteria arrived on the scene, and these tiny marine microorganisms could photosynthesise, using sunlight to ‘breathe’ oxygen into the air.
+
+The Great Oxidation Event (GOE) was a feasting time as life flourished, diversified, and spread. And then, for some reason, it all came to an abrupt and catastrophic end. To figure out why, scientists at Stanford turned to a mineral called barite, found on the Belcher Islands of subarctic Canada. The landscape here has survived for billions of years, which means it holds a long record of oxygen in our planet’s atmosphere.
+
+Measuring oxygen, sulfur and barium isotopes found in these rocks, the authors found harmful oxygen isotopes occurring shortly after the GOE, some 2.05 billion years ago. This would have required a rapid reduction in the primary production of bacteria, dropping by more than fivefold and potentially by as much as 200 fold. Such a massive collapse, the authors argue, was probably triggered by a lack of critical nutrients, such as phosphorus, which is an essential factor in determining the distribution and development of cyanobacteria.
+
+“A large decrease in nutrients likely brought about this drop supplied to the biosphere that, in turn, marked the conclusion of the GOE and led to the subsequent 1-billion-year interval characterised by markedly low and stable gross primary production compared with the modern Earth,” the authors write.
+
+The findings support the ‘oxygen overshoot’ theory, which suggests that when oxygen-releasing microorganisms first began to flourish in the ocean, they hit a critical peak. Their supply of nutrients could no longer sustain them, leading to a decrease in atmospheric oxygen.
+
+The new data strengthen the idea that a nutrient famine is closely tied to atmospheric oxygen levels. “Some of these oxygen estimates likely require too many microorganisms living in the ocean in Earth’s past,” says geologist Peter Crockford from the Weizmann Institute of Science and Princeton University. “So we can now start to narrow in on what the composition of the atmosphere could have been through this biological angle.”
+
+If the team has it right, the deadly event that struck these microorganisms so long ago would have to be one of the most pronounced biotic changes across all of Earth’s history, even more so than the instances where as many as two-thirds of all plant and animal life disappeared.`)+`</div>`+
+[[76,"The researchers think that the almost complete absence of {76} was the main cause of the immense die-off. <i>(1 word)</i>"],
+[77,"The named scientists in this research are specialist {77}. <i>(1 word)</i>"],
+[78,"The scientists have obtained lots of information from the mineral {78} from Canada. <i>(1 word)</i>"],
+[79,"One of the tasks for the scientists is to find out the {79} of the atmosphere. <i>(1 word)</i>"],
+[80,"Recent research indicates that there was a more noteworthy die-off on Earth than that of the {80}. <i>(2 words)</i>"],
+[81,"At first, there was an acute shortage of atmospheric oxygen because it had been contained in {81}. <i>(1 word)</i>"]].map(a=>tq(a[0],a[1])).join("")]);
+
+S.push(["s9","Reading 4",`<h3>Part 4: Architects (9 points)</h3>
+<div class="ins"><p>Read the following extracts and choose the paragraph (A) – (D) in which you found the information from the statements 82–90. You can use the paragraphs more than once.</p></div>
+<div class="txt"><p><b style="color:var(--ac)">(A)</b></p>`+P(`Although known today more for his painting and sculpture, Michelangelo was also a master architect. In fact, he was among the first to depart from the classical style and challenge traditional expectations.
+
+In 1523, Pope Clement VII commissioned Michelangelo to design a two-story library on top of an existing convent. Michelangelo employed radical principles in his design of the Laurentian Library in Florence, breaking rules of the classical style. For instance, he took practical elements, like brackets traditionally used as supportive structures, and used them merely for ornamentation.
+
+Michelangelo’s most famous contribution to architecture is probably the dome of St. Peter’s Basilica in Vatican City. It stands as one of the most recognizable landmarks in the world and inspired many imitators, such as the U.S. Capitol in Washington, D.C. However, the dome itself was not completed before Michelangelo died. Scholars still debate how the ultimate construction deviates from Michelangelo’s plans.`)+`<p class="cap">Michelangelo</p></div>
+<div class="txt"><p><b style="color:var(--ac)">(B)</b></p>`+P(`Imhotep lived sometime between 2667 B.C.E. and 2648 B.C.E. Although he was born a commoner, Imhotep rose to become chief architect to Pharaoh Djoser of the Third Dynasty of Egypt and is known as the first architect, among other distinctions. Imhotep is credited with designing the Step Pyramid at Saqqara, a pharaoh’s tomb. According to Discovering Egypt, this, the world’s first pyramid, consisted of multiple mastabas (flat-roofed structures with sloping sides that had been the traditional pharaoh burial structures), one stacked atop the next becoming smaller each time. The result is a 62-meter-tall step structure surrounded by a massive complex that overlooked Memphis, the ancient capital. The tomb lies below the pyramid.
+
+To create the Step Pyramid, Imhotep invented new tools and equipment. While earlier mastabas had been made of clay brick, Imhotep used stone blocks, and the exterior was covered in limestone. Imhotep’s design influenced subsequent burial structures, culminating in the later pyramids like the Great Pyramid of Giza. Thanks to his ingenuity, Imhotep, who was also recognized as a healer, was later declared a god.`)+`<p class="cap">Imhotep</p></div>
+<div class="txt"><p><b style="color:var(--ac)">(C)</b></p>`+P(`Under normal circumstances, Sir Christopher Wren would probably be known as a great architect, but he might not have gone down in history as among the most famous architects who have ever lived. However, as it happened, Wren was in the right place at the right time and possessed the right talent.
+
+Wren was a professor of astronomy at Oxford who came to architecture through his interest in physics and engineering. In the 1660s, he was commissioned to design the Sheldonian Theatre at Oxford and visited Paris to study French and Italian baroque styles. In 1666, Wren completed a design for the dome of St. Paul’s Cathedral in London. However, one week after it was accepted, the Great Fire of London raged through the city, destroying most of it – including the cathedral.
+
+The Great Fire created an unexpected opportunity for Wren, who was soon at work on reconstruction. Although plans for a comprehensive reconstruction of the city soon proved too difficult, by 1669, Wren was appointed surveyor of royal works, which put him in charge of government building projects. Ultimately, he had his hand in designing 51 churches as well as St. Paul’s Cathedral.`)+`<p class="cap">Sir Christopher Wren</p></div>
+<div class="txt"><p><b style="color:var(--ac)">(D)</b></p>`+P(`Known for the principle of ‘form follows function’, Louis Henry Sullivan was anxious to break free from tradition and became influential in forging distinctly American architecture. Similar to Sir Christopher Wren, Sullivan benefited from a great fire. The Great Fire of 1871 in Chicago resulted in a construction boom and afforded architects like Sullivan with work for the decades to come. As a young man, he worked briefly in the offices of famed architects Frank Furness and then William Le Baron Jenney. He was only 24 years old when he became a partner in Dankmar Adler’s firm in 1881.
+
+As other architects like Jenney started implementing steel to allow for taller structures, the skyscraper was born. Sullivan was instrumental in creating a new functional design for these new, tall buildings rather than sticking with old-fashioned traditions. Because of this, some refer to Sullivan as the ‘Father of the Skyscraper’ (though others ascribe this title to Jenney). Sullivan’s designs also incorporated both geometric shapes and organic elements. His most famous work is the 10-story Wainwright Building in St. Louis, built in 1890, and the 16-story Guaranty Building in Buffalo, built in 1894.`)+`<p class="cap">Louis Henry Sullivan</p></div>
+<h3 style="margin-top:24px">Which paragraph?</h3>`+
+[[82,"Which architect sought ideas abroad?"],
+[83,"Which architect learned from fellow architects?"],
+[84,"Whose architect’s work was copied in a completely different country?"],
+[85,"Which architect started using a new natural material at the time?"],
+[86,"Which architect is reportedly the first to re-design a building for a traditional purpose?"],
+[87,"Which architect designed personally for his sovereign?"],
+[88,"Whose architect’s outstanding work was finished after his death?"],
+[89,"Which architect had scientific interests first?"],
+[90,"Which architect was given a title which some gave to others?"]].map(a=>pk(a[0],a[1],"ABCD")).join("")+
+`<p style="text-align:center;color:var(--mut);margin-top:26px">THE END</p>
+<button class="clr" id="clr" type="button">Clear all answers</button>`]);
+return S}};
+
+TESTS["2023"]={code:"23 1515",
+OPT:{31:"veiled|enveloped|covered|hid",32:"they were separately interviewed|they separately were interviewed|they separately interviewed|separately they were interviewed",33:"have been broadcast|would be broadcast|are being broadcast|were being broadcast",34:"discovered|uncovered|exposed|revealed",35:"blurred|nebulous|hazy|foggy",36:"had been|has been|would be|is",37:"firm|solid|resilient|tough",38:"holding|means|properties|belongings",39:"subsequently|conversely|respectively|additionally",40:"endurance|permanence|insistence|persistence",41:"frank|wide|raw|outright",42:"interrogation|examination|inquiry|exploration",43:"intimidating|discouraging|subduing|petrifying",44:"at no time|at times|at any time|at all times",45:"what|who|that|which",46:"guarding|surveillance|watching|warden",47:"remorse|conscience|consciousness|reproach",48:"tracked|traced|pursued|preyed",49:"So consumed she was|So she was consumed|So was she consumed|So consumed was she",50:"instead of|prior to|in addition to|in favour of"},
+MULTI:{},
+build(){const S=[];
+S.push(["s1","Listening 1",`<h1>Maturita 2023 – External Part<br>English · Level C1 · Test 23 1515</h1>
+<h2>SECTION I – LISTENING (30 points)</h2>
+<div class="ins"><p>This section of the test has three parts. You will hear four recordings which you will listen to twice. While listening, answer the questions in the appropriate part of the test.</p></div>
+<h3>Part 1: Two Interviews (10 points)</h3>
+<div class="ins"><p>In this part, you will hear two different extracts. In the first extract, you will hear an interview with Duma Arantes, a Portuguese painter. In the second extract, you will hear an interview with Sophie Turner, a popular English actress who starred in the American fantasy TV series “Game of Thrones”. For the following statements 01–10, choose the correct answer (A), (B), (C) or (D). There is always only one correct answer.</p><p>Now you have 2 minutes to read the tasks.</p></div>
+<h3>Extract 1: An Interview with Duma Arantes (5 points)</h3>`+mcs([
+[1,"One of the initial phases of Duma Arantes’ creative procedure includes …",["searching the photos from Portuguese artists","developing photos in a creative and original way","extracting and processing a section of the photo","drawing the photo and creating her own version of it"]],
+[2,"Duma Arantes’ preference of oil techniques is given by the paint’s …",["potential for her own creativity and originality","qualities allowing the addition of more layers to the canvas","possibilities of using a different mix of liquids","qualities leading to evenness and plasticity"]],
+[3,"Graphic design is …",["something that allows Duma Arantes to apply her own imagination","something that is integrated in Duma Arantes’ paintings","an artistic branch Duma Arantes studied at university","the style that gives Duma Arantes space for variations"]],
+[4,"Duma Arantes’ female faces represent …",["various women’s stories","certain prototypes of women","a global but varied image of women’s world","contradictory interpretations of women’s status"]],
+[5,"Duma Arantes perceives her paintings as …",["artwork transferred to like-minded spectators","something art observers must unveil themselves","a message for the spectator to identify with","expressions of beauty to be fascinated by viewers"]]])+
+`<h3 style="margin-top:22px">Extract 2: An Interview with Sophie Turner (5 points)</h3>`+mcs([
+[6,"What makes the film X-Men: Dark Phoenix non-identical with the former films is its …",["focus on the superhero character","being far more effect-driven","depiction of a variety of characters","being far more action-based for the viewers"]],
+[7,"Sophie Turner … after learning she would play the character of Jean Grey again.",["was entirely positive","had contradictory feelings","became absorbed in reading the script","was introduced to Simon Kinberg"]],
+[8,"Sophie Turner perceives shooting of Game of Thrones as …",["a long-lasting and intense experience for her","a moving and touching story for all the TV viewers","an extremely rewarding time for the whole cast","an opportunity to cultivate friendships with other actors"]],
+[9,"In her adolescent years, Sophie Turner …",["was brought up as a celebrity in her family","was offered some minor roles by producers","experienced some trauma in her personal life","lacked confidence and felt uncertain in life"]],
+[10,"Sophie Turner believes she has become more mature at an early age due to …",["the number of roles she was able to take","the type of character she played","growing up with adults during her adolescence","becoming engaged with the world of politicians"]]])]);
+
+S.push(["s2","Listening 2",`<h3>Part 2: The Power of Thank You (10 points)</h3>
+<div class="ins"><p>In this part, you will hear a radio programme in which a psychologist explains how introducing a little gratitude into your lives reduces stress and makes you powerful. The expert will mention five problems and five ways of solving them. There are two blocks of five matching questions. You will have to match all ten questions while you are listening to this recording. Read the questions carefully before you listen.</p><p>For questions 11–15, choose from the first list marked (A) – (H) the problem which is being described. For questions 16 – 20, choose from the second list marked (A) – (H) the practical way of solving this problem. Be careful, there are three extra possibilities which you do not need to use. There is always only one correct answer.</p><p>Now you have 2 minutes to read the tasks.</p></div>
+<h3>1st LIST – Questions 11–15 – Options (A)–(H): PROBLEMS</h3>`+
+ref(["Negativism in your thinking.","Appreciation of basics of life.","Role of pleasant memories.","Insufficient gratitude from employers.","Consulting problems with professional.","Acknowledgement of personal kindliness.","Recognition of your own qualities.","Expressing gratitude in a literary form."])+
+[1,2,3,4,5].map(i=>pk(10+i,"Problem No "+i+":","ABCDEFGH")).join("")+
+`<h3 style="margin-top:24px">2nd LIST – Questions 16–20 – Options (A) – (H): SOLUTIONS</h3>`+
+ref(["Show a similar respect to the elderly.","Overcome pessimistic reactions.","Express your thanks with a handwritten card.","Show you are grateful even for daily routines.","Appreciate the simple things in life.","Reflect on memories with delight.","Encourage them to boost their performance.","Discuss such things with an expert."])+
+[1,2,3,4,5].map(i=>pk(15+i,"Solution No "+i+":","ABCDEFGH")).join("")]);
+
+S.push(["s3","Listening 3",`<h3>Part 3: An Interview with Grant Cardone, an International Sales Expert (10 points)</h3>
+<div class="ins"><p>You will hear an interview with an international sales expert, business innovator, motivational speaker, author and actor Grant Cardone. Complete the sentences 21–30, which summarize the information from the text. Use one to three words in your answers (the number of words is indicated in brackets). To complete some of the sentences, you may have to use word forms different from those you heard in the recording.</p><p>Now you have 2 minutes to read the sentences.</p></div>`+
+[[21,"Before publishing his first book, Grant Cardone had created {21} for the employees of his company. <i>(3 words)</i>"],
+[22,"“Whatever it takes” is not only the initial name of Grant Cardone’s TV, but also his personal {22}. <i>(1 word)</i>"],
+[23,"The top level of any effort people can connect with is taking {23}. <i>(2 words)</i>"],
+[24,"Grant Cardone illustrates how {24} can be applied to both business and personal life. <i>(2 words)</i>"],
+[25,"If people seek inspiration, they need to identify their {25}. <i>(1 word)</i>"],
+[26,"Grant Cardone’s recipe for success implies not letting yourself be {26} by negative people. <i>(2 words)</i>"],
+[27,"For Grant Cardone, evading responsibility equals {27}. <i>(3 words)</i>"],
+[28,"Grant Cardone states there is a correlation between {28} and productivity. <i>(1 word)</i>"],
+[29,"According to Grant Cardone’s philosophy, there is no reason for getting anxious about {29} and time efficiency. <i>(1 word)</i>"],
+[30,"Acquiring an appropriate job and sensibly {30} may also lead to success. <i>(1 word)</i>"]].map(a=>tq(a[0],a[1])).join("")]);
+
+S.push(["s4","Language 1",`<h2>SECTION II – LANGUAGE IN USE (30 points)</h2>
+<div class="ins"><p>This section of the test has two parts. To complete this section of the test, you will need approximately 40 minutes.</p></div>
+<h3>Part 1: Lethal White (20 points)</h3>
+<div class="ins"><p>Read the following text and decide which word or phrase (A), (B), (C) or (D) best fits into each space numbered 31–50. There is always only one correct answer. There is an example at the beginning (00).</p><p>Example: (00) – (C)</p><p class="fn" style="margin:0">Tap a numbered gap to choose an option.</p></div>
+<div class="txt">`+P(gp(`For reasons not entirely related to the complexity of the plot, Lethal White <span class="chip ex"><small>00</small>&nbsp;has been</span> one of the most challenging books J. K. Rowling has written and it’s also one of her favourites. Let’s read a passage.
+
+The Chiswell case maintained its singular character even when their client was no more.
+
+As the usual cumbersome procedures and formalities {31} the corpse, Strike and Robin were escorted from Ebury Street to Scotland Yard, where {32}. Strike knew that a tornado of speculation must be whirling through the newsrooms of London at the death of a government minister, and sure enough, by the time they emerged from Scotland Yard six hours later, the colourful details of Chiswell’s private life {33} across TV and radio. Opening the internet browsers on their phones {34} brief news items from news sites, as a tangle of baroque theories spread across blogs and social media, in which a multitude of cartoonish Chiswells died at the hand of myriad {35} foes. As he rode in a taxi back to Denmark Street, Strike read how Chiswell the corrupt capitalist {36} murdered by the Russian mafia after failing to pay back interest on some seedy, illegal transaction, while Chiswell the defender of {37} English values had surely been dispatched by vengeful Islamists after his attempt to resist the rise of sharia law.
+
+Strike returned to his attic flat only to collect his {38}, and decamped to the house of his old friends Nick and Ilsa, {39} a gastroenterologist and a lawyer. Robin, who at Strike’s {40} had taken a taxi directly home to Albury Street, was given an insincere hug by Matthew, whose tissue-thin pretence of sympathy was worse, Robin felt, than {41} fury.
+
+When she was summoned back to Scotland Yard for further {42}, she wasn’t sure that her second interviewer was a policeman. The softly spoken man in a dark grey suit didn’t reveal whom he worked for. Robin found this gentleman far more {43} than yesterday’s police, even though they had, {44}, been forceful to the point of aggression. Robin told her new interviewer everything she had seen and heard in the Commons, omitting only the strange conversation between Della Winn and Aamir Mallik, {45} had been captured on the second listening device. As the interaction had taken place behind a closed door after normal working hours, she could only have heard it by using {46} equipment. Robin assuaged her {47} by telling herself that this conversation could not possibly have anything to do with Chiswell’s death, but squirming feelings of guilt and terror {48} her as she left the building for the second time. {49} by what she hoped was paranoia by this brush with the security services, that she called Strike from a payphone near the Tube, {50} using her mobile.`,"c"))+`</div>`]);
+
+S.push(["s5","Language 2",`<h3>Part 2: Emotional Necessity or Just a Pet? (10 points)</h3>
+<div class="ins"><p>In the following text, there are some missing words numbered 51–60. Use the word given in brackets to form a word that fits into the space in the same line. There is an example at the beginning (00).</p><p>Example: 00 – rapidly</p></div>
+<div class="txt">`+P(gp(`The number of people claiming they have a right to live with animals for their mental health – as well as to take them onto planes and into restaurants – has been growing <span class="exw">00 · rapidly</span> (rapid). In 2011, a for-profit company that sells official-looking vests and certificates for owners, had 2,400 service and emotional support animals in its {51} (register). Now the number is nearly 200,000. But the spread of such animals has also been met by concerns from landlords, airlines and other businesses that many Americans may be abusing the system.
+
+Critics say that pet owners are obtaining phony certifications or letter from online therapists to avoid paying fees or to get {52} (permit) to take creatures where they wouldn’t normally be allowed.
+
+‘You want to accommodate people with legitimate {53} (require), but that’s harder to do when people apply for everything from reptiles to insects’, said Amanda Gill, the government affairs director for the Florida Apartment Association.
+
+More than two dozen state {54} (legislation) have enacted new laws to crack down on fraud. A law passed in Utah this year makes it a {55} (demeanor) to lie about a pet’s being an emotional support animal, expanding a law already on the books that made it a crime to {56} (interpret) a pet as a Seeing Eye dog.
+
+Oklahoma just passed a law clarifying that restaurants and stores have a right to keep support animals out. Virginia’s law cracks down on websites that promise to provide verification letters of emotional support for a fee, without having any {57} (therapy) relationship with the animal’s owner.
+
+Advocates point out that therapy animals are protected by the Fair Housing Act, which requires landlords to make ‘{58} (reason) accommodations’ for people with {59} (able), like a wheelchair-accessible parking space. They worry that the new laws will embolden landlords to deny animals to tenants who need them.
+
+Even some supporters of the new measures struggle over how to {60} (distinction) a legitimate need from a fraud. ‘It’s really hard to draw a bright line,’ said Todd Weiler. ‘To a larger extent, everybody could benefit from having a pet. When is it an emotional support animal, and when it is a pet?’`))+`</div>`]);
+
+S.push(["s6","Reading 1",`<h2>SECTION III – READING (30 points)</h2>
+<div class="ins"><p>This section of the test has four parts. To complete this section of the test, you will need approximately 70 minutes.</p></div>
+<h3>Part 1: August 10 (9 points)</h3>
+<div class="ins"><p>In this part, there are three themed texts. For the statements 61–69, choose the answer (A) – (D) according to the texts. There is always only one correct answer.</p></div>
+<h3>Passage 1: John Flamsteed (3 points)</h3>
+<div class="txt">`+P(`On August 10, 1675, King Charles II and John Flamsteed lay the foundation stone of the Royal Observatory in Greenwich, London.
+
+John Flamsteed, (born August 19, 1646, Denby, near Derby, Derbyshire, England – died December 31, 1719, Greenwich, London), founder of the Greenwich Observatory, and the first astronomer royal of England.
+
+Poor health forced Flamsteed to leave school in 1662. He studied astronomy on his own and later (1670–74) continued his education at the University of Cambridge. In 1677 he became a member of the Royal Society. Qualifying as a priest in 1675, Flamsteed in 1684 received the income of the living of Burstow, Surrey. His report to the Royal Society on the need for a new observatory resulted in the founding (1675) of the Royal Greenwich Observatory, of which he was the first director (and hence Astronomer Royal). He found that he himself had to supply all the instruments at Greenwich, apart from a few gifts; he was forced to take private pupils to augment his income. There was also a small inheritance from his father, who died in 1688.
+
+The latter part of Flamsteed’s life passed in controversy over the publication of his excellent stellar observations. He struggled to withhold them until completed, but they were urgently needed by Isaac Newton and Edmond Halley, among others. Newton, through the Royal Society, led the movement for their immediate publication. In 1704 Prince George of Denmark undertook the cost of publication, and, despite the prince’s death in 1708 and Flamsteed’s objections, the incomplete observations were edited by Halley, and 400 copies were printed in 1712. Flamsteed later managed to burn 300 of them. His own star catalogue listed more stars (3,000) and gave their positions much more accurately than did any other previous work.`)+`</div>`+mcs([
+[61,"Flamsteed …",["had to interrupt his university studies","asked the king to help build a new observatory","worked with his father","worked as a tutor for some time"]],
+[62,"It is obvious that …",["Flamsteed did not want an incomplete work to be published","Flamsteed’s observations were published by the Prince of Denmark","Flamsteed sent his work to Royal Observatory","Flamsteed was a wealthy person"]],
+[63,"The passage tells us that …",["King Charles II helped Flamsteed furnish the observatory","Newton exerted pressure directly on Flamsteed","Flamsteed published a catalogue of stars simultaneously with Halley","Flamsteed, at one time, was employed as a clergyman"]]])+
+`<h3 style="margin-top:26px">Passage 2: A 100-Year-Old Fruitcake (3 points)</h3>
+<div class="txt">`+P(`A 100-year-old fruitcake was found in Antarctica on August 10, 2017 and is ‘almost’ edible. Conservators with the New Zealand-based Antarctic Heritage Trust recently found the 100-year-old dessert in Antarctica’s oldest building, a hut on Cape Adare. Wrapped in paper and the remains of a tin, the fruitcake is in “excellent condition”, according to the trust, and looks and smells almost edible.
+
+British explorer Robert Falcon Scott likely brought the cake, made by the British biscuit company Huntley & Palmers, to Antarctica during their 1910–1913 Terra Nova expedition. The expedition’s Northern Party took shelter in the Cape Adare hut, which had been built by Norwegian Carsten Borchgrevink’s team in 1899, and left the fruitcake behind. A team has been excavating artifacts in the hut since 2016.
+
+“Fruitcake was a popular item in English society at the time, and it remains popular today,” Lizzie Meek, conservation manager for artifacts at the trust, says via email. “Living and working in Antarctica tends to lead to a craving for high-fat, high-sugar food, and fruitcake fits the bill nicely, not to mention going very well with a cup of tea.”
+
+Scott and his four-person crew reached the South Pole in 1912, but all five died on the return journey to their expedition base, the Terra Nova hut on Cape Evans.
+
+Heritage Trust conservators have restored the 50-foot-long Terra Nova hut, the largest Antarctic building of its time, and several other portable wooden huts to look as they did a century ago. After restoring the huts’ artifacts – including the fruitcake – conservators returned them to their original locations within the huts.
+
+“Fruitcake is not something that people usually get excited about, but this discovery shows what a spectacular environment for historic preservation the Antarctic is,” Clemson University historian Stephanie Barczewski said via email. It also highlights the “importance of protecting its fragile environment, because we don’t know what other amazing things we might find from the Heroic Age of exploration.”`)+`</div>`+mcs([
+[64,"The conservators have their base …",["on Cape Adare","in New Zealand","in Antarctica","on Cape Evans"]],
+[65,"Scott and his team died …",["on their way to South Pole","in their Terra Nova hut","between the South Pole and the Terra Nova hut","on Cape Adare"]],
+[66,"The passage mentions that …",["the fruitcake was brought to Antarctica by Scott","the Antarctic can perfectly serve for preservation","a British biscuit company supplied explorers at the beginning","the conservators restored several wooden huts at their base"]]])+
+`<h3 style="margin-top:26px">Passage 3: Felix Hoffmann (3 points)</h3>
+<div class="txt">`+P(`Felix Hoffmann was born in Ludwigsburg, Germany, in 1868, the son of an industrialist. After finishing school, he initially aimed for a career as a pharmacist. His work in the field of pharmacy fascinated him so much that he decided to broaden his knowledge by studying chemistry. In 1891, he graduated from the University of Munich. On the recommendation of eventual Nobel Prize laureate Professor Adolf von Baeyer, under whom Hoffmann had studied, he joined “Farbenfabriken vorm. Friedr. Bayer & Co.” in 1894 to work as a chemist in the chemical laboratory.
+
+It was mostly by chance that he made a discovery of historic significance on August 10, 1897. By acetylating salicylic acid with acetic anhydride, he succeeded in creating acetylsalicylic acid (ASA) in a chemically pure and stable form. The pharmacologist responsible for verifying these results was sceptical at first, yet the extent of this pharmaceutical wonder became clear once several large-scale studies to investigate the substance’s efficacy and tolerability had been completed: Hoffmann had discovered a pain-relieving, fever-lowering anti-inflammatory substance. The company then worked flat out to develop a cost-effective production process that would allow the promising active ingredient to be supplied as a pharmaceutical product. In 1899, it was launched for the first time with the trade name Aspirin™, initially as a powder supplied in glass bottles. Aspirin™ has made the Bayer name world-famous like no other drug product.
+
+Shortly after the synthesis of acetylsalicylic acid, Hoffmann was made head of the pharmaceutical marketing department. Two years later he was granted full power of attorney. By the time he retired in 1928, his discovery was already a worldwide success. Yet the “inventor” of Aspirin™ remained unknown to the international public. He lived in Switzerland out of the public eye until his death in 1946.`)+`</div>`+mcs([
+[67,"From the passage, it is clear that …",["Felix Hoffmann studied chemistry right after school","Felix Hoffmann was recommended by a university professor to work at Bayer & Co","Felix Hoffmann’s father was a manufacturer","Felix Hoffmann’s knowledge of chemistry was enhanced by himself"]],
+[68,"Felix Hoffmann’s invention …",["happened after a rigorous preparation","was verified by a study of a pharmacologist","had one or two unsuitable side effects","was a product second to none for Bayer company"]],
+[69,"From the passage, we learn that …",["Adolf von Baeyer was awarded a Nobel Prize","Aspirin was first produced as a solution in bottles","Felix Hoffmann gained international recognition","Hoffmann synthesized ASA when he was the head of marketing"]]])]);
+
+S.push(["s7","Reading 2",`<h3>Part 2: Culture Shock in Paris (6 points)</h3>
+<div class="ins"><p>Read the following extract. Six paragraphs have been removed from the text. Complete the missing paragraphs (A) – (G) into the gaps 70 – 75. There is one extra paragraph which you do not need to use.</p></div>
+<div class="txt"><p>Every year the French capital welcomes tens of thousands of foreign students, but the student experience in France can be very different and disorientating, as British language student Toby Bryant found out.</p><p>My degree in Modern Languages at Newcastle University offers the opportunity to spend time abroad, either working or studying at a foreign university, so I leapt at the chance to hop across the Channel to Paris for a six-month internship. However, it’s not all easy going. Here are some of the differences from life in Newcastle I wish I knew before I started in Paris.</p></div>`+pk(70,"","ABCDEFG")+
+`<div class="txt"><p>Parisian life is expensive, so you’ll need to budget accordingly before leaving – work a summer job if needs be. And that’s even before we get talking about the rents. There is very little student-specific accommodation in Paris, so you will generally have to find your own place to stay and rents are very high, even for a tiny “chambre de bonne”.</p></div>`+pk(71,"","ABCDEFG")+
+`<div class="txt"><p>Then I picnicked by the Seine or in one of the city’s many green parks and later getting lost in Saint-Germain-des-Prés’ quaint streets. By the way, the plus side to paying Paris rates is that you’ll never complain about your local town’s prices ever again!</p></div>`+pk(72,"","ABCDEFG")+
+`<div class="txt"><p>There are great numbers of sports teams in the capital; every morning and every night the parks of Vincennes and Boulogne are full of yoga classes, boot camps and exercise classes of all types.</p></div>`+pk(73,"","ABCDEFG")+
+`<div class="txt"><p>A lot of international courses offer the chance for students to work whilst abroad, instead of studying, which is an option I took advantage of. For sure, kissing goodbye to frequent lie-ins and 14-hours a week of lectures for a badly paid 39-hour a week internship was daunting. However, it’s a decision that really made my time in Paris.</p></div>`+pk(74,"","ABCDEFG")+
+`<div class="txt"><p>Parisian people do have a stern façade – there’s nothing more daunting than the doors of a jam-packed rush-hour Metro sliding open and a formidable 60-year-old woman staring you down as you try to squeeze on. But flash a quick “bonjour” or “bonsoir”, and you’ll see the faces start to change.</p></div>`+pk(75,"","ABCDEFG")+
+`<div class="txt"><p>If you pick up on these little courtesies, try and try again every time your French fails and refuse to let their hard exterior frighten you off, you’ll leave with a bunch of new Parisian friends.</p></div>
+<h3 style="margin-top:24px">Paragraphs (A) – (G)</h3>`+
+ref(["More often than not, I found myself crammed around a small terrace table with a group of colleagues chatting about the latest office gossip rather than boozing it up until the small hours in nightclubs.",
+"Isolating myself from other English-speakers and jumping in at the deep end is the best way to make my stay in Paris something really worthwhile. Working is a back door into authentic Parisian life and being seen as an equal to the locals – not just another lost foreigner.",
+"However, there are many Parisian activities which are free – especially the cultural ones where there are discounts for students and people aged under 26. I found myself wondering around world-famous museums such as The Louvre and The Musée d’Orsay without paying a penny.",
+"As a long-distance runner, I joined Urban Running, a club that specialises in training programmes and marathon preparation. It’s by joining a sports club that I made Parisian friends away from working/studying life and found my own space in the city’s bustling after-work activities.",
+"Student towns in the UK very much cater to the student diet of cheap booze and budget meals. Paris is not the same. One drink at a bar can set you back €5, and that’s if you make the 5pm–8pm “happy hours” that are dotted around the city and offer drinks deals. Otherwise, a large glass of wine or a pint of beer can creep up to around the €10 mark, depending on the area.",
+"Every time I walked past someone in the office or in my block of flats, we’d exchange greetings and every time someone in the canteen tucked into some food, a rally of “bon appetit” would come from surrounding people.",
+"Did you know that at university in France sports are highly encouraged and can even count as credits? You simply cannot make a short journey around Paris without seeing someone running, cycling, using one of the city’s free table tennis tables or outdoor gyms or kicking a football around."])]);
+
+S.push(["s8","Reading 3",`<h3>Part 3: Sundrop Farms (6 points)</h3>
+<div class="ins"><p>Read the following text and complete the statements 76–81 with one or two words, based on the information given in the text. The statements do not follow in the same order as the information appears in the text.</p></div>
+<div class="txt">`+P(`Sundrop Farms is a developer, owner and operator of high tech greenhouse facilities which use a number of technology solutions to grow crops with less dependence on finite natural resources than conventional greenhouse production. Sundrop Farms opened its first pilot facility in Port Augusta, South Australia, in 2010 (operating as Seawater Greenhouse Australia Pty Ltd). This facility was originally designed as a Seawater Greenhouse. However, significant technology changes led to the Sundrop System, and the dissolution of the joint venture with Seawater Greenhouse Ltd. Sundrop Farms commissioned an expanded 20-hectare facility south of Port Augusta in 2016. Sundrop Farms has offices in London, UK and Adelaide, Australia.
+
+The primary inputs to a greenhouse are heat, electricity, water, and nutrients. The Sundrop System is a collection of technologies which, when used in combination, reduce the need for finite resources in these inputs when compared with conventional greenhouse production. In Sundrop Farms’ first facilities in South Australia, these technologies include concentrated solar power, thermal desalination, and steam-driven electricity generation. This is the first combined heat, power, and water system powered by solar energy for greenhouse production.
+
+As of 2015, Sundrop Farms is constructing a 20-hectare solar-powered greenhouse facility near its original site, south of Port Augusta in South Australia. This facility, scheduled for completion in 2016, is expected to produce 15,000 tons of truss tomatoes (on the vine) each year to supply the Australian supermarket operator Coles under a ten-year contract. Sundrop Farms operations will be primarily powered by a new concentrated solar thermal power plant and seawater will be withdrawn from Spencer Gulf and desalinated to feed produce. The project was expected to generate around 100 jobs during the construction of the greenhouse facility (underway as of October 2015) and approximately 200 jobs once operational. In 2014, private equity firm Kohlberg Kravis Roberts invested $100 million in the company. The development has been supported by the Government of South Australia which has provided approximately $6 million in grant funding. A $150 million development contract was awarded to John Holland in 2014 to construct the expanded facility over an 18–24 month time-frame and the total project cost is an estimated $205 million. The $175 million, highly productive “farm” opened in June 2016 and is now producing 10–15 per cent of Australia’s truss tomatoes.
+
+Sundrop Farms’ 20-hectare expanded facility is powered by an Integrated Energy System based on the concentrated solar power (CSP) technology. The system is designed and delivered by Danish renewable energy specialist, Aalborg CSP, and it is the first large-scale CSP-based technology in the world to provide multiple energy streams – heating, fresh water and electricity – for horticultural activities. The 51,500 m2 solar field comprises eSolar’s Solar Collector System. Commissioned in October 2016, the facility’s concentrated solar thermal plant peak heat production rate is 39 MW, and desalinates water while producing 1.5 MW of electricity.
+
+Sundrop Farms’ original pilot facility desalinated seawater but did not return waste brine to Spencer Gulf. The brine was collected in ponds from which salt could be harvested. The company’s brine management plan changed with its 20-hectare expansion in 2014. Sundrop Farms sought and received approval from the South Australian Environment Protection Authority to discharge waste brine into Spencer Gulf at a salinity of 60 parts per thousand. The expanded facility discharged its brine into the cooling water outflow channel at the existing coal-fired Port Augusta power stations. Environmental approval from the Commonwealth Government via referral under the EPBC Act was neither required nor sought by Sundrop Farms for this project. Sundrop Farms continues to investigate commercially effective solutions for the recovery of minerals from brine at a large scale.`)+`</div>`+
+[[76,"The construction of the extended greenhouse was supposed to be finished within {76}. <i>(2 words)</i>"],
+[77,"The power for Sundrop Farms facility is supplied by a system created by experts from {77}. <i>(1 word)</i>"],
+[78,"Reduction of {78} for the inputs is achieved through a collection of technologies. <i>(2 words)</i>"],
+[79,"The Sundrop System originated as a result of noteworthy {79}. <i>(2 words)</i>"],
+[80,"Release of {80} was approved by an Australian authority. <i>(2 words)</i>"],
+[81,"Coles is contractually required to be provided with tomatoes for {81}. <i>(2 words)</i>"]].map(a=>tq(a[0],a[1])).join("")]);
+
+S.push(["s9","Reading 4",`<h3>Part 4: Great Physicists (9 points)</h3>
+<div class="ins"><p>Read the following extracts and choose the paragraph (A) – (D) in which you found the information from the statements 82–90. You can use the paragraphs more than once.</p></div>
+<div class="txt"><p><b style="color:var(--ac)">(A)</b></p>`+P(`Faraday’s earliest science position was an assistant to Humphry Davy who was also a science enthusiast. Faraday was involved in the analysis of chlorine. He also carried out rough experiments on the diffusion of gases. In addition, he created an early form of what is the now called the Bunsen burner. He worked comprehensively in chemistry; he discovered chemicals like benzene and discovered that chlorine could be turned into a liquid.
+
+He was appointed the first-ever Fullerian Professor in Chemistry in the year 1833. He started to work on electromagnetism, which is what he is best known for, in 1821. He created devices that produced electromagnetic rotations. These developments led to the invention of the electric motor. Ten years later, Michael perceived that passing of current through a copper wire coil that was wrapped around iron caused current to be induced in the adjacent coil. In this way, he invented the very first transformer.`)+`<p class="cap">Michael Faraday</p></div>
+<div class="txt"><p><b style="color:var(--ac)">(B)</b></p>`+P(`Even as a student Tesla was inventive. He created a motor that did not need a commutator to function. A commutator is a device that switches the direction of a current in some generators or motors that run on electricity. Tesla invented a motor with coils that were arranged so that when alternating current energized them they cast a magnetic field that rotated at a predetermined speed. Tesla patented this rotating field motor in 1888. Fortunately, he was able to sell it at a time when the advocates of alternating current were in the market for such a motor. Tesla sold his patent to George Westinghouse.
+
+Tesla also made advances with frequency apparatuses and high voltage. He invented the Tesla coil, a system of arc lighting, a generator for high frequency currents, a system for wireless transmission and a high potential magnifying transmitter. The magnifying transmitter was a machine that could produce millions of electrical volts that manifested in long, spectacular arcs. Tesla formed his own company not long after leaving Edison with money from several investors. He held at least 278 patents.`)+`<p class="cap">Nikola Tesla</p></div>
+<div class="txt"><p><b style="color:var(--ac)">(C)</b></p>`+P(`Thomson entered Cambridge University in 1841 where he enjoyed an active life as a student. He participated in many activities, but science was his great love. He graduated four years later. He was a Second Wrangler, which was the second highest ranked undergraduate degree in maths. He was also named a fellow of his house and worked in the laboratory of the famous scientist, Henri Regnault, in Paris. At around this same time, the University of Glasgow elevated Thomson to the chair of natural philosophy. He was only 22 years old.
+
+Lord Kelvin invented the mirror galvanometer used in cable signalling and the siphon recorder, which was used to receive the signals. An avid seaman, he invented the first ship’s compass that was free of the magnetic influence of any iron on the ship. He also invented a mechanism that predicted the tide. This was useful to predict the variations in sea level in any port. He suggested that gas thermometers be used for accurate temperature readings, and a thermometer scale is named after him. On the Kelvin thermometer scale, absolute zero is equal to − 273 degrees Celsius. Absolute zero is where molecular movement ceases.`)+`<p class="cap">William Thomson (Lord Kelvin)</p></div>
+<div class="txt"><p><b style="color:var(--ac)">(D)</b></p>`+P(`While at the university’s department of physics, Chadwick became acquainted with scientists of the caliber of Hans Geiger and Niels Bohr, among the foremost physicists of their day. He spent his time developing the planetary theory of the atom, and had achieved a Master’s degree by 1913. For his work, he was given the Exhibition Scholarship, which had been set up after the Great Exhibition of 1851.
+
+Chadwick used these funds that this brought to go to study in Germany at the country’s first specialized research institution near Berlin. Here, Geiger was his ultimate superior, an arrangement which suited Chadwick very well. His own research brought advances such as knowledge of the energy range of beta particles, something which Wolfgang Pauli later used to help develop his own theory that the particle, now known as the neutrino, must exist.`)+`<p class="cap">James Chadwick</p></div>
+<h3 style="margin-top:24px">Which…</h3>`+
+[[82,"physicist also excelled in mathematics?"],
+[83,"physicist contributed to a theory of another physicist?"],
+[84,"physicist had the copyright for more than 250 inventions?"],
+[85,"physicist pursued things other than science?"],
+[86,"physicist looked into the action of the sea?"],
+[87,"physicist was given money for his achievements at university?"],
+[88,"physicist created a basic item of lab equipment?"],
+[89,"physicist contributed to an invention of a motor?"],
+[90,"physicist’s invention was sold to an interested party?"]].map(a=>pk(a[0],"Which… "+a[1],"ABCD")).join("")+
+`<p style="text-align:center;color:var(--mut);margin-top:26px">THE END</p>
+<button class="clr" id="clr" type="button">Clear all answers</button>`]);
+return S}};
+
+TESTS["2026"]={code:"26 1515",
+OPT:{31:"affairs|issues|matters|pieces",32:"familiar|visible|aware|famous",33:"were|would be|have been|had been",34:"extraordinary|commonplace|phenomenal|peculiar",35:"range|scope|extent|leakage",36:"observers|spectators|viewers|sightseers",37:"whereas|since|as|while",38:"spell|wonders|prodigies|admiration",39:"embraces|acceptances|receptions|perceptions",40:"our|us|ours|we",41:"Meanwhile|However|Consequently|Nevertheless",42:"identifying|identifies|identified|identify",43:"intervening|challenging|tackling|attacking",44:"scope|scale|range|length",45:"never|always|ever|sometimes",46:"attack|overcome|gain|reach",47:"dismisses|replaces|removes|disrupts",48:"along|alongside|beyond|besides",49:"efforts|trials|endeavours|attempts",50:"put up|pay for|account for|turn up"},
+MULTI:{29:["29a","29b"],80:["80a","80b"]},
+build(){const S=[];
+S.push(["s1","Listening 1",`<h1>Maturita 2026 – External Part<br>English · Level C1 · Test 26 1515</h1>
+<h2>SECTION I – LISTENING (30 points)</h2>
+<div class="ins"><p>This section of the test has three parts. You will hear four recordings which you will listen to twice. While listening, answer the questions in the appropriate part of the test.</p></div>
+<h3>Part 1: Two Interviews (10 points)</h3>
+<div class="ins"><p>In this part, you will hear two different extracts. In the first extract, you will hear an interview with Daisy Buchanan, a writer of non-fiction. In the second extract, you will hear an interview with Elaine King, a financial director and a certified financial planner. For the following statements 01–10, choose the correct answer (A), (B), (C) or (D). There is always only one correct answer.</p><p>Now you have 2 minutes to read the tasks.</p></div>
+<h3>Extract 1: An Interview with Daisy Buchanan (5 points)</h3>`+mcs([
+[1,"One of the advantages of writing non-fiction is the fact that its authors can …",["write a lot of drafts before they choose the final one","utilize some of the “unused” material in their further books","take a couple of weeks off in the process of writing","start planning several projects simultaneously"]],
+[2,"The idea behind Daisy’s first book How to Be a Grown Up, was to …",["republish articles she’d already written in a new format","encourage young women to become more confident","help teenagers solve some generation issues","put her readers at ease and re-assure them"]],
+[3,"The message of Daisy’s first book was to show young people that they need to …",["treat their parents more emotionally","develop their relations with their peers","wait patiently until time brings a new outlook","rely on themselves when coping with problems"]],
+[4,"Daisy’s advice for future writers of non-fiction is that …",["they should have some experience with writing articles for magazines","they should plan the topic of each chapter before writing the whole book","each chapter should be seen as a sequence of special events","each chapter should have a maximum of 1200 words"]],
+[5,"When Daisy was searching for agents, she found out that they …",["had already chosen their favourite authors","had been supporting promising writers","had been difficult to communicate with","had been hard to find on Twitter"]]])+
+`<h3 style="margin-top:22px">Extract 2: An Interview with Elaine King (5 points)</h3>`+mcs([
+[6,"As President of the International Student Association in Texas, Elaine …",["had to overcome some problems with adjustment","made use of her multicultural experience","shared her diverse stories with other students","mentored and coached high-school students"]],
+[7,"Elaine’s positive attitude to numerical subjects was …",["inherited and copied from her parents","enhanced during her high-school studies","developed mainly in Spanish-speaking countries","caused by her insecurity in linguistic subjects"]],
+[8,"Elaine believes that her … multiplies the quality of her service for families.",["personal cultural and bilingual history","professional trainings in foreign countries","deep knowledge of the Mexican market","experience with the Peruvian instability"]],
+[9,"The problem Elaine had to discuss with the Human Resources Department, originated in …",["the racial prejudice among her team members","wrong translations of some economic texts","the misinterpretation of word choices","gender conflicts among her young colleagues"]],
+[10,"Elaine feels satisfied …",["since her whole team promotes the Programme for Families","when she can apply her financial skills to helping families","because of her speech delivered in the Peruvian Congress","after obtaining some donors to support a Peruvian family"]]])]);
+
+S.push(["s2","Listening 2",`<h3>Part 2: Five Tips for Becoming a Better Leader (10 points)</h3>
+<div class="ins"><p>In this part, you will hear a radio programme in which a psychologist explains how you can become a better leader. The expert will mention five tips and five practical ways how to achieve it. There are two blocks of five matching questions. You will have to match all ten questions while you are listening to this recording. Read the questions carefully before you listen.</p><p>For questions 11–15, choose from the first list marked (A) – (H) the tip which is being described. For questions 16 – 20, choose from the second list marked (A) – (H) the practical way how to do it. Be careful, there are three extra possibilities which you do not need to use. There is always only one correct answer.</p><p>Now you have 2 minutes to read the tasks.</p></div>
+<h3>1st LIST – Questions 11–15 – Options (A)–(H): TIPS</h3>`+
+ref(["Motivate your followers.","Have a passionate approach.","Communicate effectively.","Keep trying new things.","Encourage creative thinking.","Have a positive viewpoint.","Serve as a role model.","Be aware of your leadership style."])+
+[1,2,3,4,5].map(i=>pk(10+i,"Tip No "+i+":","ABCDEFGH")).join("")+
+`<h3 style="margin-top:24px">2nd LIST – Questions 16–20 – Options (A) – (H): PRACTICAL WAYS</h3>`+
+ref(["Encourage your followers to express their views publicly.","Set up challenging but realistic tasks.","Ask for feedback from your followers.","Keep up your constructive mood despite circumstances.","Share your views clearly and openly.","Develop personal qualities that you’d like your team to adopt.","Inspire and applaud your followers.","Use various ways of showing enthusiasm and respect for others."])+
+[1,2,3,4,5].map(i=>pk(15+i,"Practical way No "+i+":","ABCDEFGH")).join("")]);
+
+S.push(["s3","Listening 3",`<h3>Part 3: Changing Trends in Reading Fiction (10 points)</h3>
+<div class="ins"><p>You will hear a radio programme about the changing trends in reading fiction in the UK. Complete the sentences 21–30, which summarize the information from the text. Use one word or two words in your answers (the number of words is indicated in brackets).</p><p>Now you have 2 minutes to read the sentences.</p></div>`+
+[[21,"At the beginning of the 20th century, the UK readers were captivated by {21} fiction, as presented by H. G. Wells. <i>(1 word)</i>"],
+[22,"The early 21st century was a period of {22} which was mirrored in the books we read at that time. <i>(1 word)</i>"],
+[23,"In the time of the pandemic, readers preferred the emotional relief provided by {23} and classic mysteries. <i>(2 words)</i>"],
+[24,"The way the “girl” phenomenon in literature was accepted by readers, can be described as a/an {24}. <i>(2 words)</i>"],
+[25,"In 2017, {25} as a genre was sold in greater numbers than other types of books. <i>(1 word)</i>"],
+[26,"The e-reader in the last decade of the 20th century was expected to be a/an {26} tendency. <i>(1 word)</i>"],
+[27,"Though e-books have not become entirely dominant at the book market, their sales have remained {27}. <i>(1 word)</i>"],
+[28,"Sales of audiobooks had been growing since 2014 and in 2020, this trend {28}. <i>(2 words)</i>"],
+[29,"Contemporary readers love audiobooks because of their {29a} and a new {29b} this format brings. <i>(2 words)</i>"],
+[30,"In audiobooks, the relationship between artist and listener can become {30}. <i>(1 word)</i>"]].map(a=>tq(a[0],a[1])).join("")]);
+
+S.push(["s4","Language 1",`<h2>SECTION II – LANGUAGE IN USE (30 points)</h2>
+<div class="ins"><p>This section of the test has two parts. To complete this section of the test, you will need approximately 40 minutes.</p></div>
+<h3>Part 1: 100 Years of Environmental Change (20 points)</h3>
+<div class="ins"><p>Read the following text and decide which word or phrase (A), (B), (C) or (D) best fits into each space numbered 31–50. There is always only one correct answer. There is an example at the beginning (00).</p><p>Example: (00) – (C)</p><p class="fn" style="margin:0">Tap a numbered gap to choose an option.</p></div>
+<div class="txt">`+P(gp(`Since Good Housekeeping was first published in 1922, we’ve reported <span class="chip ex"><small>00</small>&nbsp;on</span> the biggest environmental stories and the impact they’ve had on our lives. Consumer {31} director Emilie Martin looks back on events that made us more eco {32} and what we should expect next.
+
+The last 100 years {33} a profound shift in the way we view our planet and our relationship with it. As TV sets became more {34} in UK households from the 1950s, they brought images into our living rooms of the incredible {35} of plants, animals and habitats the Earth is home to. Sir David Attenborough’s Zoo Quest, first broadcast in 1954, treated {36} to a glimpse of unique and unfamiliar creatures such as the Komodo dragon, {37} his 1979 series Life on Earth showcased some {38} of the natural world in full colour. More recently, his film-length documentary A Life On Our Planet has helped us understand the ways in which this biodiversity is threatened and what we can do to protect it. Other changes have altered our {39} of our planet, too. Photos taken from the Apollo 8 spacecraft in 1968 of the Earth floating alone in space allowed us to see our world from a new perspective. We began to realise that {40} is a world of finite resources: the resources we now understand we must use more responsibly. {41}, advances in science and technology have allowed us to measure with greater accuracy the impact of our actions on the planet, and {42} solutions. Today, we are more aware of the environmental challenges we face and of the role we can play in {43} them.
+
+We now recognise the effect that rising levels of carbon dioxide and other greenhouse gases are having on the climate on a global {44}. When we covered climate change in our March 1991 issue, our writer noted that 1990 had been the hottest year {45}. However, in the three decades since that issue about emissions was published, there have been 13 hotter years in the UK, according to data from the Met Office. Now, the Government plans to dramatically reduce greenhouse gas emissions to {46} a target of net zero by 2050. This means that in less than 30 years, the UK is legally bound to no longer add more greenhouse gases to the atmosphere than it {47}. Thanks to scientific research, we now know that burning fossil fuels, {48} farming and deforestation, is a key contributor to climate change, and this is driving a shift to cleaner forms of energy.
+
+We reported on early {49} of energy generation from wind and waves in 1979, and the possibility of heating the water we use at home using solar energy. The article concluded by predicting renewables were only ever likely to {50} a few percent of our national energy needs.`,"c"))+`</div>`]);
+
+S.push(["s5","Language 2",`<h3>Part 2: What is ChatGPT? (10 points)</h3>
+<div class="ins"><p>In the following text, there are some missing words numbered 51–60. Use the word given in brackets to form a new word that fits into the space in the same line. There is an example at the beginning (00).</p><p>Example: 00 – intelligence</p></div>
+<div class="txt">`+P(gp(`Created by US firm OpenAI, ChatGPT is an artificial <span class="exw">00 · intelligence</span> (intelligent) chatbox. It’s a form, not of generating, but of {51} (generate) AI (literally AI that generates something), also known as a Large Language Model (LLM), writing content based on the {52} (statistics) probability of what word is {53} (like) to follow another. ChatGPT can write poems, emails, essays, etc. in {54} (what) style you’d like it to. And if you’re not happy, ask it to {55} (write) it to sound friendlier, kinder, more diplomatic or anything you see fit.
+
+On first using it, most people are impressed, but as soon as you actually want to use its writing for real purposes, it doesn’t seem quite up to the job.
+
+For months, {56} (cover) of ChatGPT focused on education, stirring up {57} (constancy) debate. “Is it cheating, or is it like taking a calculator into an exam?” “Is it destroying learning, or just preparing students for the world they’ll work in?” “Does it level the playing field for those who find writing harder, or does it become a contest of who is best at instructing it?” It even led to the {58} (emerge) of plagiarism bots trying to detect work that had been created by AI. The debate will rage on, although perhaps ironically, it turns out that many teachers find it helpful with regard to lesson planning.
+
+What AI will mean for jobs, {59} (health) and our interactions with one another could be a {60} (true) remarkable achievement eventually. Even now, there’s a dating app allowing you to create an avatar that will then narrow down the options for you by trying to reflect your character – so your whole future happiness might one day even rely on it.`))+`</div>`]);
+
+S.push(["s6","Reading 1",`<h2>SECTION III – READING (30 points)</h2>
+<div class="ins"><p>This section of the test has four parts. To complete this section of the test, you will need approximately 70 minutes.</p></div>
+<h3>Part 1: Monuments of the World (9 points)</h3>
+<div class="ins"><p>In this part, there are three themed texts. For the statements 61–69, choose the answer (A) – (D) according to the texts. There is always only one correct answer.</p></div>
+<h3>Passage 1: Petra, Ancient City, Jordan (3 points)</h3>
+<div class="txt">`+P(`The city was built on a terrace, pierced from east to west by the Wadi Mūsā (the Valley of Moses) – one of the places where, according to tradition, the Israelite leader Moses struck a rock and water gushed forth.
+
+The Greek name Petra (“Rock”) probably replaced the biblical name Sela. Remains from the Paleolithic and Neolithic periods have been discovered at Petra, and Edomites are known to have occupied the area about 1200 BCE. Centuries later, the Nabataeans, an Arab tribe, occupied it and made it the capital of their kingdom. In 312 BCE, the region was attacked by Seleucid forces, who failed to seize the city. Under Nabataean rule, Petra prospered as a spice trade centre that involved disparate realms such as China, Egypt, Greece, and India, and the city’s population swelled to 10,000, then to 30,000.
+
+When the Romans defeated the Nabataeans in 106 CE, Petra became part of the Roman province of Arabia but continued to flourish until changing trade routes caused its gradual commercial decline. After an earthquake (not the first) damaged the city in 551, significant habitation seems to have ceased. An Islamic invasion occurred in the 7th century, and a Crusader outpost is evidence of activity there in the 12th century. After the Crusades, the city was unknown to the Western world until it was rediscovered by the Swiss traveller Johann Ludwig Burckhardt in 1812.`)+`</div>`+mcs([
+[61,"The city of Petra …",["was probably given its name by Edomites","was, according to tradition, founded by Moses","once withstood an enemy’s raid","had a lot of terraces"]],
+[62,"From the passage, we can learn that …",["an Arab tribe once defeated the Romans","Petra was once the seat of monarchy","the Greeks called this place Sela","Petra traded only with similar kingdoms"]],
+[63,"We can infer that …",["Petra was once a discrete Roman province","Petra flourished under the Romans as well","an Islamic invasion stopped the population growing","a Swiss traveller discovered trade routes through Petra"]]])+
+`<h3 style="margin-top:26px">Passage 2: Angkor Wat, Temple Complex, Angkor, Cambodia (3 points)</h3>
+<div class="txt">`+P(`The city of Angkor served as the royal centre from which a dynasty of Khmer kings ruled one of the largest, most prosperous, and most sophisticated kingdoms in the history of Southeast Asia. From the end of the 9th century until early in the 13th century, numerous construction projects were undertaken, the most notable of which was Angkor Wat. It was built by Suryavarman II as a vast funerary temple within which his remains were to be deposited. Construction is believed to have spanned some three decades.
+
+All of the original religious motifs derived from Hinduism and the temple was dedicated to the gods Shiva, Brahma, and Vishnu. The five central towers of Angkor Wat symbolize the peaks of Mount Meru, which, according to Hindu mythology, is the dwelling place of the gods. The mountain is said to be surrounded by an ocean, and the complex’s enormous moat suggests the oceans at the edge of the world. A 188-metre bridge allows access to the site. The temple is reached by passing through three galleries, each separated by a paved walkway. The temple walls are covered with bas-relief sculptures of very high quality, representing Hindu gods and ancient Khmer scenes, as well as scenes from the Mahabharata and the Ramayana.
+
+After the Cham people of modern-day Vietnam ravaged Angkor in 1177, King Jayavarman VII decided that the Hindu gods had failed him. When he built a new capital nearby, Angkor Thom, he dedicated it to Buddhism. Thereafter, Angkor Wat became a Buddhist shrine, and many of its carvings and statues of Hindu deities were replaced by Buddhist art.`)+`</div>`+mcs([
+[64,"Khmer kings …",["founded the city of Angkor","dedicated building work to Shiva","stopped reigning in the 13th century","governed a highly-developed realm"]],
+[65,"We can infer that Angkor Wat …",["contains relics of its creator","was built in the 9th century","has three towers for Shiva, Brahma and Vishnu","was built on Mount Meru"]],
+[66,"From the passage we can learn that …",["after being plundered, Angkor Wat’s name was changed to Angkor Thom","we cannot find many scenes of Hindu gods at Angkor Wat nowadays","the ocean is not far from Angkor Wat","a new capital was dedicated to the Hindu gods"]]])+
+`<h3 style="margin-top:26px">Passage 3: Taj Mahal, Mausoleum, Agra, India (3 points)</h3>
+<div class="txt">`+P(`The Taj Mahal is a mausoleum complex in Agra, western Uttar Pradesh state, northern India. The Taj Mahal was built by the Mughal emperor Shah Jahān (reigned 1628–58) to immortalize his wife Mumtaz Mahal (“Chosen One of the Palace”), who passed away in childbirth in 1631, having been the emperor’s inseparable companion since their marriage in 1612. India’s most famous and widely recognized building, it is situated in the eastern part of the city on the southern (right) bank of the Yamuna (Jumna) River. Agra Fort (Red Fort), also on the right bank of the Yamuna, is about 1.6 km west of the Taj Mahal.
+
+In its harmonious proportions and its fluid incorporation of decorative elements, the Taj Mahal is distinguished as the finest example of Mughal architecture, a blend of Indian, Persian, and Islamic styles. Other attractions include twin mosque buildings (placed symmetrically on either side of the mausoleum), lovely gardens, and a museum. One of the most beautiful structural compositions in the world, the Taj Mahal is also one of the world’s most iconic monuments, visited by millions of tourists each year. The complex was designated a UNESCO World Heritage site in 1983.
+
+The plans for the complex have been attributed to various architects of the period, though the chief architect was probably Ustad Aḥmad Lahawrī, an Indian of Persian descent. The five principal elements of the complex – main gateway, garden, mosque, jawāb (literally “answer”; a building mirroring the mosque), and mausoleum (including its four minarets) – were conceived and designed as a unified entity according to the main principles of Mughal building practice, which allowed no subsequent addition or alteration. Building commenced about 1632. More than 20,000 workers were employed from India, Persia, the Ottoman Empire, and Europe to complete the mausoleum itself by about 1638–39; the adjunct buildings were finished by 1643, and decoration work continued until at least 1647. In total, construction of the 17-hectare complex spanned 22 years.`)+`</div>`+mcs([
+[67,"The passage states that …",["Agra Fort and Taj Mahal lie on the opposite sides of one river","the Taj Mahal is a mixture of the Mughal and Indian styles","the Taj Mahal was created after a family tragedy","the creator of the monument and his wife were separated for some time"]],
+[68,"From the passage, we can learn that …",["tourists voted the Taj Mahal as the most attractive structure in the world","the Taj Mahal has some Islamic features","there are two mosques placed next to a museum","the complex contains seven walkways"]],
+[69,"We can infer that …",["nothing can be added to the Taj Mahal","the whole complex was finished in 1643","the four minarets were built last","the complex was designed by a Persian"]]])]);
+
+S.push(["s7","Reading 2",`<h3>Part 2: Antonia Novello (6 points)</h3>
+<div class="ins"><p>Read the following extract. Six paragraphs have been removed from the text. Complete the missing paragraphs (A) – (G) into the gaps 70 – 75. There is one extra paragraph which you do not need to use.</p></div>
+<div class="txt"><p>Antonia Novello was born Antonia Coello in Fajardo, Puerto Rico on August 23, 1944, the eldest of three children. Novello’s father, Antonio Coello, passed away when she was young and her mother, Ana Delia Flores Coello, worked as a school teacher and principal. Her mother emphasized the importance of education, hard work, respect, and care for others, all lessons that Novello took to heart.</p></div>`+pk(70,"","ABCDEFG")+
+`<div class="txt"><p>Novello finally had the surgery when she was 18. A second operation was required two years later, before the condition was entirely cured. This experience left Novello determined to become a doctor so that she could help other sick children, especially those who struggled to access the medical care they required.</p></div>`+pk(71,"","ABCDEFG")+
+`<div class="txt"><p>While in medical school, Novello’s aunt died of kidney failure. Her aunt’s passing inspired Novello to learn more about kidney disease and the transplant process. Novello went on to specialize in pediatric nephrology (the study of the kidneys).</p></div>`+pk(72,"","ABCDEFG")+
+`<div class="txt"><p>Novello spent two years in private practice but found caring for critically ill children emotionally challenging. She felt called to the public health field, where she could work to improve health for the broader population rather than one patient at a time.</p></div>`+pk(73,"","ABCDEFG")+
+`<div class="txt"><p>President George H.W. Bush took notice of Novello’s work on pediatric AIDS and appointed her the United States 14th Surgeon General, the nation’s top health official. She was the first woman and Hispanic person to serve as U.S. Surgeon General.</p></div>`+pk(74,"","ABCDEFG")+
+`<div class="txt"><p>Novello was early to recognize the need to focus on women with AIDS and to strive to prevent the neonatal transmission of HIV. Novello also promoted early childhood health initiatives such as injury prevention and immunization.</p></div>`+pk(75,"","ABCDEFG")+
+`<div class="txt"><p>Novello stepped down as Surgeon General after having been in service for three years, returning to the regular corps of the U.S. Public Health Service. For the next three years, she served as a special representative to the United Nations Children’s Fund. There, she focused on the health and nutritional needs of women, children, and adolescents worldwide, and later received a number of awards for her work.</p></div>
+<h3 style="margin-top:24px">Paragraphs (A) – (G)</h3>`+
+ref(["Novello joined the U.S. Public Health Service Commissioned Corps and worked for the National Institute of Arthritis, Metabolism and Digestive Disorders at the National Institutes of Health. As a Congressional Fellow, Novello helped draft federal legislation for the Organ Transplantation Procurement Act of 1984, which established the national registry for organ matching. She also helped author the health warnings that were added to cigarette packaging.",
+"An excellent student, Novello earned a scholarship to the University of Puerto Rico and received her B.S. in 1965. She attended the University of Puerto Rico School of Medicine, from which she graduated in 1970. After medical school, Antonia married Joseph R. Novello, a navy flight surgeon who went on to become a psychiatrist, author, and medical journalist.",
+"In addition to this, she sought to raise awareness about domestic violence in the U.S. In her efforts to improve access to healthcare among minority populations, particularly Latino Americans, she convened national and regional meetings to address community health needs.",
+"Novello earned numerous awards during her storied career as a physician and public health official, including the Public Health Service Commendation Medal; Congressional Hispanic Caucus Medal; Order of Military Medical Merit Award; and the James Smithson Bicentennial Medal.",
+"As a child, Novello suffered from congenital megacolon, an abnormality of the large intestine. The condition limited her energy and activities. Her family could not afford the surgery that would correct it, so she spent her summers getting interim treatment in a local hospital.",
+"Novello focused on the health of women, children, and minorities during her tenure as Surgeon General. She launched initiatives to combat underage drinking and smoking. One of her most effective campaigns sought to end tobacco advertising aimed at children, such as ads with the “Joe Camel” cartoon.",
+"Novello first completed her residency in pediatrics at the University of Michigan and then her nephrology fellowship at Georgetown University. At the University of Michigan, Novello was the first woman named Pediatrics Intern of the Year."])]);
+
+S.push(["s8","Reading 3",`<h3>Part 3: Sir Flinders Petrie (6 points)</h3>
+<div class="ins"><p>Read the following text and complete the statements 76–81, with one or two words, based on the information given in the text. The statements do not follow in the same order as the information appears in the text.</p></div>
+<div class="txt">`+P(`Petrie was named after his maternal grandfather, Matthew Flinders, a British navigator, pioneer hydrographer, and explorer of Australia and Tasmania. Petrie was educated privately, developing archaeological and ethnological interests early, particularly in ancient weights and measures and Egyptology.
+
+At 24, Petrie wrote Inductive Metrology; or, The Recovery of Ancient Measures from the Monuments, a work representing a new approach to archaeological study. Fieldwork at various locations in Britain, including Stonehenge, enabled him to determine by mathematical computations the unit of measurement for the monument’s construction. His Stonehenge: Plans, Description, and Theories was published in 1880, and in that same year, he began the survey and excavation of the Great Pyramid at Giza, which initiated his four decades of exploration in the Middle East.
+
+During the 1884 excavation of the Temple of Tanis, Petrie discovered fragments of a colossal statue of Ramses II. In 1885 and 1886, at Naukratis and Daphne in the Nile River delta, he uncovered painted pottery by which he proved that those sites had been trading colonies for the ancient Greeks. It was this discovery that caused him to believe that history could be reconstructed by a comparison of potsherds (pottery fragments) at various levels of excavation.
+
+Petrie first applied his principle of sequence dating in Palestine, at the site of Tel Ḥasi, south of Jerusalem. In 1890, in only six weeks, the untiring excavator found a series of occupations for which he could supply approximate habitation dates. Petrie’s work at the hill site marked the second stratigraphic study in archaeological history; the first was carried out at Troy by Heinrich Schliemann. The excavations of these two men marked the beginning of examining successive levels of a site rather than the previously practised method of chaotic digging, which had produced only a jumble of unrelated artefacts.
+
+Petrie made other important discoveries in the Al-Fayyūm region of Egypt. At Gurob, he found numerous papyri and Aegean pottery that substantiated dates of ancient Greek civilizations, including the Mycenaean. At the Pyramid of Hawara, he searched through the tomb of Pharaoh Amenemhet III to discover how grave robbers could have found the tomb’s opening and made their way through the labyrinth surrounding the two sarcophagi that they emptied. He concluded that they must have been given the master plan by an informer.
+
+In 1892, Petrie was made Edwards professor of Egyptology at University College London, and he served in the position until 1933 when he became professor emeritus. In 1894 he founded the Egyptian Research Account, which in 1905 became the British School of Archaeology.
+
+In 1904, Petrie published Methods and Aims in Archaeology, the definitive work of his time, in which he lucidly defined the goals and methodology of his profession along with the more practical aspects of archaeology – such as details of excavation, including the use of cameras in the field. With uncommon insight, he noted that research results depended on the archaeologist’s personality, who, in addition to possessing broad knowledge, had to have an insatiable curiosity. His abundance of that characteristic was never questioned.
+
+Inscriptions that Petrie found on the Sinai Peninsula represented an intermediate stage (not later than 1500 BCE) of written communication between Egyptian hieroglyphics and the Semitic alphabet. Although he wrote The Formation of the Alphabet (1912), language was not Petrie’s strong point. He depended on a sixth sense for the free translation of inscriptions and establishing dates through studying the forms of hieroglyphs.`)+`</div>`+
+[[76,"One of Petrie’s books was on {76}, which was not his greatest competence. <i>(1 word)</i>"],
+[77,"Petrie set up his own technique of {77}, which helped get rid of chaotic digging. <i>(2 words)</i>"],
+[78,"Petrie started exploring Egypt about the time his book on {78} came out. <i>(1 word)</i>"],
+[79,"In Egypt, Petrie realised that careful examination of {79} at various depths could help him reveal history. <i>(2 words)</i>"],
+[80,"{80a} and {80b} used in ancient times were Petrie’s favourites in his youth. <i>(2 words)</i>"],
+[81,"Using cameras is one of the {81} of archaeology. <i>(2 words)</i>"]].map(a=>tq(a[0],a[1])).join("")]);
+
+S.push(["s9","Reading 4",`<h3>Part 4: Cities in the UK Where a University Can Be Found (9 points)</h3>
+<div class="ins"><p>Read the following extracts and choose the paragraph (A) – (D) in which you found the information from the statements 82 – 90. You can use the paragraphs more than once.</p></div>
+<div class="txt"><p><b style="color:var(--ac)">(A)</b></p>`+P(`Bath lies astride the River Avon in a natural arena of steep hills. It was built of local limestone and is one of the most elegant and architecturally distinguished British cities. Its 16th-century abbey church of St. Peter and St. Paul is late Perpendicular Gothic and is noted for its windows, but the wealth of classical Georgian buildings mounting the steep valley sides gives Bath its distinction. The city was designated a UNESCO World Heritage site in 1987.
+
+Medieval Bath, incorporated by charter in 1189, shared in the west-of-England wool trade and later in the cloth trade, but the baths, although still used by royalty, were poorly maintained. When portions of the Roman baths were rediscovered in 1755, Bath had already been revived as a spa. In its heyday as a fashionable resort, the Elizabethan town was rebuilt and extended in Palladian style.`)+`<p class="cap">Bath</p></div>
+<div class="txt"><p><b style="color:var(--ac)">(B)</b></p>`+P(`The medieval town of Bristol was incorporated in 1155. The harbour was improved in 1247 by diverting the River Frome to the west and building a stone bridge at the point of its former confluence with the River Avon. During the reign of Edward III (1327–77) Bristol imported raw wool from Ireland and manufactured woollen cloth, which it sold to Spain and Portugal in return for sherry and port wine. By the 16th century Bristol had become a major port, a manufacturing town, and a distribution centre for both overseas and inland trade.
+
+During the later 17th and the 18th centuries Bristol prospered as a processing centre for sugar and tobacco imported from Britain’s colonies in the Americas, to which it supplied textiles, pottery, glass, and other manufactured goods. Importing Jamaican sugar and cacao from West Africa led to the creation of the “sugar houses” of Bristol and to chocolate manufacture.`)+`<p class="cap">Bristol</p></div>
+<div class="txt"><p><b style="color:var(--ac)">(C)</b></p>`+P(`Leeds originated as an Anglo-Saxon township on the north bank of the River Aire. It grew as a local market centre and was incorporated in 1626. By then the town was a cloth-finishing centre for a wide area where domestic weaving, introduced by 14th-century Flemish weavers, was pursued. By the 16th century, Leeds was able to challenge the supremacy of York and Beverley in the woollen-manufacturing trade. With the Industrial Revolution and development of the local coalfield, the woollen industry was rapidly surpassed in importance by engineering, and for a time pottery and linen manufacture were also important.
+
+The city is home to a number of historic buildings. The Leeds Corn Exchange (1864) was designed by Cuthbert Brodrick – as was Leeds Town Hall (1858), envisioned as a municipal palace and opened by Queen Victoria but now principally a concert and performance venue.`)+`<p class="cap">Leeds</p></div>
+<div class="txt"><p><b style="color:var(--ac)">(D)</b></p>`+P(`The settlement dates from the Roman period, when a fort was built on a site close to the present Tyne Bridge. The district and its name derive from a Norman castle built in 1080 by Robert II, the eldest son of William I the Conqueror. In the 12th century, the town became important as a fortress settlement because of its key position in the frontier defences guarding the east coast route from Scotland. The protection afforded by the fortress attracted religious and commercial bodies, and the resulting town rapidly expanded. The wool trade was especially important, and, in 1353 Newcastle became a staple (wool-manufacturing) town.
+
+By 1800, Newcastle had become an important industrial and financial centre (the first banking houses dating from 1755), with expanding ironworking and glassmaking industries. The River Tyne became a major focus for shipbuilding, and Newcastle’s shipyards were long among the largest ship-repairing centres in the world. Although the latter activity had declined by the late 20th century, the associated marine and heavy engineering industries remain important to Newcastle, which plays an important role in servicing Britain’s offshore oil and gas fields.`)+`<p class="cap">Newcastle</p></div>
+<h3 style="margin-top:24px">Which paragraph?</h3>`+
+[[82,"In which city were royal facilities preserved inadequately?"],
+[83,"Which city safeguarded an important path in the past?"],
+[84,"Which city lies on two rivers?"],
+[85,"In which city was the wool processing industry eclipsed by another industry?"],
+[86,"Which city offered various services for the shipping industry?"],
+[87,"Which city thrived on imports from the west?"],
+[88,"Which city helps with Britain’s fossil fuel extraction?"],
+[89,"Which city’s buildings have especially notable architecture?"],
+[90,"In which city was an arts venue originally intended to serve the city?"]].map(a=>pk(a[0],a[1],"ABCD")).join("")+
+`<p style="text-align:center;color:var(--mut);margin-top:26px">THE END</p>
+<button class="clr" id="clr" type="button">Clear all answers</button>`]);
+return S}};
+
+function RK(a,b,c,d){const o={};const put=(s,st)=>s.split("").forEach((ch,i)=>{o[st+i]=ch});put(a,1);put(b,31);put(c,61);put(d,82);return o}
+Object.assign(TESTS["2024"],{code:"24 1515",
+KEY:RK("DBDBACACBDDFAGCFBHCE","CBAABDBDBBCADADCAABC","CBACBABCADFACEG","CDABBBACD"),
+ACC:{21:["authentic indian snacks","genuine indian snacks","indian authentic snacks","indian genuine snacks"],23:["product design"],24:["mainstream"],25:["online retailers"],26:["permanent listing"],27:["classroom hunger"],28:["nutritious"],30:["vegan"],51:["wellbeing"],52:["waterfalls","waterways"],53:["coastal"],54:["initiative"],55:["anxiety"],56:["essence"],57:["mindfulness"],58:["outdoor"],59:["riverside"],60:["digestive"],76:["phosphorus","nutrients"],77:["geologists"],78:["barite"],79:["composition","makeup"],80:["dinosaur extinction"],81:["minerals","water"]},
+ACCM:{22:[["flavours","flavors"],["ingredients"]],29:[["ethically"],["environmentally"]]},ACCU:{29:1},
+SHOWM:{21:"authentic / genuine Indian snacks",22:"flavours, ingredients",29:"ethically, environmentally (either order)",52:"waterfalls / waterways",76:"phosphorus / nutrients",79:"composition / makeup",81:"minerals / water"}});
+Object.assign(TESTS["2023"],{code:"23 1515",
+KEY:RK("CDBCBCBADBFDACBDGBFE","BADDBABDCCDAABDBBCDA","DADBCBBDAECGDBF","CDBCCDAAB"),
+ACC:{21:["sales training material"],22:["motto"],23:["massive action"],24:["creative persistence"],25:["purpose"],26:["dragged down"],27:["giving up control"],28:["consistency"],29:["balance"],30:["investing"],51:["registry"],52:["permission","permits"],53:["requests","requirements"],54:["legislatures"],55:["misdemeanor","misdemeanour"],56:["misinterpret"],57:["therapeutic","therapeutical"],58:["reasonable"],59:["disabilities"],60:["distinguish"],76:["two years","2 years","24 months","twentyfour months","twenty four months"],77:["denmark"],78:["finite resources"],79:["technology","technological changes","solutions"],80:["waste brine"],81:["ten years","10 years","a decade","one decade","supermarket sale","supermarket sales"]},
+SHOWM:{52:"permission / permits",53:"requests / requirements",55:"misdemeanor / misdemeanour",57:"therapeutic / therapeutical",76:"two years / 2 years / 24 months",79:"technology / technological changes / solutions",81:"ten years / 10 years / a decade (or supermarket sales)"}});
+Object.assign(TESTS["2026"],{code:"26 1515",
+KEY:RK("BDCCBBDACBEGBFABFHDG","ACCBACDBDCADCBCDCBBC","CBBDABCBAEBGAFC","ADBCDBDAC"),
+ACC:{21:["invasion"],22:["uncertainty"],23:["greek myths"],24:["snowball effect"],25:["crime"],26:["temporary","passing"],27:["consistent","steady"],28:["sped up","speeded up"],30:["intense"],51:["generative"],52:["statistical"],53:["likely","likeliest"],54:["whatever"],55:["rewrite"],56:["coverage"],57:["constant"],58:["emergence"],59:["healthcare"],60:["truly"],76:["language"],77:["sequence dating","inductive metrology"],78:["stonehenge"],79:["pottery fragments","pottery shards","painted pottery"],81:["practical aspects","practical methods"]},
+ACCM:{29:[["convenience"],["dimension"]],80:[["weights"],["measures"]]},ACCU:{80:1},
+SHOWM:{26:"temporary / passing",27:"consistent / steady",28:"sped up / speeded up",29:"convenience, dimension",53:"likely / likeliest",55:"rewrite / re-write",77:"sequence dating (or inductive metrology)",79:"pottery fragments / pottery shards (or painted pottery)",80:"weights and measures (either order)",81:"practical aspects / practical methods"}});
+
+/* ---------- checking ---------- */
+const norm=s=>s.toLowerCase().replace(/[^a-z0-9 ]/g,"").replace(/\s+/g," ").trim();
+function ed1(a,b){if(a==b)return true;if(Math.abs(a.length-b.length)>1)return false;let i=0;while(i<a.length&&i<b.length&&a[i]==b[i])i++;if(a.length==b.length)return a.slice(i+1)==b.slice(i+1);return a.length>b.length?a.slice(i+1)==b.slice(i):b.slice(i+1)==a.slice(i)}
+const okv=(v,alts,n)=>alts.some(x=>n<=30?ed1(v,x):v==x);
+function isOk(n){
+ if(KEY[n])return ans[n]==KEY[n];
+ if(ACCM[n]){const a=ACCM[n],v=keys(n).map(k=>norm(ans[k]||""));
+  if(ACCU[n])return (okv(v[0],a[0],n)&&okv(v[1],a[1],n))||(okv(v[0],a[1],n)&&okv(v[1],a[0],n));
+  return v.every((x,i)=>okv(x,a[i],n))}
+ return okv(norm(ans[n]||""),ACC[n]||[],n)}
+function tally(){let c=0;for(let n=1;n<=90;n++){if(!(KEY[n]||REV[n]))continue;if(!keys(n).every(k=>(ans[k]||"").trim()))continue;if(isOk(n))c++}
+ const e=$("okc");if(e)e.textContent=c}
+function reveal(n){
+ const q=$("q"+n);if(!q)return;
+ if(KEY[n]){const v=ans[n];if(!v)return;
+  q.querySelectorAll("input[type=radio]").forEach(r=>{r.disabled=true;const sp=r.nextElementSibling;if(r.value==KEY[n])sp.classList.add("ok");else if(r.value==v)sp.classList.add("bad")});
+ }else{
+  if(!keys(n).every(k=>(ans[k]||"").trim()))return;
+  const ok=isOk(n);REV[n]=1;
+  q.querySelectorAll("input[type=text]").forEach(i=>{i.readOnly=true;i.classList.add(ok?"tok":"tbad")});
+  if(!q.querySelector(".fb"))q.querySelector(".qb").insertAdjacentHTML("beforeend",`<div class="fb ${ok?"ok":"bad"}">${ok?"✓ Correct":"✗ Correct answer: <b>"+(SHOWM[n]||(ACC[n]||[""])[0])+"</b>"}</div>`);
+ }
+ tally()}
 function prog(){let c=0;for(let n=1;n<=90;n++)if(keys(n).every(k=>(ans[k]||"").trim()))c++;
- document.getElementById("cnt").textContent=c;document.getElementById("bar").style.width=(c/90*100)+"%";tally()}
+ $("cnt").textContent=c;$("bar").style.width=(c/90*100)+"%";tally()}
 function save(){try{localStorage.setItem(K,JSON.stringify(ans))}catch(e){}prog()}
-function setChip(b){const n=b.dataset.g,v=ans[n];if(v){b.innerHTML=`<small>${pad(+n)}</small> ${OPT[n][L.indexOf(v)]}`;b.classList.add("done",v==KEY[n]?"ok":"bad");if(v==KEY[n])b.innerHTML+=" ✓";else b.innerHTML+=" ✗ → <b>"+OPT[n][L.indexOf(KEY[n])]+"</b>";tally()}}
-document.querySelectorAll("[data-k]").forEach(el=>{const v=ans[el.dataset.k];if(v==null)return;if(el.type=="radio")el.checked=(el.value==v);else el.value=v});
-document.querySelectorAll(".chip[data-g]").forEach(setChip);prog();
-
-app.addEventListener("input",e=>{const t=e.target,k=t.dataset&&t.dataset.k;if(!k)return;ans[k]=t.value;save()});
-
-/* chip bottom sheet */
-const sh=document.getElementById("sh"),shi=document.getElementById("shi");let cur=null;
-app.addEventListener("click",e=>{const b=e.target.closest(".chip[data-g]");if(!b||b.classList.contains("done"))return;cur=b;const n=b.dataset.g;
- shi.innerHTML=`<h4>Gap ${pad(+n)}</h4>`+OPT[n].map((t,i)=>`<button type="button" data-v="${L[i]}" class="${ans[n]==L[i]?"on":""}"><b>${L[i]}</b>${t}</button>`).join("");
- sh.classList.add("on")});
-shi.addEventListener("click",e=>{const b=e.target.closest("button");if(!b||!cur)return;ans[cur.dataset.g]=b.dataset.v;setChip(cur);save();sh.classList.remove("on");cur=null});
-sh.addEventListener("click",e=>{if(e.target===sh){sh.classList.remove("on");cur=null}});
-
-/* reveal */
-app.addEventListener("click",e=>{const l=e.target.closest("label");if(!l||e.target.tagName=="INPUT")return;const r=l.querySelector("input[type=radio]");if(!r)return;e.preventDefault();if(r.disabled)return;r.checked=true;ans[r.dataset.k]=r.value;save();reveal(parseInt(r.dataset.k))});
-app.addEventListener("change",e=>{const t=e.target,k=t.dataset&&t.dataset.k;if(!k)return;ans[k]=t.value;save();reveal(parseInt(k))});
-app.addEventListener("keydown",e=>{if(e.key=="Enter"&&e.target.type=="text")e.target.blur()});
-for(let n=1;n<=90;n++)reveal(n);
-/* word lookup */
-(function(){
- const DK=K+"-seen2";let D={};try{D=JSON.parse(localStorage.getItem(DK)||"{}")||{}}catch(e){}
- 
- const sv=()=>{try{localStorage.setItem(DK,JSON.stringify(D))}catch(e){}};
- const dict=document.getElementById("dict"),di=document.getElementById("di");
- const nk=w=>w.toLowerCase().replace(/\u2019/g,"'");
- const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
- const E={};document.getElementById("dtxt").textContent.split("\n").forEach(l=>{const p=l.split("|");if(p.length==4)E[p[0]]=p});
- const hE=k=>Object.prototype.hasOwnProperty.call(E,k);
- function cands(w){const c=[],n=w.length,e=s=>w.slice(-s.length)==s;
-  if(e("'s"))c.push(w.slice(0,-2));
-  if(e("s'"))c.push(w.slice(0,-1));
-  if(e("ies"))c.push(w.slice(0,-3)+"y");
-  if(e("ied"))c.push(w.slice(0,-3)+"y");
-  if(e("es")){c.push(w.slice(0,-2));c.push(w.slice(0,-1))}
-  if(e("s")&&!e("ss"))c.push(w.slice(0,-1));
-  if(e("ed")){c.push(w.slice(0,-2));c.push(w.slice(0,-1));if(n>4&&w[n-3]==w[n-4])c.push(w.slice(0,-3))}
-  if(e("ing")){c.push(w.slice(0,-3));c.push(w.slice(0,-3)+"e");if(n>5&&w[n-4]==w[n-5])c.push(w.slice(0,-4))}
-  if(e("ly"))c.push(w.slice(0,-2));
-  return c}
- function res(w,d){d=d||0;if(hE(w))return E[w];if(d>2)return null;const c=cands(w);for(let i=0;i<c.length;i++){if(c[i].length>2){const r=res(c[i],d+1);if(r)return r}}return null}
- let curEl=null;
+function setChip(b){const n=b.dataset.g,v=ans[n];if(v){const ok=v==KEY[n];b.innerHTML=`<small>${pad(+n)}</small> ${OPT[n][L.indexOf(v)]}`;b.classList.add("done",ok?"ok":"bad");b.innerHTML+=ok?" ✓":" ✗ → <b>"+OPT[n][L.indexOf(KEY[n])]+"</b>";tally()}}
+/* ---------- dictionary ---------- */
+const nk=w=>w.toLowerCase().replace(/\u2019/g,"'");
+const esc=s=>String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+const E={};
+function cands(w){const c=[],n=w.length,e=s=>w.slice(-s.length)==s;
+ if(e("'s"))c.push(w.slice(0,-2));
+ if(e("s'"))c.push(w.slice(0,-1));
+ if(e("ies"))c.push(w.slice(0,-3)+"y");
+ if(e("ied"))c.push(w.slice(0,-3)+"y");
+ if(e("es")){c.push(w.slice(0,-2));c.push(w.slice(0,-1))}
+ if(e("s")&&!e("ss"))c.push(w.slice(0,-1));
+ if(e("ed")){c.push(w.slice(0,-2));c.push(w.slice(0,-1));if(n>4&&w[n-3]==w[n-4])c.push(w.slice(0,-3))}
+ if(e("ing")){c.push(w.slice(0,-3));c.push(w.slice(0,-3)+"e");if(n>5&&w[n-4]==w[n-5])c.push(w.slice(0,-4))}
+ if(e("ly"))c.push(w.slice(0,-2));
+ return c}
+const hE=k=>Object.prototype.hasOwnProperty.call(E,k);
+function res(w,d){d=d||0;if(hE(w))return E[w];if(d>2)return null;const c=cands(w);for(let i=0;i<c.length;i++){if(c[i].length>2){const r=res(c[i],d+1);if(r)return r}}return null}
+const sv=()=>{try{localStorage.setItem(K+"-seen2",JSON.stringify(D))}catch(e){}};
+function initWords(){
+ D={};try{D=JSON.parse(localStorage.getItem(K+"-seen2")||"{}")||{}}catch(e){}
+ curEl=null;
  const wr=document.createTreeWalker(app,NodeFilter.SHOW_TEXT,null);const nodes=[];let nd;
  while(nd=wr.nextNode()){if(!/[A-Za-z\u00C0-\u024F]{2}/.test(nd.nodeValue))continue;if(nd.parentElement.closest("button,label,input,.fb,.qn,.ref b,script,style"))continue;nodes.push(nd)}
  nodes.forEach(n=>{const t=n.nodeValue,f=document.createDocumentFragment(),re=/[A-Za-z\u00C0-\u024F]+(?:[\u2019'-][A-Za-z\u00C0-\u024F]+)*/g;let i=0,m;
   while((m=re.exec(t))){if(m[0].length<2)continue;if(m.index>i)f.appendChild(document.createTextNode(t.slice(i,m.index)));const s=document.createElement("span");s.className="w";s.textContent=m[0];f.appendChild(s);i=m.index+m[0].length}
   if(i<t.length)f.appendChild(document.createTextNode(t.slice(i)));n.parentNode.replaceChild(f,n)});
  app.insertAdjacentHTML("afterbegin",'<p class="hint">Tap any word in the texts and questions to see its Slovak translation and meaning.</p>');
- function mark(){app.querySelectorAll(".w").forEach((s,i)=>{s.dataset.i=i;if(D[i])s.classList.add("seen")})}
- mark();
- function open(){dict.classList.add("on");document.body.classList.add("dopen")}
- function close(){dict.classList.remove("on");document.body.classList.remove("dopen");if(curEl)curEl.classList.remove("cur");curEl=null}
- function head(w,base){return '<h4><span>'+esc(w)+(base&&nk(base)!=nk(w)?' <small style="color:var(--mut);font-weight:400">('+esc(base)+')</small>':'')+'</span><button type="button" id="dx" aria-label="Close">\u00d7</button></h4>'}
- function look(s){
-  const w=s.textContent,k=nk(w);
-  if(curEl)curEl.classList.remove("cur");curEl=s;s.classList.add("cur");
-  if(!D[s.dataset.i]){D[s.dataset.i]=1;sv()}
-  s.classList.add("seen");open();
-  const r=res(k);
-  if(r)di.innerHTML=head(w,r[0])+'<div class="sk">'+esc(r[1])+'</div><div class="l">Meaning</div><p class="t">'+esc(r[2])+'</p><div class="l">V\u00fdznam</div><p class="t">'+esc(r[3])+'</p>';
-  else if(w.charAt(0)!==w.charAt(0).toLowerCase())di.innerHTML=head(w)+'<p class="msg">Proper name \u2013 no translation needed.</p><p class="msg">Vlastn\u00e9 meno.</p>';
-  else di.innerHTML=head(w)+'<p class="msg">No entry for this word.</p><p class="msg">Pre toto slovo nie je z\u00e1znam.</p>';
- }
- app.addEventListener("click",e=>{const s=e.target.closest(".w");if(s)look(s)});
- di.addEventListener("click",e=>{if(e.target.closest("#dx"))close()});
-})();
-/* clear */
-let armed=false;const clr=document.getElementById("clr");
-clr.addEventListener("click",()=>{if(!armed){armed=true;clr.textContent="Tap again to clear all answers";setTimeout(()=>{armed=false;clr.textContent="Clear all answers"},4000);return}
- try{localStorage.removeItem(K)}catch(e){}location.reload()});
+ app.querySelectorAll(".w").forEach((s,i)=>{s.dataset.i=i;if(D[i])s.classList.add("seen")})}
+function closeDict(){dict.classList.remove("on");document.body.classList.remove("dopen");if(curEl)curEl.classList.remove("cur");curEl=null}
+function head(w,base){return '<h4><span>'+esc(w)+(base&&nk(base)!=nk(w)?' <small style="color:var(--mut);font-weight:400">('+esc(base)+')</small>':'')+'</span><button type="button" id="dx" aria-label="Close">\u00d7</button></h4>'}
+function look(s){
+ const w=s.textContent,k=nk(w);
+ if(curEl)curEl.classList.remove("cur");curEl=s;s.classList.add("cur");
+ if(!D[s.dataset.i]){D[s.dataset.i]=1;sv()}
+ s.classList.add("seen");dict.classList.add("on");document.body.classList.add("dopen");
+ const r=res(k);
+ if(r)di.innerHTML=head(w,r[0])+'<div class="sk">'+esc(r[1])+'</div><div class="l">Meaning</div><p class="t">'+esc(r[2])+'</p>'+(r[3]?'<div class="l">V\u00fdznam</div><p class="t">'+esc(r[3])+'</p>':'');
+ else if(w.charAt(0)!==w.charAt(0).toLowerCase())di.innerHTML=head(w)+'<p class="msg">Proper name \u2013 no translation needed.</p><p class="msg">Vlastn\u00e9 meno.</p>';
+ else di.innerHTML=head(w)+'<p class="msg">No entry for this word.</p><p class="msg">Pre toto slovo nie je z\u00e1znam.</p>';
+}
+/* ---------- app shell ---------- */
+const app=$("app"),home=$("home"),hdr=$("hdr"),dict=$("dict"),di=$("di"),sh=$("sh"),shi=$("shi");
+$("dtxt").textContent.split("\n").forEach(l=>{const p=l.split("|");if(p.length>=3)E[p[0]]=p});
+function startTest(y){
+ const t=TESTS[y];YR=y;K="matura"+y+"-c1-1515";
+ ans={};try{ans=JSON.parse(localStorage.getItem(K)||"{}")||{}}catch(e){}
+ KEY=t.KEY||{};ACC=t.ACC||{};ACCM=t.ACCM||{};ACCU=t.ACCU||{};SHOWM=t.SHOWM||{};MULTI=t.MULTI||{};REV={};
+ OPT={};for(const k in t.OPT)OPT[k]=t.OPT[k].split("|");
+ const S=t.build();
+ app.innerHTML=S.map(s=>`<section id="${s[0]}">${s[2]}</section>`).join("");
+ $("nav").innerHTML=S.map(s=>`<button type="button" data-s="${s[0]}">${s[1]}</button>`).join("");
+ $("ttl").textContent="Maturita "+y+" · English C1";
+ document.querySelectorAll("#app [data-k]").forEach(el=>{const v=ans[el.dataset.k];if(v==null)return;if(el.type=="radio")el.checked=(el.value==v);else el.value=v});
+ document.querySelectorAll("#app .chip[data-g]").forEach(setChip);
+ prog();
+ for(let n=1;n<=90;n++)reveal(n);
+ closeDict();
+ initWords();
+ home.hidden=true;hdr.hidden=false;app.hidden=false;window.scrollTo(0,0)}
+function goHome(){closeDict();sh.classList.remove("on");app.hidden=true;hdr.hidden=true;home.hidden=false;window.scrollTo(0,0)}
+$("tl").innerHTML=Object.keys(TESTS).sort((a,b)=>b-a).map(y=>`<button type="button" class="tb" data-y="${y}"><b>${y}</b><span>${TESTS[y].code}</span></button>`).join("");
+$("tl").addEventListener("click",e=>{const b=e.target.closest(".tb");if(b)startTest(b.dataset.y)});
+$("back").addEventListener("click",goHome);
+$("nav").addEventListener("click",e=>{const b=e.target.closest("button");if(b)$(b.dataset.s).scrollIntoView({behavior:"smooth",block:"start"})});
+app.addEventListener("input",e=>{const t=e.target,k=t.dataset&&t.dataset.k;if(!k||t.type=="radio")return;ans[k]=t.value;save()});
+app.addEventListener("change",e=>{const t=e.target,k=t.dataset&&t.dataset.k;if(!k)return;ans[k]=t.value;save();reveal(parseInt(k))});
+app.addEventListener("keydown",e=>{if(e.key=="Enter"&&e.target.type=="text")e.target.blur()});
+app.addEventListener("click",e=>{
+ const l=e.target.closest("label");
+ if(l&&e.target.tagName!="INPUT"){const r=l.querySelector("input[type=radio]");if(r){e.preventDefault();if(r.disabled)return;r.checked=true;ans[r.dataset.k]=r.value;save();reveal(parseInt(r.dataset.k));return}}
+ const c=e.target.closest(".chip[data-g]");
+ if(c&&!c.classList.contains("done")){cur=c;const n=c.dataset.g;
+  shi.innerHTML=`<h4>Gap ${pad(+n)}</h4>`+OPT[n].map((t,i)=>`<button type="button" data-v="${L[i]}" class="${ans[n]==L[i]?"on":""}"><b>${L[i]}</b>${t}</button>`).join("");
+  sh.classList.add("on");return}
+ const s=e.target.closest(".w");if(s){look(s);return}
+ if(e.target.closest("#clr")){const b=$("clr");
+  if(!b.dataset.armed){b.dataset.armed=1;b.textContent="Tap again to clear all answers";setTimeout(()=>{if(b.isConnected){delete b.dataset.armed;b.textContent="Clear all answers"}},4000);return}
+  try{localStorage.removeItem(K)}catch(x){}startTest(YR)}});
+shi.addEventListener("click",e=>{const b=e.target.closest("button");if(!b||!cur)return;ans[cur.dataset.g]=b.dataset.v;setChip(cur);save();sh.classList.remove("on");cur=null});
+sh.addEventListener("click",e=>{if(e.target===sh){sh.classList.remove("on");cur=null}});
+di.addEventListener("click",e=>{if(e.target.closest("#dx"))closeDict()});
 </script>
 </body>
 </html>
